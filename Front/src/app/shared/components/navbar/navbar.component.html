@@ -1,0 +1,124 @@
+<nav class="nav-element">
+
+<!-- Menu diseño responsivo  -->
+<div id="dot-menu" class="display-mobile" [ngClass]=" isOpenConsulta==true ? 'visible_menu' : ''"  >
+	<header  id="#header" (click)="isOpenConsulta=toggleState(isOpenConsulta)" >
+		<a  id="menu_on" >
+			<span [ngClass]=" isOpenConsulta==true ? 'colorWhite' : ''"></span>
+			<span [ngClass]=" isOpenConsulta==true ? 'colorWhite' : ''"></span>
+			<span [ngClass]=" isOpenConsulta==true ? 'colorWhite' : ''"></span>
+		</a>
+		</header>
+	<nav class="nav1"  >	
+		<ul>
+			<li ><a (click)="closeMenu()" href="#inicio" > Inicio </a></li>
+      <li ><a  mat-menu-item [matMenuTriggerFor]="quienesomos"  >Quiénes somos</a></li>
+      <li><a  mat-menu-item [matMenuTriggerFor]="invierte" >Invierte</a></li>
+      <li><a  mat-menu-item [matMenuTriggerFor]="auspicios">Auspicios Deportivos</a></li>
+      <li><a  mat-menu-item [matMenuTriggerFor]="solicita">Solicita Financiamiento</a></li>
+         
+      <li *ngIf="!usuarioAutenticado" style="cursor:pointer;" (click)="closeMenu()" [routerLink]="'/register/iniciar_sesion'"><a >Iniciar Sesión</a></li>
+      <li *ngIf="!usuarioAutenticado" style="cursor:pointer;" (click)="closeMenu()" [routerLink]="'/register'">
+        <a (click)="goto_register()" (click)="closeMenu()" class="btn_reg" >Regístrate</a>
+      </li>
+		</ul>
+	</nav>
+  
+</div>
+  <!-- Menu diseño responsivo -->
+<div class="nav_header">
+  <section class="row_" >
+    <div class="content" style="display: flex;
+    align-items: center; margin-right: 40px;">
+      <!-- LOGO -->
+      <a class="logo-container" [routerLink]="'/'"> 
+        <div style="width: 200px; height: 100px;">
+          <img style="max-width: 100%;
+          height: 100%;" src="/assets/images/home/iconos/logopt.png" class="logo-img" />
+        </div>
+        
+      </a>
+    </div>
+    <ul class="navbar-desktop" id="menuDesktop">
+      <li class="btn2"><a mat-menu-item [matMenuTriggerFor]="quienesomos">QUIÉNES SOMOS</a></li>
+      <li><a  class="btninvertir" mat-menu-item [matMenuTriggerFor]="invierte" >INVIERTE</a></li>
+      <li><a  class="btnauspicios" mat-menu-item [matMenuTriggerFor]="auspicios">AUSPICIOS DEPORTIVOS</a></li>
+      <li class="btn2"><a  mat-menu-item [matMenuTriggerFor]="solicita">SOLICITA FINANCIAMIENTO</a></li>
+    </ul>
+  </section>
+  
+  <mat-menu #auspicios="matMenu" >
+    <a (click)="closeMenu()" [routerLink]="'/sport-sponsorship/register/iniciar_sesion'" mat-menu-item>Iniciar Sesión</a>
+    <a (click)="closeMenu()" [routerLink]="'/contact'" target="_blank" mat-menu-item>Crea tu cuenta Auspiciante</a>
+    <a (click)="closeMenu()" [routerLink]="'/sport-sponsorship'"  target="_blank" mat-menu-item>Revisa oportunidades Auspicio</a>
+    <a (click)="closeMenu()" [routerLink]="'/sport-sponsorship/register'" target="_blank" mat-menu-item>Solicita Auspicio Deportivo</a>
+  </mat-menu>
+  
+  <mat-menu #invierte="matMenu">
+    <a (click)="closeMenu()" mat-menu-item [routerLink]="'/register'">Crea tu cuenta</a>
+    <a (click)="closeMenu()"mat-menu-item routerLink="" fragment="choise-oportunity" >Revisa Oportunidades</a>
+    <a (click)="closeMenu()"mat-menu-item  routerLink="" fragment="simulator">Simulador de inversión</a>
+    <a (click)="closeMenu()"mat-menu-item  [routerLink]="'/tutorial'">Tutorial</a>
+  </mat-menu>
+  
+
+  <mat-menu #quienesomos="matMenu"  >
+    <a (click)="closeMenu()"mat-menu-item routerLink="" fragment="aboutUs" >Nosotros</a>
+    <a (click)="closeMenu()"mat-menu-item routerLink="" fragment="aboutUs" >Hacia donde vamos</a>
+    <a (click)="closeMenu()"mat-menu-item >Nuestro equipo</a>
+  </mat-menu>
+  <mat-menu #solicita="matMenu">
+    <a mat-menu-item (click)="financiamiento()" >Crea tu cuenta empresa</a>
+  </mat-menu>
+
+  <div style="display: flex;">
+    <ul class="navbar-desktop" id="menuDesktop">
+      <li style="margin: 0;" *ngIf="!usuarioAutenticado">
+        <button mat-button  style="padding-right: 0px;" class="btnLogin"><img class="ico_logo"  srcset="/assets/images/landing2/movil/icoUser.png " alt="">
+          </button>
+      </li>
+      <li *ngIf="!usuarioAutenticado" class="bg-color-secondary-300 btnRegister" style="border-radius: 7px; padding: 0.25rem; width: 145px; text-align: center; height: 29px;
+      display: flex;
+      align-items: center; cursor: pointer;
+      justify-content: center; white-space: nowrap;" [routerLink]="'/register/iniciar_sesion'"><a style="color: white !important;">INICIAR SESIÓN</a></li>
+      <li *ngIf="!usuarioAutenticado" class="btnRegister"  [routerLink]="'/register'" style="border-radius: 7px;
+      padding: 0.25rem;
+      width: 145px;
+      border: 1px solid #1225aa;
+      color: #1225aa !important;
+      text-align: center;
+      background-color: white;
+      height: 29px;
+      display: flex;
+      align-items: center;
+      justify-content: center; cursor: pointer;"
+       >
+        <a (click)="goto_register()">REGÍSTRATE</a>
+      </li>
+    </ul>
+  </div>
+</div>
+      
+<!-- (mouseover)="isOpenAutenticated=true"  (mouseout)="isOpenAutenticated=false" -->
+<div id="dot-menu" [ngClass]=" isOpenAutenticated==true ? 'visible_menu2':''"  
+>
+  <header  id="#header2" (click)="isOpenAutenticated=toggleState(isOpenAutenticated)"style="position: relative; 
+  z-index: 2;">
+    <section> <button mat-button *ngIf="usuarioAutenticado" class="btnLogin"><img class="ico_logo"  srcset="/assets/images/landing2/movil/icoUser.png " alt="">
+      <div *ngIf="!!val" style="color: #1225aa;" class="hola">Hola {{val}}</div>
+    </button>
+      
+    </section>
+    </header>
+  <nav class="nav2">	
+    <ul>
+      <li style="display: flex; cursor: pointer;" (click)="goToRoute()"> <div class="ico_div_style"> <img src="assets/images/menu/misInversiones.png" ></div><a >Mis Solicitudes </a></li>
+      <li style="display: flex; cursor: pointer;"> <div class="ico_div_style"> <img src="assets/images/menu/configurarPerfil.png"></div><a >Configuracion de perfil </a></li>
+      <li style="display: flex; cursor: pointer;"> <div class="ico_div_style"> <img src="assets/images/menu/cambiarContrasenia.png" alt=""></div> <a >Cambiar contraseña</a></li>
+      <li style="display: flex; cursor: pointer;" (click)="cerrarsession()"> <div class="ico_div_style"> <img src="assets/images/menu/salir.png" alt=""></div> <a >Cerrar sesión </a></li>
+    </ul>
+    <app-menu-component *ngIf="usuarioAutenticado"  (click)="isOpenAutenticated=false"></app-menu-component>
+  </nav>
+</div>
+</nav>
+

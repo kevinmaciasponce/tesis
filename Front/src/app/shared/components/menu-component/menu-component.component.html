@@ -1,0 +1,23 @@
+<div class="start_menu" style="padding-top: 110px;">
+    <div class=""   style="cursor: pointer; display: none;">
+        <a class="link_inicio" (click)="goToRoute(home[0].url)" ><img class="btn_inicio"  src="/assets/images/investor/btn_home.png" alt=""> <div class="txt_inicio btn_inicio">Inicio </div>  </a>
+ </div>
+ <div class="status_menu">
+    <ul class="menu_conteiner" style="list-style: none;">
+        <li class="title_menu_elements menu_elements" style="justify-content: end;" >
+           <div class="link_elements title_element" style="justify-content: center;" (click)="goToRoute('/home')">  
+                 <div>Mis solicitudes</div>  
+            </div> 
+        </li>
+        <li *ngIf="!isOpenMenu" >
+            <div  *ngFor="let item of menu">
+                <li class="menu_elements elements" [ngClass]="{'elements-actual':obtenerurlactual()==item.url}" (click)="goToRoute(item.url)" >
+                    <a class="link_elements" > 
+                        <img class="ico_menu"  src="{{item.urlIcono}}" alt="">
+                        <span style="padding-top: 1%;"> {{item.nombre}} </span> 
+                    </a> 
+                </li>
+            </div>
+        </li>
+    </ul>
+ </div>

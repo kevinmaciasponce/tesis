@@ -1,0 +1,131 @@
+<div class="body">
+    <div class="container_">
+
+     
+
+        <div class="container_body">
+            
+
+            <div class="background_card scrollbar_form">
+                <div class="" >
+                    <div class="bg " >
+                        <div class="box" >
+
+                            <form [formGroup]="registrationForm" (submit)="consultar()" id="season-tble">
+                                <ul class="menu_items">
+                                    <li class="items_conteiner"> Inversiones En Proceso</li>
+                                </ul>
+                                <div class="line-title">         </div>
+
+                                <div class="row_">
+                                    <div class="">
+                                        <table id="">
+                                            <div (click)="isOpenConsulta=toggleState(isOpenConsulta)"  style="text-align: left; width: 100%; margin-bottom: 5px; cursor: pointer;">
+                                                <section class="titles" style="font-size: 1.5em;">Filtros de consulta  <span style="font-size: 10px;">▼</span></section>
+                                            </div>
+                                            <div *ngIf="isOpenConsulta;else close">
+                                            </div>
+                                            <ng-template #close>
+                                                <tr >
+                                                    <th><section   class="theader "> Nombre de Empresa:</section></th>
+                                                    <select  class="box-style" id="codProyecto" name="codProyecto" formControlName="codProyecto" >
+                                                        <option  value=null>TODOS</option>
+                                                        <option  *ngFor="let item of empresas"
+                                                            [value]="item.codProyecto">
+                                                            {{item.nombreEmpresa}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section  class="theader ">Calificación de Riesgo:</section></th>
+                                                    <select  class="box-style" id="riesgos" name="riesgos" formControlName="riesgos" >
+
+                                                        <option  value=null> TODOS</option>
+                                                        <option  *ngFor="let item of calificaciones"
+                                                            [value]="item.idTipoCalificacion">{{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section  class="theader ">Sector:</section></th>
+                                                    <select  class="box-style" id="sectors" name="sectors" formControlName="sectors">
+
+                                                        <option value=null>TODOS</option>
+                                                        <option *ngFor="let item of sectores" [value]="item.idActividad">
+                                                            {{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section  class="theader ">Estado:</section></th>
+                                                    <td > <section  class="box-style">EN PROCESO</section> </td>
+                                                </tr>
+                                            </ng-template>
+                                        </table>
+                                    </div>
+                                    <div class="img_gif">
+                                        <a [routerLink]="['/investor/home']" >
+                                            <img src="/assets/images/investor/sigueinvirtiendot.gif" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 5px; text-align: center; width: 100%;justify-content: center;
+                                display: flex; ">
+                                    <div type="submit" style="width: 180px;" class="btn-orange" (click)="consultar()">
+                                        <a class="">Consultar</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div style="display: flex; flex-direction: row; width: 100%;">
+                                <div style="justify-content: flex-start; width: 70%; ">
+                                    <div style="width: 250px;">
+                                        <section class="titles titles-content" style="margin-top: 15px; font-size: 1.7em;">Detalles de la Consulta
+                                        </section>
+                                    </div>
+
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; width: 40%;">
+                                    <img (click)="exportToExcel()" class="ico_menu justify-content: flex-end;" src="/assets/images/investor/icoword.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="scrollbar_">
+
+
+                                <table style=" border-collapse: separate;
+                                border-spacing: 1px 1px;">
+                                    <thead>
+                                        <th ><section class="theader-flex" >Código de proyecto </section></th>
+                                        <th ><section class="theader-flex" >Nombre de la Empresa</section></th>
+                                        <th ><section class="theader-flex">Estado <img *ngIf="!!detallestatus" class="ico_menu" src="/assets/images/shared/status.png" alt="" matTooltipPosition="above" matTooltip={{detallestatus.detalle}}></section></th>
+                                    </thead>
+                                    
+                                    <tr *ngFor="let item of enproceso">
+                                        <td class="background"> <section class="border"> {{item.codProyecto}}</section>
+                                        </td>
+                                        <td class="background"> <section class="border">{{item.nombreEmpresa}}</section>
+                                        </td>
+                                    
+                                        <td class="background"> <section class="border">{{item.estado}}</section>
+                                        </td>
+                                        <td class="rownoborder input_content"> <button style="width: 210px ;" type="submit" class="btn-orange" (click)="continuar(item.numeroSolicitud,item.codProyecto)"><a 
+                                                    class="">Continuar proceso</a></button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- 
+<div>
+    <input type="button" value="Convert" (click)="captureScreen()"/>
+  </div> -->

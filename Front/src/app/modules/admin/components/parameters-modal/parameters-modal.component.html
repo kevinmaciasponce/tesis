@@ -1,0 +1,67 @@
+<div class="body">
+    <app-loading *ngIf="cargando"></app-loading>
+    <div class="title">
+         <div *ngIf="tipotabla!='pais'">
+            Tabla maestra de 
+            {{tipotabla}} 
+         </div>
+         <div *ngIf="tipotabla=='pais'">
+            Tabla maestra de país
+         </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 25px;padding: 5%">
+        <ng-select class="box-style" style="padding: 0; width: 250px; height: fit-content;" (blur)="consultarPais()" *ngIf="tipotabla=='ciudad'"
+                        [items]="pais" [ngModelOptions]="{standalone: true}"
+                        [multiple]="false"
+                        bindLabel="pais"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="true"
+                        bindValue="idNacionalidad"
+                        placeholder="Seleccione el Pais"
+                        [(ngModel)]="paisSelect">
+                          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.pais}} 
+                          </ng-template>
+            </ng-select>
+
+
+        <mat-form-field appearance="standard">
+            <mat-label>Id</mat-label>
+            <input matInput readonly disabled="disabled"  [(ngModel)]="id" placeholder="Id" #input>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+            <mat-label>Nombre</mat-label>
+            <input oninput="javascript:this.value=this.value.toUpperCase();"  minlength="1" [maxLength]="100" matInput placeholder="Nombre" autofocus #myInput [(ngModel)]="nombre"  #input>
+            <mat-hint *ngIf="nombre" align="end">{{nombre.length}} / {{100}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngIf="tipotabla=='pais'">
+            <mat-label>Genitilicio</mat-label>
+            <input oninput="javascript:this.value=this.value.toUpperCase();" minlength="1" maxlength="100" matInput placeholder="Genitilicio"  [(ngModel)]="gentilicio" #input>
+            <mat-hint *ngIf="gentilicio" align="end" >{{gentilicio.length}} / 100</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngIf="tipotabla=='pais'">
+            <mat-label>Iso</mat-label>
+            <input oninput="javascript:this.value=this.value.toUpperCase();" minlength="1" maxlength="3" matInput placeholder="Iso"  [(ngModel)]="iso" #input>
+            <mat-hint *ngIf="iso" align="end" >{{iso.length}} / 3</mat-hint>
+        </mat-form-field>
+
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="estado"
+            [labelPosition]="'before'">
+            Cuenta Activa
+        </mat-checkbox>
+
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap;justify-content: center; gap: 27px;">
+        <button  class="btn btn-orange" (click)="close()" style="background-color: #b6b6b6;" >Cancelar</button>
+        <button  class="btn btn-orange" (click)="add()" >Agregar</button>
+    </div>
+
+</div>

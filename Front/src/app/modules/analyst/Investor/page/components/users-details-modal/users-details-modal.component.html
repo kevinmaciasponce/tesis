@@ -1,0 +1,218 @@
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="DATOS PERSONALES">
+        <div class="scrollbar_" >
+            <div class="bg">
+            <div class="box">
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" >
+                            <a class="pj-n btn btn-xs" style="font-size: 25px;width: 100%;">Conozca a su cliente persona natural
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row_ " >
+                        <input type="text" value="{{persona?.tipoCliente}}" ngbTooltip="Tipo Cliente" class="input_style" readonly>
+                        <input type="text"value="{{persona?.fechaNacimiento}}" ngbTooltip="Fecha Nacimiento" class="input_style" readonly >
+                    </div>
+                    <div class="row_">
+                        <div type="submit" (click)="isOpendatospersonales=toggleState(isOpendatospersonales)" class="persona_j btn-xs" >
+                            <a class="pblue-n btn btn-xs">Datos Personales
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="isOpendatospersonales;else close">
+
+                    </div>
+                    <ng-template #close>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <input type="text" class="input_style" value="{{persona?.nombres}}"  ngbTooltip="Nombres" readonly
+                                 
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                               
+                            </div>
+                            <div class="column">
+                                <input type="text" class="input_style" value="{{persona?.apellidos}}" readonly
+                                ngbTooltip="Apellidos"
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                                
+                            </div>
+                            <div class="column" >
+                                <input type="text" class="input_style" value="{{persona?.identificacion}}" ngbTooltip="Nr Cédula"  readonly> 
+                            </div>
+                            <div class="column" style="display: flex;" >
+                                <a href="{{persona?.datosFormulario?.personaDocumento?.ruta}}" class="input_style" target="_blank" style="flex-basis: 230px;"><img src="/assets/images/investor/ico_cedula.png" style="width: 8%;" alt=""> {{persona?.datosFormulario?.personaDocumento?.nombre}} </a>
+                            </div>
+                            <div class="column" style="display: flex;" >
+                                <a href="{{persona?.datosFormulario?.personaDocumento?.ruta_post}}" class="input_style" target="_blank" style="flex-basis: 230px;"><img src="/assets/images/investor/ico_cedula.png" style="width: 8%;" alt=""> {{persona?.datosFormulario?.personaDocumento?.nombre}} Posterior </a>
+                            </div>
+                            <div class="column">
+                                <input type="text" class="input_style" value="{{persona?.numeroCelular}}" ngbTooltip="Celular" readonly>
+                            </div>
+                        </div>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <input type="text" class="input_style" value="{{persona?.datosFormulario?.estadoCivil}}" ngbTooltip="Estado civil"readonly
+                                >
+                            </div>
+                            <div class="column">
+                                <input type="text" class="input_style" value="{{tipo_sexo}}" readonly ngbTooltip="Sexo" > 
+                            </div>
+                            <div class="column">
+                                <input type="text"class="input_style"  value="{{persona?.email}}" ngbTooltip="Correo electronico" readonly>
+                              
+                            </div>
+                            <div class="column">
+                                <input type="text"  class="input_style"  value="{{nacionalidad}}" ngbTooltip="Nacionalidad" readonly>
+                                
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpeninfo=toggleState(isOpeninfo)" >
+                            <a class="pblue-n btn btn-xs">Información domiciliaria
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="isOpeninfo;else closeinfo">
+
+                    </div>
+                    <ng-template #closeinfo>
+                        <div class="row_">
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Pais"  value="{{persona?.datosFormulario?.personaDomicilio?.pais?.pais}}" readonly>
+                            </div>
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Ciudad" value="{{persona?.datosFormulario?.personaDomicilio?.ciudad?.ciudad}}" readonly>
+                            </div>
+                            <div class="column">
+                                <div class="column">
+                                    <input type="text" class="input_style" ngbTooltip="Dirección" value="{{persona?.datosFormulario?.personaDomicilio?.direccion}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row_" >
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Nro Domicilio" value="{{persona?.datosFormulario?.personaDomicilio?.numeroDomicilio}}" readonly>
+                            </div>
+                            <div class="column">
+                                <input type="text"  class="input_style" ngbTooltip="Nr Teléfono" value="{{persona?.datosFormulario?.numeroTelefono}}" readonly>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpenfuente=toggleState(isOpenfuente)">
+                            <a class="pblue-n btn btn-xs">Fuentes de Ingreso
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="isOpenfuente;else closefuente">
+
+                    </div>
+                    <ng-template #closefuente>
+                        <div class="row_">
+
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Fuente de ingresos" value="{{persona?.datosFormulario?.fuenteIngresos}}" readonly>
+                            </div>
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Cargo" value="{{persona?.datosFormulario?.cargoPersona}}" readonly>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpencuenta=toggleState(isOpencuenta)">
+                            <a class="pblue-n btn btn-xs">Cuenta bancaria
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="isOpencuenta;else closecuenta">
+
+                    </div>
+                    <ng-template #closecuenta>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Titular de la cuenta" value="{{persona?.datosFormulario?.bancaria?.titular}}" readonly>
+                            </div>
+                            
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Banco" value="{{persona?.datosFormulario?.bancaria?.banco}}" readonly>
+                            </div>
+
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Tipo cuenta" value="{{persona?.datosFormulario?.bancaria?.tipoCuenta}}" readonly>
+                            </div>
+                            
+                            <div class="column">
+                                <input type="text" class="input_style" ngbTooltip="Nro Cuenta" value="{{persona?.datosFormulario?.bancaria?.numeroCuenta}}" readonly>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpendomicilio=toggleState(isOpendomicilio)">
+                            <a class="pblue-n btn btn-xs">Domicilio Fiscal
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="isOpendomicilio;else closedomicilio">
+
+                    </div>
+                    <ng-template #closedomicilio>
+                        <div class="row_ ">
+                            <div class="column_">
+                                <span>  ¿Es usted residente de otro país dentro de Ecuador, para fines fiscales? </span>
+                                <div class="radio_container ">
+                                    <label for="si_residente">Si</label>
+                                    <input type="radio" id="es_residente" name="es_residente" readonly value="S"  checked class="input_style">
+                                    <label for="si_residente">No</label>
+                                    <input type="radio" id="es_residente" name="es_residente" readonly value="N"  checked class="input_style">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                </div>
+            </div>
+        </mat-tab>
+
+
+
+        
+        <mat-tab label="DATOS DE DEPÓSITO" >
+            <div *ngIf="!!datosdeposito" class="background_card2 margen_formulario scrollbar_2">
+                <div class="row_2"><div class="theader ts titulofont">Cliente:
+                    </div>
+                    <div class="column">
+                        <input type="text" class=" input_style" [(ngModel)]="datosdeposito[0].depositante" readonly>
+                    </div>
+                </div>
+                <div class="row_2"><div class="theader ts titulofont">Forma de depósito:</div>
+                    <div class="column">
+                        <input type="text" class=" input_style" value="{{datosdeposito[0].formaPago}}" readonly>
+                    </div>
+                </div>
+                <div class="row_2"><div class="theader ts titulofont">Número de comprobante:</div>
+                    <div class="column">
+                        <input type="text" class=" input_style" value="{{datosdeposito[0].numeroComprobante}}" readonly>
+                        
+                    </div>
+                </div>
+                <div class="row_2"><div class="theader ts titulofont">Fecha de Tansferencia:</div>
+                    <div class="column">
+                        <input type="text" class=" input_style" value="{{datosdeposito[0].fechaDeposito}}" readonly>
+                    </div>
+                </div>
+                <div class="row_2"><div class="theader ts titulofont">Valor Tansferido/ Depósito:</div>
+                    <div class="column">
+                        <input type="text" class=" input_style" value="{{datosdeposito[0].valor|currency}}" readonly>
+                    </div>
+                </div>
+                <div class="row_2 comprobante-pago"><div class="theader ts titulofont">Comprobante de depósito:</div>
+                    <div class="container-input">
+                        <div class="input_style">
+                            <a href="{{datosdeposito[0].rutaComprobante}}"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 15%;" alt="">Ver comprobante </a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </mat-tab>
+</mat-tab-group>

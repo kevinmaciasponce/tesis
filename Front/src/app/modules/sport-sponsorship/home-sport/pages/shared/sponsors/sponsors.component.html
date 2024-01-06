@@ -1,0 +1,211 @@
+<div style="padding-top:110px ;" class="body">
+    <!-- <div class="display-all" >
+        <div class="btn-orange" > 
+            <a >Ver más</a>
+        </div> 
+        <div class="btn-orange"  style="background:#e9a723;"> 
+            <a >Enviar notificaciones</a>
+        </div> 
+    </div> -->
+    <div class="content">
+    <div class="text-content">
+        <div class="blur-box">
+            <img src="/assets/images/landing2/movil/logomultiplo.png" alt="Logo" class="logo-multiplo">  
+            <div class="title-content">
+                <div class="data-row titles-content">
+                    <div class="data-column">
+                        <div>Nombre:</div>
+                        <div>Disciplina:</div>
+                        <div>Categoría:</div>
+                    </div>
+                </div>
+                <div class="data-row">
+                    <div class="data-column">
+                        <div>{{nombre}}</div>
+                        <div>PADEL</div>
+                        <div>INDIVIDUAL</div>
+                    </div>
+                </div>
+            </div>
+            <div class="archivements">
+                <ul>
+                    <li style="list-style: none;" class="titles titles-content">
+                        ¿Quién es nuestro deportista?
+                    </li>
+                    <li style=" text-align:justify; ">
+                        {{edad}} años de edad,  hace 4 años empezó a jugar PADEL, ha participado en torneos nacionales e internacionales representando al Ecuador, actualmente tiene el título de JUNIOR Nº 1 en las categorías 16 Y 18 AÑOS.
+                    </li>
+                </ul>
+                <div class="international">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Logros Internacionales
+                        </li>
+                        <li>
+                            Seleccionado de Ecuador
+                        </li>
+                    </ul>
+                </div>
+                <div class="national">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Logros Nacionales
+                        </li>
+                        <li>
+                            Nº1 categoría Sub 16 
+                        </li>
+                        <li>
+                            Nº1 categoría Sub 18 
+                        </li>
+                    </ul>
+                </div>
+                <div class="descripcion">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Perfil Deportivo
+                        </li>
+                        <li >
+                            Edad:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             {{edad}} <br>
+                        </li>
+
+                        <li>
+                            Título Actual:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             JUNIOR Nº 1 CATEGORIAS 16 Y 18 AÑOS<br>
+                        </li>
+                        <li> 
+                            Calificación MD No : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{calificacion}} <br>
+                        </li>
+                        <li> 
+                            Fecha de Calificación :&nbsp; 31 de Agosto 2022<br>
+                        </li>
+                        <ul  class="ul-title" >
+                            <li class="titles titles-content">
+                                RANKING NACIONAL <br>
+                            </li> 
+                            <li> 
+                                Nº1 categoría Sub 16<br>
+                            </li>
+                            <li>
+                                Nº1 categoría Sub 18<br>
+                            </li>
+                        </ul>
+                        <ul class="ul-title">  
+                           <li class="titles titles-content">
+                                RANKING INTERNACIONAL <br>
+                           </li> 
+                        
+                            <li> 
+                                Seleccionado de Ecuador<br>
+                            </li>
+                        </ul>
+                        <ul class="ul-title"> 
+                            
+                            <li class="titles titles-content">
+                                 Otros<br>
+                            </li>
+                            <li>
+                                Campeón 3º en categoría<br>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="tournaments">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Torneos a participar
+                        </li>
+                        <li>
+                            Máster de Pádel (Noviembre/2022) Ecuador 
+                        </li>
+                        <li>
+                            Nacionales de pádel (ABRIL A OCTUBRE/2023) Ecuador 
+                        </li>
+                        <li>
+                            Panamericano de juveniles (OCTUBRE/2023)  
+                        </li>
+                        <li>
+                            Mundial de menores (SEPTIEMBRE/2023)  
+                        </li>
+                        <li>
+                            Circuito APT (2023) MEXICO
+                        </li>
+                        <li>
+                            Circuito APT (2023) ARGENTINA
+                        </li>
+                        <li>
+                            Circuito APT (2023) ITALIA
+                        </li>
+                        <li>
+                            Circuito APT (2023) ESPAÑA
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-content">
+        <div class="blur-box data-total">
+
+            <div class="title-content">
+                <div class="data-row titles-content">
+                    <div class="data-column">
+                        <div>USD Aprobado:</div>
+                        <div>USD Recaudado:</div>
+                    </div>
+                </div>
+                <div class="data-row">
+                    <div class="data-column">
+                        <div>${{monto}}</div>
+                        <div>$00.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progressbar" style="width: 80%;">
+                <div class="row_card_conteiner">
+                    <div class="progress" >
+                      <div class="progressbarWrapper">
+                        <span class="yellowBar" [ngClass]="porcenatjeprueba >=100?'suceessBar':'yellowBar'" [ngStyle]="{'width':porcenatjeprueba >=100?100:porcenatjeprueba+ '%'}" ></span>
+                        <div class="percent" [ngStyle]="{'color': porcenatjeprueba>=50?'#fff':'#1225aa'}"> <p *ngIf="porcenatjeprueba>=100">EXITOSO &nbsp;</p> {{porcenatjeprueba}}%</div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="video-conteiner">
+                <iframe class="video" [src]="video" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+                </iframe>
+            </div>
+
+            <div>
+                <table class="table" >
+                    <tr>
+                      <th scope="row" style="color: #ff5f00;">CATEGORÍAS</th>
+                      <th style="color: #ff5f00;">RECOMPENSAS</th>
+                    </tr>
+                    <tr>
+                      <th>ORO</th>
+                      <td>Presencia de marca parte frontal de la camiseta -Redes sociales y entrevistas </td>
+                    </tr>
+                    <tr>
+                        <th>PLATA</th>
+                        <td>Presencia de marca parte posterior de la camiseta -Redes sociales y entrevistas </td>
+                     </tr>
+                    <tr>
+                        <th>BRONCE</th>
+                        <td>Presencia de marca parte inferior frontal y/o posterior de camisetas o mangas -Redes sociales </td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="btn-conteiner display-mobile">
+        <div class="btn-orange"   [routerLink]="'/contact'"> 
+            <a >AUSPICIA ESTE DEPORTISTA</a>
+        </div> 
+    </div>
+</div>

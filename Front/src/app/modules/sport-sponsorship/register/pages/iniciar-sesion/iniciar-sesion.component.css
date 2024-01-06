@@ -1,0 +1,365 @@
+.body{
+    display: flex;
+    background-image: url('/assets/images/sponsorship/iniciar/back.webp');
+    background-blend-mode: luminosity;
+    background-color: #1122aa80;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 737px;
+    width: 100%;
+    padding-top: 110px; 
+    font-family: 'NexaRegular';
+}
+
+input::-ms-reveal {
+    display: none;
+}
+.row_{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.columna_{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-basis: 100%;
+    
+}
+.conteiner{
+    height: 80%;
+    margin-right: 5vh;
+    margin-left: 2vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+
+
+.elementos>img{
+    width: 5%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+}
+.row2{
+    display: flex;
+}
+.elementos{
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.texto,.img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.texto{
+    text-align: center;
+    color: #223262;
+}
+
+.texto2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ingresa{
+    height: 20px;
+}
+
+.ingresa{
+    font-weight: bolder;
+    text-decoration: none;
+    margin-bottom: 15PX;
+    display: flex;
+    justify-content: center;
+}
+.texto>h5{
+    font-size: 16px;
+}
+.conteiner_form{
+    box-shadow: rgba(139, 139, 139, 0.8) 1.95px 9px 19px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 14vh;
+    width: 500px;
+    margin-bottom: 4vh;
+}
+.img>img{
+    width: 13vh;
+    height: 13vh;
+}
+.formulario{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+}
+.form{
+    width: 100%;
+    height: 550px;
+}
+
+.input{
+    width: 92%;
+    margin-bottom: 10px;
+}
+
+.registrarse{
+    width: 92%;
+}
+.reg{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.reg>button{
+    width: 100%;
+    padding-right: 100%;
+}
+.btn_ingresa{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+.btncolor{
+    background-color: #e06222;
+    color: white;
+    width: 150px;
+}
+.btncolor_azul{
+    background-color: #124278;
+    color: white;
+    width: 128%;
+}
+
+.data{
+    padding-bottom: 5px;
+    width: 100%;    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: -17%;
+    height: 58px;
+    color: white;
+    font-size: 4em;
+    align-items: center;
+    font-family: NEXABLACK;
+    background: rgb(20 8 73 / 58%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(5px);
+}
+
+.columna{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 27px;
+}
+h1,h5,h3{font-family: 'NexaRegular';}
+.col_img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+@media only screen and (max-width: 1110px) {
+    .conteiner{
+        align-items: flex-start;
+    }
+    .form{
+        width: 485px;
+        height: 550px;
+    }
+    .texto>h5{
+        font-size: 13px;
+    }
+    .conteiner_form{
+        margin-top: 15%;
+      
+        padding: 7px;
+        border-radius: 10px;
+        background-color: white;
+    }
+    .form{
+        height: 485px;
+    }
+    img{
+        width: 70%;
+    }
+
+    .row_{
+        width: 100%;
+    }
+    .col_form{
+        margin-right: 50px;
+        align-content: flex-start;
+    }
+
+    .col_clase{
+        width: 24%;
+    }
+
+    
+}
+
+
+@media only screen and (max-width: 920px) {
+    .body{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+    }
+    .banner3{
+        display: none;
+    }
+    .input{
+        margin-top: 4%;
+    }
+    .ingresa{
+        margin-top: 5%;
+    }
+    .row_{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .elementos{
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .br_pc{
+        display: none;
+    }
+    .conteiner{
+        margin-right: 5px;
+    }
+    .columna_{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .conteiner_form{
+        margin-top: 10%;
+        
+        border-radius: 10px;
+        width: 90%;
+    }
+
+    .texto{
+        flex-grow: 3;
+        text-align:justify;
+        align-items: center;
+        justify-content: start;
+        margin-right: 7%;
+    }
+    .img{
+        margin-right: 0vh;
+    }
+    .form{
+        width: 100%;
+        height: 600px;
+       
+    }
+
+    .data{
+        font-size: 3.8em;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .body{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+    }
+    .data{
+        font-size: 2em;
+    }
+    .row_{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .banner>img{
+        display: none;
+    }
+    .banner2{
+        display: flex;
+        margin-top: 40PX;
+        width: 95%;
+        height: 25%;
+    }
+    .col_clase{
+        margin-top: 50px;
+        justify-content: center;
+        width: 100%;
+    }
+    .col_form{
+        margin-right: 1px;
+    }
+    .elementos{
+        display: flex;
+        flex-direction: row;
+    }
+    .br_pc{
+        display: none;
+    }
+    .conteiner{
+        margin-right: 5px;
+    }
+
+    .texto{
+        flex-grow: 3;
+        text-align:justify;
+        align-items: center;
+        margin-right: 7%;
+    }
+    .img{
+        margin-right: 0vh;
+    }
+    .form{
+        height: 600px;
+        
+    }
+    .conteiner_form{
+       
+        padding: 3px;
+        border-radius: 5px;
+        background-color: white;
+        margin-top: 4vh;
+    }
+}

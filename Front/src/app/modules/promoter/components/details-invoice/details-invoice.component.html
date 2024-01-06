@@ -1,0 +1,215 @@
+<div style="position: absolute;
+right: 0;">
+    <button class="downloadButton" data-toggle="tooltip" data-placement="top" (click)="captureScreen()"><img src="assets/images/investor/download.png" style="rotate: 180deg;
+        width: 40px;" alt=""></button>
+</div>
+<div class="invoice" id="factura" >
+
+    <div style="display: flex; justify-content: center;">
+        <img src="/assets/images/landing2/movil/logo.png" *ngIf="!!factura" style="align-self: center;" class="logo-img">
+    </div>
+    <div class="header">
+        <div class="elements-header" style="flex-basis: 40%;  font-size: 0.8em;">
+            <div *ngIf="!!factura" style="font-size: 20px; color: #1225aa;"> FACTURA</div>
+            <div *ngIf="!!factura" style="font-size: 14px;"> {{factura.documento}}</div>
+            <!-- <div>Multiplolenders</div> -->
+            <div *ngIf="!!factura && !!factura.vendedor">Direccion: {{factura.vendedor.direccion}}</div>
+            <div class="data-invoice" *ngIf="!!factura && !!factura.vendedor">
+                Emisor: {{factura.vendedor.nombre_comercial}}
+            </div>
+            <div class="data-invoice" *ngIf="!!factura && !!factura.vendedor">
+                Ruc: {{factura.vendedor.ruc}}
+            </div>
+            <div class="data-invoice" *ngIf="!!factura && !!factura.vendedor">
+                Email: {{factura.vendedor.email}}
+            </div>
+            <div class="data-invoice" *ngIf="!!factura && !!factura.vendedor">
+              <b> Obligado a llevar contabilidad: SI</b>
+            </div>
+            <div class="data-invoice" *ngIf="!!factura && !!factura.vendedor">
+              <b>Contribuyente régimen Rimpe</b> 
+             </div>
+        </div>
+        <div class="elements-header" style="flex-basis: 30%; font-size: 0.8em;">
+            
+            <div class="elements-header">
+                <div style="font-size: 20px; color: #1225aa;" *ngIf="!!factura">CLIENTE</div>
+                <div *ngIf="!!factura">
+                    Ruc: {{factura.persona.ruc}}
+                </div>
+                <div *ngIf="!!factura">
+                    Razón social: {{factura.persona.razon_social}}
+                </div>
+                <div *ngIf="!!factura">
+                    Correo: {{factura.persona.email}}
+                </div>
+                <div *ngIf="!!factura">
+                    Teléfono: {{factura.persona.telefonos}}
+                </div>
+
+                <div *ngIf="!!factura">
+                    Dirección: {{factura.persona.direccion}}
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="elements-header" style="flex-basis: 30%;font-size: 0.8em;">
+           
+            <div class="data-invoice" *ngIf="!!factura">
+                Fecha emisión: {{factura.fecha_creacion}}
+            </div>
+            <div>
+                Número de Autorización: 125448748456415641854185445789
+            </div>
+            <div>
+                Clave de Accesso: <span style="font-family: Ciacode39; font-size: 8px;">125448748456415641854185445789</span> 
+            </div>
+        </div>
+
+        
+    </div>
+    <div class="body" style="display: flex; flex-direction: column;">
+
+        <div>
+            <table mat-table [dataSource]="dataSource" class="width-table" *ngIf="!!factura">
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef  >
+                Id.
+                </th>
+                <td style="    text-align: justify;
+                padding-right: 3%;" mat-cell *matCellDef="let element; let i = index; "> {{i+1}}</td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef style="width: 182px;" >
+                Nombre
+                </th>
+                <td mat-cell *matCellDef="let element">  {{element.producto_nombre}}</td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef  >
+                Cantidad
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="preciou">
+                <th mat-header-cell *matHeaderCellDef  >
+                Precio unitario
+                </th>
+                <td mat-cell *matCellDef="let element" style="padding-left: 5%;"> {{element.precio|currency}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef  >
+                Total
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.base_gravable|currency}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           
+
+                <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No existen facturas registradas</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="display: flex;justify-content: space-between; gap: 5%;">
+            <table style="margin-top: 2%;" *ngIf="!!factura">
+                <tr>
+                    <th colspan="2">
+                        Informacion adicional
+                    </th>
+                </tr>
+                <tr>
+                    <td style="color: #1225aa;">
+                        Descripción
+                    </td>
+                    <td style="padding-left: 4%; text-align: justify;">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias illo quidem, sequi 
+                        {{factura.detalles[0].descripcion}}
+                    </td>
+                </tr>
+            </table>
+            <table class="table-secondary2" *ngIf="!!factura" >
+                <tr>
+                    <th >
+                        Subtotal:
+                    </th>
+                    <td style="text-align: right;">
+                        {{factura.subtotal_12|currency}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Descuento:
+                    </th>
+                    <td style="text-align: right;">
+                        $0.00
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Iva:
+                    </th>
+                    <td style="text-align: right;">
+                        {{factura.iva|currency}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style=" border-bottom: 2px solid #1225aa ;">
+                        Total:
+                    </th>
+                    <td style="text-align: right;">
+                        {{factura.total|currency}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+
+    </div>
+    
+    <div class="footer">   
+
+        <table  style="border-collapse: separate; margin-top: 2%;    border-spacing: 0;
+        width: 675px;" *ngIf="!!factura" >
+            <tr>
+                <th colspan="3">
+                    Datos para pagos
+                </th>
+            </tr>
+            <tr>
+                <td style="color: #1225aa;">
+                    Tipo Cuenta
+                 </td>
+                 <td style="color: #1225aa;">
+                    Número Cuenta
+                </td>
+                <td style="color: #1225aa;">
+                    Beneficiario
+                </td>
+            </tr>
+            <tr>
+                <td >
+                   Cuenta Coriente
+                </td>
+                <td >
+                    3501082669
+                </td>
+                <td >
+                    MULTIPLO S.A.S.B.I.C
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>

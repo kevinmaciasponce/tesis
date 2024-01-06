@@ -1,0 +1,25 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div>
+    <div>
+        <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; align-items: center;">
+            <ul class="menu_items">
+                <li class="items_conteiner">Generar tablas de amortización</li>
+            </ul>
+            <div  style="margin-bottom: 10px;"> 
+                <section style="border-radius: 20px !important; height: 40px; width: 250px; padding: 2%; font-size: 1.3em;" class="box-flex" > {{tabla.nombEmpresa}} </section> </div>
+            <div class="scrollbar_">
+                <form action="" class="column_" [formGroup]="registrationForm"  (ngSubmit)="onSubmit()">
+                    <div  class="row_">
+                    <section  class="theader">Fecha de tabla de amortización </section>
+                    <input type="date" name="dateDeprecation" id="dateDeprecation" formControlName="dateDeprecation" required [(ngModel)]="date"
+                    class="trow" />
+                </div>
+                <div>
+                    <div class="btn_">
+                        <button type="submit" class="titlesorange">{{nombrebtn}}</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+    </div>
+</div>

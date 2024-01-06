@@ -1,0 +1,29 @@
+.table-class{
+    height: fit-content;
+    border-collapse: separate;
+    border-spacing: 2px 2px;
+    background: rgba(65, 65, 65, 0.59);
+    border-radius: 5px;
+    padding: 5px;
+    min-width: 98%;
+    margin: 3px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.7px);
+    -webkit-backdrop-filter: blur(2.7px);
+    color: white;
+}
+.titles-content>th{
+    background-color: #474747;
+    color: white;
+    border-radius: 5px;
+    padding-left: 2%;
+    width: 220px;
+  }
+  .titles{
+    background-color: #1225aa;
+    color: white;
+    border-radius: 5px;
+  }
+  .titles>th{
+    border-radius: 5px;
+  }

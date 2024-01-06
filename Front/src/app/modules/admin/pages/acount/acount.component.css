@@ -1,0 +1,21 @@
+.body{
+    padding-bottom: 5%;
+}
+.title{
+    font-size: 1.6em;
+    display: flex;
+    background-color: #e9a723;
+    color: white;
+    justify-content: center;
+    padding: 1% 5%;
+    border-radius: 12px;
+    width: fit-content;
+}
+.ico-width{
+    width: 150px;
+}
+
+.efectoSobre:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+}

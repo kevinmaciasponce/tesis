@@ -1,0 +1,75 @@
+{
+  "api": {
+    "basepath": "multiplolenders.azurewebsites.net/",
+    "endpoints": [
+      {
+        "restAPI": [
+          {
+            "name": "Parametros",
+            "url": "/multiplo/parametros/",
+            "headers": [
+              {
+                "Content-Type": "application/json"
+              }
+            ]
+          },
+          {
+            "name": "Paises",
+            "url": "/multiplo/paises",
+            "headers": [
+              {
+                "Content-Type": "application/json"
+              }
+            ]
+          },
+          {
+            "name": "EmpleadosVentas",
+            "url": "/multiplo/empleados/ventas",
+            "headers": [
+              {
+                "Content-Type": "application/json"
+              }
+            ]
+          },
+          {
+            "name": "RegistroPersonaNatural",
+            "url": "/multiplo/cuentas",
+            "headers": [
+              {
+                "Content-Type": "application/json"
+              }
+            ]
+          },
+          {
+            "name": "RegistroPersonaJuridica",
+            "url": "/multiplo/cuentas",
+            "headers": [
+              {
+                "Content-Type": "application/json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "paths": {
+    "images": "./assets/images"
+  },
+  "notifications": {
+    "options": {
+      "timeOut": 5000,
+      "showProgressBar": true,
+      "pauseOnHover": true,
+      "position": [
+        "bottom",
+        "right"
+      ],
+      "theClass": "sy-notification"
+    }
+  },
+  "parametros": {
+    "validarRecaptcha": true,
+    "recaptchaKey": "6LdWJsAUAAAAAKfew9MLLRCAtwbg9t_qhraqbw3P"
+  }
+}

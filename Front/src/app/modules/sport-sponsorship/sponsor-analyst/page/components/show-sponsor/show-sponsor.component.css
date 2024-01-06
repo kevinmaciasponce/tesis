@@ -1,0 +1,285 @@
+.body{
+    padding-top: 110px;
+    font-family: NexaRegular;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: url('/assets/images/beneficiary/consultar/fondo.webp');
+    background-blend-mode: luminosity;
+    background-color: #1122aa80;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+}
+.content{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.row_{
+    display: flex;
+    justify-content: center;
+}
+.title-content{
+  width: 100%; 
+  display: flex; 
+  justify-content: center;
+}
+.data-benefit{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 1.5em;
+  margin: 1% 0 1%;
+}
+.box-data{
+  background: rgb(42 42 42 / 74%);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: fit-content;
+    height: fit-content;
+    padding: 8px;
+}
+.personal-data{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-basis: 80%;
+}
+.photos{
+    width: 25%;
+    flex-basis: 20%;
+}
+.table-class{
+    height: fit-content;
+    border-collapse: separate;
+    border-spacing: 2px 2px;
+    background: rgba(65, 65, 65, 0.59);
+    border-radius: 5px;
+    padding: 5px;
+    min-width: 506px;
+    margin: 3px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.7px);
+    -webkit-backdrop-filter: blur(2.7px);
+    color: white;
+}
+.table-height{
+  height: 243px;
+}
+.table-titulos{
+  max-width: 506px;
+  height: 152px;
+}
+.space{
+    margin-top: 3%;
+    flex-wrap: wrap;
+}
+.centrar{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 37px;
+    align-items: center;
+  }
+  .scroll{
+    overflow-y: scroll;
+    max-height: 152px;
+  }
+  .upload:hover{
+    transition: transform .3s;
+      transform: scale(1.2);
+  }
+  ::ng-deep ::-webkit-scrollbar {
+    appearance: none;
+    width: 8px;
+    }
+    ::ng-deep ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #0b65b1;
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
+  /* Titulo de Beneficiario y nombre */
+.title{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: white;
+    background: rgb(233 167 35);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(2.7px);
+    font-size: 2em;
+    padding: 1%;
+    display: flex;
+}
+/* Titulo de tablas  */
+  .titles{
+    background-color: #1225aa;
+    color: white;
+    border-radius: 5px;
+    position: sticky;
+    top: 0px;
+    height: 32px;
+  }
+  .titles-content {
+    position: sticky;
+    top: 20px;
+  }
+  .titles>th{
+    border-radius: 5px;
+  }
+  .titles-content>th{
+    background-color: #474747;
+    color: white;
+    border-radius: 5px;
+    padding-left: 2%;
+    width: 220px;
+  }
+  .column_class{
+    display: flex;
+    flex-direction: column;
+  }
+  .input-transparent{
+    background-color: transparent;
+    border: 0;
+    color: white;
+  }
+  .btn-editar{
+    display: flex;
+    justify-content: center;
+    max-width: 1012px;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 17px;
+    margin: 5% 0 5%;
+  }
+  .btn-orange{
+    border-radius: 7px;
+    border: 0;
+    padding: 0.25rem;
+    width: 245px;
+    height: 45px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+    color: white !important;
+  }
+  .btn-card:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  .btn-orange > a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  .img_state{
+    width: 100%;
+  }
+  .imgcontent{
+    width: 100%;
+    padding-bottom: 11%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    cursor: pointer;
+  }
+  .btn-orange:hover {
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  .hoverElement:hover {
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  ::ng-deep .mat-card-header-text{
+    margin: 0 !important;
+  }
+  .matcardConteiner{
+    border-spacing: 2px 2px;
+    background: rgba(65, 65, 65, 0.59);
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 400px;
+    margin: 3px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.7px);
+    -webkit-backdrop-filter: blur(2.7px);
+    color: white;
+  }
+
+  .cardAuspicio{
+    display: flex; 
+    justify-content: center;
+  }
+  .data-auspicio{
+    display: flex; 
+    justify-content: center;
+  }
+
+  .header-ausp{
+    background-color: #1225aa;
+    color: white;
+  }
+  .btn-card{
+    background-color: #ff5f00;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+  }
+  .img_rutas{
+    aspect-ratio: 2 / 1; 
+    width: 100%;
+  }
+  
+  @media (max-width: 1280px) {
+    .photos{
+      flex-basis: 50%;
+    }
+    .personal-data{
+      flex-basis: 50%;
+    }
+  } 
+  @media (max-width: 850px) {
+    .photos{
+      flex-basis: 100%;
+      justify-content: center;
+      flex-direction: row;
+      display: flex;
+      width: 80%;
+    }
+    .personal-data{
+      flex-basis: 100%;
+      justify-content: center;
+    }
+    .row_{
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .img_rutas{
+      width: 100%;
+    }
+    .content{
+      align-items: center;
+    }
+    .title{
+      font-size: 1.5em;
+    }
+  } 
+  

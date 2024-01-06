@@ -1,0 +1,100 @@
+<div class="body">
+    <div class="container_">
+        <!-- <div class="top">
+            <app-menu-conteiner></app-menu-conteiner>
+            
+        </div> -->
+        <div class="container_body">
+            <div class="content">
+                <ul class="status_cards items_end">
+                    <li class="blue_card" [routerLink]="['/analyst/inconfirmation']" style="cursor:pointer">
+                        <a class="link_elements_card columna" >
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/confirmaico.png" alt="">
+                                <div class="txt_card"> Por confirmar
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{canp}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="orange_card" [routerLink]="['/analyst/transfer']" style="cursor:pointer">
+                        <a class="link_elements_card columna" >
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/firmaico.png" alt="">
+                                <div class="txt_card">Transferir Fondos
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{fc}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="blue_card" [routerLink]="['/analyst/liquidated' ]"style="cursor:pointer">
+                        <a class="link_elements_card columna" >
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/liquidadaico.png" alt="">
+                                <div class="txt_card">Liquidadas
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{liquidadas}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="orange_card">
+                        <a class="link_elements_card columna" >
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/conciliacionico.png" alt="">
+                                <div class="txt_card">Reportes
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{conciliacion}}</div>
+                            </div>
+                        </a>
+                    </li>                    
+                </ul>
+                <ul class="status_cards items_start">
+                    <li class="orange_card" [routerLink]="['/analyst/aproveTransfer']" style="cursor:pointer">
+                        <a class="link_elements_card columna">
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/aprobadaico.png" alt="">
+                                <div class="txt_card">Aprobada por transferir fondos
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{tranf}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="blue_card"  [routerLink]="['/analyst/validity' ]"style="cursor:pointer">
+                        <a class="link_elements_card columna">
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/vigenteico.png" alt="">
+                                <div class="txt_card">Vigentes
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{vigente}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="orange_card" [routerLink]="['/analyst/canceled' ]"style="cursor:pointer">
+                        <a class="link_elements_card columna" >
+                            <div class="fila">
+                                <img class="ico_card" src="/assets/images/analyst/anuladaico.png" alt="">
+                                <div class="txt_card">Anuladas
+                                </div>
+                            </div>
+                            <div class="txt_sol">
+                                Número de solicitudes: &nbsp; <div class="num_sol"> {{anuladas}}</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="start_menu">
+    <div class="">
+        <a class="link_inicio"  [routerLink]="'/investor/home'"  > <img class="btn_inicio" src="/assets/images/investor/btn_home.png" alt=""> <div class="txt_inicio btn_inicio">Inicio </div>  </a>
+    </div>
+ </div>
+ <div class="status_menu">
+    <ul class="menu_conteiner">
+        <li class="title_menu_elements menu_elements" (click)="isOpenMenu=toggleState(isOpenMenu)" >
+           <div class="link_elements title_element" > <img class="ico_menu" src="/assets/images/investor/ico_1.png" alt=""> <div>Mis inversiones</div>  </div> 
+        </li>
+        <div *ngIf="isOpenMenu;else close">
+        </div>
+        <ng-template #close>
+            <li class="menu_elements elements"  [ngClass]="{'elementos':obtenerurlactual()=='inprocess'}" >
+            <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='inprocess'}" (click)="goToRoute('/inprocess')"> <img class="ico_menu" src="/assets/images/investor/ico_2.png" alt=""><span> En proceso </span> </a> 
+            </li>
+            <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='inconfirmation'}">
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='inconfirmation'}"  (click)="goToRoute('/inconfirmation')" > <img class="ico_menu" src="/assets/images/investor/ico_3.png" alt=""><span> Por confirmar </span></a> 
+            </li>
+            
+            <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='intransit'}" >
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='intransit'}" (click)="goToRoute('/intransit')" > <img class="ico_menu" src="/assets/images/investor/ico_4.png" alt=""><span> En tránsito </span></a>
+            </li>
+            <li class="menu_elements elements"[ngClass]="{'elementos':obtenerurlactual()=='invality'}" >
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='invality'}" (click)="goToRoute('/invality')" > <img class="ico_menu" src="/assets/images/investor/ico_5.png" alt=""><span> Vigentes </span></a> 
+            </li>
+            <li class="menu_elements elements"[ngClass]="{'elementos':obtenerurlactual()=='report'}">
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='report'}" (click)=" set_data('reportePago','investor');goToRoute('/report')"> <img class="ico_menu" src="/assets/images/investor/ico_6.png" alt=""><span> Reportes </span></a> 
+            </li>
+        </ng-template>
+    </ul>
+ </div> 
+
+

@@ -1,0 +1,144 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <div class="container_">
+       
+        
+         <!-- <app-menu-conteiner></app-menu-conteiner> -->
+        <div class="container_body">
+            <button mat-button mat-stroked-button [routerLink]="['/promoter/invoice']"
+            style="background-color: #767676;color: white;  align-self: flex-start; margin-left: 2%; ">
+            Regresar 
+            </button>
+            <form action="" [formGroup]="registrationForms" #ngForms="ngForm" novalidate autocomplete="off">
+            <div class="row_">
+                <div class="bg bancos">
+                    <div class="background_card_">
+                        <div class="top_title">
+                            <div type="submit" class="persona_j btn-xs" >
+                                <a class="pj-n btn btn-xs">Datos para realizar el depósito
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row_ justificado">
+                            <div style="width: 100%;">
+                                <table class="table-responsive">
+                                    <div class="row_2"><div class=" ts">Nombre de Banco:</div>
+                                    <div class="trow deposito_input">Banco Amazonas</div> </div>
+                                    <div class="row_2"><div class=" ts">Tipo de cuenta:</div>
+                                    <div class="trow deposito_input">Cuenta corriente</div> </div>
+                                    <div class="row_2"><div class=" ts">Número de cuenta:</div>
+                                    <div class="trow deposito_input">3501082669</div> </div>
+                                    <div class="row_2"><div class=" ts">Ruc:</div>
+                                    <div class="trow deposito_input">0993370103001</div> </div>
+                                    <div class="row_2"><div class=" ts">Beneficiario:</div>
+                                    <div class="trow deposito_input">MULTIPLOS S.A.S.B.I.C</div></div>
+                                    <div class="row_2"><div class=" ts">Correo de contacto:</div>
+                                    <div class="trow deposito_input">servicioalcliente@multiplolenders.com</div> </div>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg">
+                    <div class="background_card margen_formulario">
+                        <div class="title" style="margin-top: 0%;">
+                            <div type="submit" class="persona_j btn-xs" >
+                                <a class="pj-n3 btn btn-xs">Datos del promotor
+                                </a>
+                            </div>
+                            <div class="line-title"></div>  
+                        </div>
+                        <div class="row_2"><div class="theader ts titulofont">Cliente:
+                            </div>
+                            <div class="column">
+                                <input type="text" name="cliente" id="cliente" formControlName="cliente" 
+                                placeholder="Ingrese su nombre" class="trow trow-input" value="" 
+                                [ngClass]="{'is-invalid': ngForms.submitted && IsInvalid('cliente')}"
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                                <span class="" *ngIf="IsInvalid('cliente')" class="errrorinfo">
+                                    <div class="alert alert-danger" style="width: 80%;padding: 0.4rem 0.4rem;">{{'Este campo requiere entre 3 y 50 carácteres'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="row_2"><div class="theader ts titulofont">Número de comprobante:</div>
+                            <div class="column">
+                                <input  (keypress)="keyPressNumbers($event)" type="text" name="ncomprobante" id="ncomprobante" formControlName="ncomprobante" placeholder="XXXXXXXXXXX"  class="trow trow-input" value="" 
+                                [ngClass]="{'is-invalid': ngForms.submitted && IsInvalid('ncomprobante')}"
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                                <span class="" *ngIf="IsInvalid('ncomprobante')" class="errrorinfo">
+                                    <div class="alert alert-danger" style="width: 80%;padding: 0.4rem 0.4rem;">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row_2"><div class="theader ts titulofont">Fecha de Transferencia:</div>
+                            <div class="column">
+                                <input  type="text" onfocus="(this.type='date')" onblur="if(this.value==''){(this.type='text')}" [max]='maxDate'  name="ftransferencia" id="ftransferencia" placeholder="Fecha de transferencia"
+                            formControlName="ftransferencia" [ngClass]="{'is-invalid': IsInvalid('ftransferencia')}"
+                            class="trow trow-input">
+                            <span class="" *ngIf="IsInvalid('ftransferencia')" class="errrorinfo">
+                                <div class="alert alert-danger" > {{'Este campo es requerido'}} </div>
+                            </span>
+                            <span class="" *ngIf="currentDate()" class="errrorinfo">
+                                <div class="alert alert-danger" > {{'Fecha no es valida'}} </div>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row_2"><div class="theader ts titulofont">Monto:</div>
+                            <div class="column">
+                                <input type="text" name="valordeposito" id="valordeposito" formControlName="valordeposito" placeholder="Valor de depósito" class="trow trow-input" value="" 
+                                [ngClass]="{'is-invalid': ngForms.submitted && IsInvalid('valordeposito')}"
+                                autocomplete="off" currencyMask [options]="{ align : 'left '}" >
+                                <span class="" *ngIf="IsInvalid('valordeposito')" class="errrorinfo">
+                                    <div class="alert alert-danger" style="width: 80%;padding: 0.4rem 0.4rem;">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row_2 comprobante-pago"><div class="theader ts titulofont">Comprobante de pago:</div>
+                            <div class="container-input">
+                                <input type="file" name="file-27" id="file-27" class="inputfile inputfile-7" (change)="onFilechange($event)" />
+                                <label for="file-27" placeholder="Cargar Documento">
+                                <span class="iborrainputfile">{{nombredoc}}</span>
+                                    <strong style=" margin-left: -8%; margin-top: -5%;">
+                                        <img src="/assets/images/investor/download.png" style="width: 42px;" alt="">
+                                    </strong>
+                                </label>
+                            </div> 
+                        </div>
+                        <span class="row_2" style="width: 100%;">
+                            <div>* Subir archivos formato jpe/png, tamaño maximo 3Mb </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="ckbox_class justificado_">
+                <div class="row2 " >
+                    <div class="justificado_ row3 mt-3 ">
+                        <input type="checkbox" name="info" id="info" formControlName="info"
+                        >
+                        <label for="info" class="mrg-l"> Me comprometo a proporcionar a LA PLATAFORMA un formulario con mi información vigente.</label>
+                    </div>
+                    <span class=""  *ngIf="IsInvalid('info')">
+                        <div class="alert alert-danger " >{{'Este campo es requerido'}}</div>
+                    </span>
+                </div>
+                <div class="row2 ">
+                    <div class="justificado_ row3 mt-3 ">
+                        <input type="checkbox" name="valid" id="valid" formControlName="valid">
+                        <label for="valid" class="mrg-l"> Manifiesto que la información descrita en LA PLATAFORMA es válida, y declaro la licitud del origen de fondos..</label>
+                    </div>
+                    <span class=""  *ngIf="IsInvalid('valid')">
+                        <div class="alert alert-danger " >{{'Este campo es requerido'}}</div>
+                    </span>
+                </div>
+                
+            </div>
+            <div class="row_3 btns ">
+                    <button type="submit" class="btn-orange" [routerLink]="'/investor/home'" ><a class="">Cancelar</a></button>
+                    <button type="submit" class="btn-blue" (click)="registrarPago()"><a class="" >Guardar </a></button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

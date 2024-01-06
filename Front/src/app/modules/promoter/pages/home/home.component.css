@@ -1,0 +1,11 @@
+
+
+@media (max-width: 849px) {
+    .display-img{
+       display: none;
+    }
+    mat-card{
+        margin-bottom: 10%;
+    }
+}
+

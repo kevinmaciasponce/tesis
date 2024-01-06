@@ -1,0 +1,232 @@
+
+
+<footer class="bg-color-primary-500" style="    z-index: 10;
+position: relative;">
+  
+  <div class="container">
+    <div class="row" style="font-size: 17px;">
+      <div
+        class="col-12 col-lg-3 d-flex align-items-center justify-content-center marginfoot">
+        <img src="/assets/images/landing2/movil/logomultiplo.png" width="200px" />
+         </div>
+      <!-- Links -->
+      <div class="col-6 col-lg-3 align-items-center d-flex justify-content-center font-footer">
+        <ul class="list-unstyled " style="padding-top: 4%;">
+          <li class="mb-3 text-white text-decoration-none">
+            <div style="cursor: pointer;" (click)="p1=toggleState(p1)">
+              <p>
+                Quiero INVERTIR 
+              </p>
+              <div class="btn-arrows">
+                <div [ngClass]="!p1?'btn-arrows2':'btn-arrows1'"></div>
+                <div [ngClass]="!p1?'btn-arrows2-':'btn-arrows1-'"></div>
+              </div>
+          </div>
+          <div *ngIf="p1">
+              <div class="answer">
+                <div (click)="goToRoute('/register/crear-cuenta/natural')" style="cursor: pointer;">- Regístrate como Inversor <br></div> 
+                - Quiero ser Inversionista Preferente <br>
+                <div (click)="goToRoute('/register/iniciar_sesion')" style="cursor: pointer;" > - Inicio de Sesión: Inversionista</div> 
+                <div routerLink="" fragment="choise-oportunity" style="cursor: pointer;">
+                  - Oportunidades de Inversión Vigentes <br></div> 
+                  - Proyectos MúltiploGREEN <br>
+                  - Inversionistas Institucionales <br>
+
+                  <div (click)="mensajeConstruccion()" >
+                    - Tu billetera digital para invertir<br>
+                  </div>
+                  <div (click)="preguntasFrecuentes()" style="cursor: pointer;">
+                  - Preguntas Frecuentes <br></div> 
+              </div>
+
+              
+          </div>
+          </li>
+          
+          <li class="mb-3 text-white text-decoration-none">
+            <div style="cursor: pointer;" (click)="p3=toggleState(p3)">
+              <p>
+                QUIERO FINANCIAR MI EMPRESA
+              </p>
+              <div class="btn-arrows">
+                <div [ngClass]="!p3?'btn-arrows2':'btn-arrows1'"></div>
+                <div [ngClass]="!p3?'btn-arrows2-':'btn-arrows1-'"></div>
+              </div>
+          </div>
+          <div *ngIf="p3">
+              <div class="answer">
+                <div> <a style="color: white; text-decoration: none;" 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdJ_gmd1INk1I36mW_win_UKqwvX4rnaQtcC6cjFsqukcT3lw/viewform?usp=sf_link">
+                  - Solicita crédito <br>
+                </a>
+                </div>
+                <div (click)="mensajeConstruccion()" style="cursor: pointer;">
+                  - Conoce nuestros Productos <br>
+                </div>
+              
+               <div (click)="preguntasFrecuentes()" style="cursor: pointer;">- Preguntas Frecuentes</div> 
+              </div>
+          </div>
+          </li>
+          <li class="mb-3 text-white text-decoration-none">
+            <div style="cursor: pointer;" (click)="p4=toggleState(p4)">
+              <p>
+                MúltiploLenders Club
+              </p>
+              <div class="btn-arrows">
+                <div [ngClass]="!p4?'btn-arrows2':'btn-arrows1'"></div>
+                <div [ngClass]="!p4?'btn-arrows2-':'btn-arrows1-'"></div>
+              </div>
+          </div>
+          <div *ngIf="p4">
+              <div class="answer">
+                - Beneficios <br>
+                - Eventos Exclusivos <br>
+                - Registro y envío de Tarjeta VIP
+              </div>
+          </div>
+          </li>
+
+          <li class="mb-3 text-white text-decoration-none">
+            <div style="cursor: pointer;" (click)="p2=toggleState(p2)">
+              <p>
+                Manual del INVERSOR 
+              </p>
+              <div class="btn-arrows">
+                <div [ngClass]="!p2?'btn-arrows2':'btn-arrows1'"></div>
+                <div [ngClass]="!p2?'btn-arrows2-':'btn-arrows1-'"></div>
+              </div>
+          </div>
+          <div *ngIf="p2" class="row">
+              <div class="answer">
+                + ¿Por qué los inversores eligen Múltiplo? <br>
+                + Oportunidades de Inversión <br>
+                + Inversionistas Institucionales del Exterior <br>
+                + Tu billetera digital para invertir <br>
+                - Múltiplo Fineduca 
+              </div>
+             
+          </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Form y otros -->
+      <div class="col-6 col-lg-3 align-items-center d-flex justify-content-center font-footer">
+        <ul class="list-unstyled mb-0 datos">
+          <li class="mb-3 text-white text-decoration-none">
+            <div style="cursor: pointer;" (click)="p5=toggleState(p5)">
+              <p>
+                General
+              </p>
+              <div class="btn-arrows btn-">
+                <div [ngClass]="!p5?'btn-arrows2':'btn-arrows1'"></div>
+                <div [ngClass]="!p5?'btn-arrows2-':'btn-arrows1-'"></div>
+              </div>
+          </div>
+          <div *ngIf="p5">
+              <div class="answer">
+               <div style="cursor: pointer;"(click)="goToRoute('')">- Nosotros <br> </div> 
+               <div style="cursor: pointer;" (click)="goToRoute('')">- Hacia dónde vamos  <br> </div> 
+                - Nuestro Equipo <br>
+                - Múltiplo - Beneficio Colectivo <br>
+                - Programa Trainees 2023 <br>
+                - Selección de Talentos
+              </div>
+          </div>
+          </li>
+          <li class="mb-3"  style="cursor: pointer;">
+            <a   class="text-white text-decoration-none" href="/contact" style="cursor:pointer;" 
+              >Formulario de Atención</a>
+          </li>
+          <li class="mb-3">
+            <a href="/assets/files/MULTIPLO_TERMINOS_Y_CONDICIONES.pdf" class="text-white  text-decoration-none" target="_blank">Términos y Condiciones</a>
+          </li>
+          <li class="mb-3">
+            <a href="/assets/files/MULTIPLO_ACUERDO_DE_USO.pdf" target="_blank" class="text-white text-decoration-none"
+              >Política y Privacidad</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Contactanos y Redes -->
+      <div
+        class="col-12 col-lg-3 d-flex flex-lg-wrap contactos"
+      >
+        <div class="contact" style="width: 100%;">
+          <h2 class="" > Contáctanos</h2>
+          <div class="d-flex flex-column">
+            <ul class="list-unstyled mb-0">
+              <li class="text-white text-decoration-none"
+              style="font-size: 0.8rem;">
+                <img
+                  src="/assets/images/iconos/ubicacion.png"
+                  width="16px"
+                  class="me-2"
+                /><a>Edificio Skybuilding</a>
+              </li>
+              <li class="text-white text-decoration-none"
+              style="font-size: 0.8rem;">
+                <img
+                  src="/assets/images/iconos/cell.png"
+                  width="16px"
+                  class="me-2"
+                /><a>(593) 99 241 4839</a>
+              </li>
+              <li class="text-white text-decoration-none"
+              style="font-size: 0.8rem;">
+                <img
+                  src="/assets/images/iconos/cell.png"
+                  width="16px"
+                  class="me-2"
+                /><a>(593) 4 602 2706 &nbsp;</a>
+              </li>
+              <li
+                class="text-white text-decoration-none"
+                style="font-size: 0.8rem;"
+              >
+                <img
+                  src="/assets/images/iconos/letter.png"
+                  width="16px"
+                  class="me-2"
+                />
+                <a class="text-white" style="text-decoration: none;">servicioalcliente@potencia.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Redes sociales-->
+        <div class="social-media d-flex align-items-center flex-column ">
+          <h3 class=" text-center">
+           Síguenos en nuestras redes
+          </h3>
+          <ul class="datos list-unstyled d-flex justify-content-center justify-content-lg-between" style="width: 100%;">
+            <li class="text-white text-decoration-none">
+              <a href="https://www.linkedin.com/company/multiplolenders"><img
+                src="/assets/images/iconos/In.png"
+                class="social-media-icon"
+              /></a>
+            </li>
+            <li class="text-white text-decoration-none">
+              <a href="https://www.facebook.com/M%C3%BAltiplo-Lenders-101254359165630/"><img
+                src="/assets/images/iconos/FB.png"
+                class="social-media-icon"
+              /></a>
+            </li>
+            <li class="text-white text-decoration-none">
+              <a href="https://www.instagram.com/multiplolenders/"><img
+                src="/assets/images/iconos/IG.png"
+                class="social-media-icon"
+              /></a>
+            </li>
+            <li class="text-white text-decoration-none">
+              <a href="https://www.youtube.com/channel/UCbvUsW3-LoEXANcFhOlGv_A/featured"><img
+                src="/assets/images/iconos/YouTube.png"
+                class="social-media-icon"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+

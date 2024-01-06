@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/material.theme.css";
+html, body { height: 100%;}
+body { margin: 0; font-family: 'Gill Sans MT', Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: NexaLight;
+  src: url(assets/fuente/NexaLight.otf)format("opentype");
+}
+@font-face {
+  font-family: NexaBlack;
+  src: url(assets/fuente/Nexa-Black.ttf) format("opentype");
+}
+@font-face {
+  font-family: NexaBook;
+  src: url(assets/fuente/NexaBook.ttf) format("opentype");
+}
+@font-face {
+  font-family: NexaRegular ;
+  src: url(assets/fuente/NexaRegular.otf) format("opentype");
+}
+@font-face {
+  font-family: Ciacode39 ;
+  src: url(assets/fuente/ciacode39_m.ttf) format("opentype");
+}
+
+
+@media screen and (max-width: 480px) {
+    .mat-typography {
+      width: 100%;
+    }
+  }

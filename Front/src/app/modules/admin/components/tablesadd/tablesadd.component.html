@@ -1,0 +1,32 @@
+<div class="body">
+    <app-loading *ngIf="cargando"></app-loading>
+    <div class="title">
+         <div>
+            Tabla maestra de {{dato.tipotabla}} 
+         </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 25px;padding: 5%">
+        <mat-form-field appearance="standard">
+            <mat-label>Id</mat-label>
+            <input matInput readonly disabled="disabled"  [(ngModel)]="id" placeholder="Id" #input>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+            <mat-label>Nombre</mat-label>
+            <input oninput="javascript:this.value=this.value.toUpperCase();"  minlength="1" [maxLength]="lenght" matInput placeholder="Nombre" autofocus #myInput [(ngModel)]="nombre"  #input>
+            <mat-hint align="end">{{nombre.length}} / {{lenght}}</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+            <mat-label>Descripción</mat-label>
+            <input oninput="javascript:this.value=this.value.toUpperCase();" minlength="1" maxlength="50" matInput placeholder="Descripción"  [(ngModel)]="descripcion" #input>
+            <mat-hint align="end" >{{descripcion.length}} / 50</mat-hint>
+        </mat-form-field>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap;justify-content: center; gap: 27px;">
+        <button  class="btn btn-orange" (click)="close()" style="background-color: #b6b6b6;" >Cancelar</button>
+        <button  class="btn btn-orange" (click)="add()">Agregar</button>
+    </div>
+
+</div>

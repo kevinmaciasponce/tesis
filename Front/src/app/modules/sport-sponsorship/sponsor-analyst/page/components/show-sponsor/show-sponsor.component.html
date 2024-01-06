@@ -1,0 +1,215 @@
+<div class="body">
+    <app-loading *ngIf="cargando"></app-loading>
+    <div>
+        <button  class="btn-orange" style="background-color: #7f7f7f;
+        position: absolute;
+        top: 115px;
+        left: 12px;
+        width: 115px;" (click)="regresar()"> Regresar</button>
+    </div>
+    <div class="content" *ngIf="!!Beneficiary">
+        <div class="title-content">
+            <div class="title" *ngIf="Beneficiary.persona.tipoPersona=='NAT'">
+                <div class="title-benefit">
+                    BENEFICIARIO: &nbsp;
+                </div>
+                <div class="title-name">
+                     {{Beneficiary.persona.nombres}} {{Beneficiary.persona.apellidos}}
+                </div>
+            </div>
+        </div>
+        <div class="title-content">
+            <div class="title" *ngIf="Beneficiary.persona.tipoPersona=='JUR'">
+                <div class="title-benefit">
+                BENEFICIARIO: &nbsp;
+                </div>
+                <div class="title-name">
+                    {{Beneficiary.persona.razonSocial}}
+                </div> 
+            </div>
+        </div>
+        
+        <div class="data-benefit">
+            <div class="box-data">
+             DATOS BENEFICIARIO
+            </div> 
+         </div>
+        <div class="row_">
+            <div class="personal-data">
+                <table class="table-class table-height">
+                    <tr class="titles">
+                        <th colspan="2" style="text-align: center;">DATOS PERSONALES</th>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Cédula:</th>
+                        <td >{{Beneficiary.beneficiario.identificacion}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Disciplina:</th>
+                        <td >{{Beneficiary.beneficiario.disciplina}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Modalidad:</th>
+                        <td >{{Beneficiary.beneficiario.modalidad}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Categoría:</th>
+                        <td >{{Beneficiary.beneficiario.categoria}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Correo:</th>
+                        <td >{{Beneficiary.beneficiario.correo}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Fecha Nacimiento:</th>
+                        <td >{{Beneficiary.persona.fechaNacimiento}}</td>
+                    </tr>
+                </table>
+                
+                <table class="table-class" *ngIf="!!Beneficiary.valoracion">
+                    <tr class="titles">
+                        <th colspan="2" style="text-align: center;">VALORACIÓN MINISTERIO DE DEPORTE</th>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Código de calificación:</th>
+                        <td >{{Beneficiary.valoracion.calificacion}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Fecha de calificación:</th>
+                        <td >{{Beneficiary.valoracion.fechaCalificacion}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Fecha de caducidad:</th>
+                        <td >{{Beneficiary.valoracion.fechaCaducidad}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Presupuesto aprobado:</th>
+                        <td >{{Beneficiary.valoracion.presupuestoAprobado | currency }}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Presupuesto recaudado:</th>
+                        <td >{{Beneficiary.valoracion.presupuestoRecaudado | currency }}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Presupuesto restante:</th>
+                        <td >{{Beneficiary.valoracion.presupuestoRestante | currency }}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:1%;">Calificación bianual: </th>
+                        <td >{{Beneficiary.valoracion.bianual==true?'SI':'NO'}}</td>
+                    </tr>
+                    <tr class="data-row titles-content" *ngIf="!!Beneficiary.valoracion.ruta">
+                        <th style="margin-right:1%;">Documento subido al sistema:</th>
+                        <td  class="centrar upload"> <a [attr.href]="Beneficiary.valoracion.ruta"  target="_blank">Ver </a></td>
+                        <!-- Beneficiary.valoracion.ruta -->
+                    </tr>
+                </table>
+                <table class="table-class table-titulos">
+                    <tr class="titles">
+                        <th colspan="2" style="text-align: center;">DATOS BANCARIOS</th>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Banco:</th>
+                        <td >{{Beneficiary.beneficiario.banco}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Nro Cuenta:</th>
+                        <td >{{Beneficiary.beneficiario.numeroCuenta}}</td>
+                    </tr>
+                    <tr class="data-row titles-content">
+                        <th style="margin-right:2%;"> Tipo de cuenta:</th>
+                        <td >{{Beneficiary.beneficiario.tipoCuenta}}</td>
+                    </tr>
+                </table>
+                <div class="title-sports scroll" *ngIf="!!Beneficiary.titulos;"> 
+                    <table class="table-class table-titulos">
+                        <tr class="titles">
+                            <th colspan="5" style="text-align: center;">TÍTULOS DEPORTIVOS</th>
+                        </tr>
+                        <tr class="titles-content">
+                            <th  style="width: 60px;">Año</th>
+                            <th>Nombre de competencia</th>
+                            <th style="width: 115px;">Nacional</th>
+                            <th style="width: 115px;">Internacional</th>
+                            <th style="width: 80px;">Otros</th>
+                        </tr>
+                        <tr *ngFor="let titulo of Beneficiary.titulos;">
+                            <td >{{titulo.anioTitulo}}</td>
+                            <td >{{titulo.nombreCompetencia}}</td>
+                            <td >{{titulo.rankingNacional}}</td>
+                            <td >{{titulo.rankingInternacional}}</td>
+                            <td >{{titulo.otros}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="btn-editar">
+                    <button (click)="irEditarBeneficiario(Beneficiary.beneficiario.identificacion)" 
+                    class="btn-orange">Editar Beneficiario</button>
+                    <button  (click)="editarValoracion(Beneficiary.beneficiario.identificacion)"
+                    class="btn-orange">Editar Valoración</button>
+                </div>
+                
+            </div>
+            <div class="photos">
+                <div>
+                    <img src="{{Beneficiary.beneficiario.ruta1}}" class="img_rutas" alt="">
+                </div>
+                <div>
+                    <img src="{{Beneficiary.beneficiario.ruta2}}" class="img_rutas" alt="">
+                </div>
+                
+            </div>
+        </div>
+        <div class="data-benefit">
+           <div class="box-data" *ngIf="!!Beneficiary.auspicio;">
+            DATOS AUSPICIO
+           </div> 
+        </div>
+        <div class="row_" style="flex-wrap: wrap;     margin-bottom: 4%;">
+            <div class="row_ space" *ngFor="let auspicio of Beneficiary.auspicios">
+                <mat-card class="example-card" class="matcardConteiner">
+                    <mat-card-header class="cardAuspicio">
+                        <table style="text-align: center;  border-collapse: separate;
+                        border-spacing: 2px 2px;">
+                            <tr class="titles">
+                                <th  colspan="3">AUSPICIO</th>  
+                            </tr>
+                            <tr class="titles-content">
+                                <th style="width: fit-content;"> Número Auspicio</th> 
+                                <th style="width: fit-content;"> Estado</th> 
+                                <th style="width: fit-content;"> Monto Solicitado</th> 
+                            </tr>
+                            <tr>
+                                <td> {{auspicio.numeroAuspicio}} </td>
+                                <td> {{auspicio.estado}} </td>
+                                <td> {{auspicio.montoSolicitado|currency}}</td>
+                            </tr>
+                        </table>
+                    </mat-card-header>
+                    <mat-card-content style="display: flex; gap:15px; justify-content: center;">
+                        
+                        <button mat-button  class="btn-card"  (click)="verRecompensas(auspicio.numeroAuspicio)">
+                            Ver Recompensas
+                        </button>
+                        <button mat-button  class="btn-card"  (click)="verTorneos(auspicio.numeroAuspicio)">
+                            Ver Torneos
+                        </button>
+                        
+                    </mat-card-content>
+                    <mat-card-actions style="padding-bottom: 3%;">
+                       
+                        <button mat-button class="btn-card" (click)="editarAupisicios(auspicio.numeroAuspicio,Beneficiary.beneficiario.identificacion)"  style="background-color: #e9a723;">EDITAR AUSPICIO</button>
+                      </mat-card-actions>
+                    <mat-card-footer style="display: flex; justify-content: center; width: 60%; gap: 21px;">
+                        <div class="imgcontent hoverElement" (click)="aprobarAuspicio()" >Aprobar <img src="assets/images/sponsorship/shared/aprove.png" class="img_state" alt=""> </div>
+                        <div class="imgcontent hoverElement" (click)="cancelarAuspicio()">Cancelar <img src="assets/images/sponsorship/shared/cancel.png" class="img_state" alt=""> </div>
+                        <div class="imgcontent hoverElement" (click)="pendienteAuspicio()">Pendiente <img src="assets/images/sponsorship/shared/pending.png" class="img_state" alt=""> </div>
+                    </mat-card-footer>
+                  </mat-card>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+

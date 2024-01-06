@@ -1,0 +1,75 @@
+
+<div class="body">
+    <app-loading *ngIf="cargando"></app-loading>
+    <div class="title">
+         <div>
+            Ingreso de cuentas
+         </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 17px;padding: 5%">
+        <mat-form-field appearance="standard">
+            <mat-label>Cédula</mat-label>
+            <input matInput (keypress)="keyPressNumbers($event)" maxlength="10" [formControl]="cedula" placeholder="Cédula">
+            <mat-hint align="end">{{cedula.value.length}} / {{10}}</mat-hint>
+            <mat-error *ngIf="cedula.invalid">Campo Obligatorio</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+            <mat-label>Nombres</mat-label>
+            <input matInput placeholder="Nombre"  maxlength="100" oninput="javascript:this.value=this.value.toUpperCase();" [formControl]="nombres">
+            <mat-hint align="end">{{nombres.value.length}} / {{100}}</mat-hint>
+            <mat-error *ngIf="nombres.invalid">Campo Obligatorio</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Apellidos"  maxlength="100"  oninput="javascript:this.value=this.value.toUpperCase();" [formControl]="apellidos" >
+            <mat-hint align="end">{{apellidos.value.length}} / {{100}}</mat-hint>
+            <mat-error *ngIf="apellidos.invalid">Campo Obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Iniciales</mat-label>
+            <input matInput placeholder="Iniciales" minlength="1" maxlength="5" oninput="javascript:this.value=this.value.toUpperCase();"[formControl]="iniciales"  >
+            <mat-hint align="end">{{iniciales.value.length}} / {{5}}</mat-hint>
+            <mat-error *ngIf="iniciales.invalid">Campo Obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Correo</mat-label>
+            <input matInput [formControl]="email" minlength="8" maxlength="100" placeholder="Correo" name="email" >
+            <mat-hint align="end">{{email.value.length}} / {{100}}</mat-hint>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="clave"  name="clave"  autocomplete="new-password">
+            <button class="btn" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="clave.invalid">{{getErrorClaveMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" *ngIf="idPersonaInterna!='nuevo'">
+            <mat-label>Usuario</mat-label>
+            <input matInput [formControl]="usuario" readonly [disabled]="true"  placeholder="Usuario" name="usuario" >
+            <mat-error *ngIf="usuario.invalid">Campo Obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-checkbox
+          class="example-margin"
+          [(ngModel)]="cuentaActiva"
+          [labelPosition]="'before'">
+        Cuenta Activa
+      </mat-checkbox>
+
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap;justify-content: center; gap: 27px;">
+        <button  class="btn btn-orange" (click)="close()" style="background-color: #b6b6b6;" >Cancelar</button>
+        <button  class="btn btn-orange" (click)="add()">Agregar</button>
+    </div>
+
+</div>

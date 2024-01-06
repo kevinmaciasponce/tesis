@@ -1,0 +1,21 @@
+
+
+
+  .btns-title{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 50px;
+  }
+  .filter-sponsor{
+    display: flex;
+    justify-self: start;
+  }
+  .elemnt-app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 4%;
+  }

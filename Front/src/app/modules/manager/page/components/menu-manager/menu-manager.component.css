@@ -1,0 +1,160 @@
+.start_menu {
+    margin-right: 5%;
+}
+
+.link_inicio {
+    text-decoration: none;
+}
+
+.txt_inicio {
+    position: relative;
+    color: #004889;
+    font-size: 2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    top: -50px;
+    left: 155px;
+    font-weight: 700;
+    width: 100px;
+}
+
+.menu_conteiner {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 600px;
+    padding-left: 0rem;
+}
+
+.title_menu_elements {
+    background: url('/assets/images/investor/separador2.png');
+    background-size: 100% 130%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 16%;
+}
+
+.title_menu_elements>div {
+    color: white !important;
+    padding-top: 29px;
+    padding-bottom: 4px;
+    padding-right: 4px;
+}
+
+.elements:hover {
+    background-color: #dadada;
+}
+
+.elements>a:hover {
+    color: #e06222 !important;
+}
+
+.elementos {
+    background-color: #dadada;
+}
+
+.elementos_a {
+    color: #e06222 !important;
+}
+
+.menu_elements {
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    justify-content: stretch;
+}
+
+.link_elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ico_menu {
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+.elements {
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #ea6126;
+    width: 80%;
+}
+
+.elements>span {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.menu_elements>a {
+    text-decoration: none;
+    color: #004889;
+}
+
+@media (max-width: 1700px) {
+    .menu_conteiner {
+        font-size: 0.5em;
+        width: 300px;
+        height: 300px;
+    }
+    .ico_menu {
+        height: 70%;
+    }
+    .title_element {
+        margin-top: -6%;
+    }
+    .menu_elements {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .title_menu_elements {
+        padding-top: 0px;
+    }
+    .title_menu_elements>a {
+        padding-top: 13px;
+    }
+    .link_inicio>img {
+        width: 75%;
+        height: 75%;
+    }
+    .link_inicio {
+        font-size: 0.5em;
+    }
+    .txt_inicio {
+        position: relative;
+        color: #004889;
+        font-size: 2em;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        top: -40px;
+        left: 100px;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 800px) {
+    .menu_conteiner {
+        font-size: 0.5em;
+        width: 300px;
+        height: 400px;
+    }
+    .title_menu_elements>a {
+        padding-top: 13px;
+    }
+    .title_menu_elements>a {
+        padding-top: 24px;
+    }
+    .container_ {
+        flex-direction: column-reverse;
+    }
+    .top {
+        display: none;
+    }
+    .btn_inicio {
+        display: none;
+    }
+}

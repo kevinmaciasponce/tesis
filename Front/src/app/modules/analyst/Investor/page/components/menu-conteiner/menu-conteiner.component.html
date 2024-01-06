@@ -1,0 +1,40 @@
+<div class="start_menu">
+    <div class=""  [routerLink]="'/analyst/home'" style="cursor: pointer;">
+        <a class="link_inicio"   > <img class="btn_inicio" src="/assets/images/investor/btn_home.png" alt=""> <div class="txt_inicio btn_inicio">Inicio </div>  </a>
+    </div>
+ </div>
+ <div class="status_menu">
+    <ul class="menu_conteiner">
+        <li class="title_menu_elements menu_elements" (click)="isOpenMenu=toggleState(isOpenMenu)"  >
+           <div class="link_elements title_element">  <img class="ico_menu" src="/assets/images/investor/ico_1.png" alt=""> <div>Mis solicitudes</div>  </div> 
+        </li>
+        <div *ngIf="isOpenMenu;else close">
+        </div>
+        <ng-template #close>
+            <li class="menu_elements elements"  [ngClass]="{'elementos':obtenerurlactual()=='inconfirmation'}" >
+            <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='inconfirmation'}" (click)="goToRoute('/inconfirmation')"> <img class="ico_menu" src="/assets/images/analyst/ico_menu/confirmaico.png" alt=""><span> Por confirmar </span> </a> 
+            </li>
+            <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='transfer'}">
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='transfer'}" (click)="goToRoute('/transfer')"> <img class="ico_menu" style="margin-left: 14%;" src="/assets/images/analyst/ico_menu/aprobadaico.png" alt=""><span>Aprobada Transferir fondos </span></a> 
+            </li>
+            <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='sign'}">
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='sign'}" (click)="goToRoute('/sign')"> <img class="ico_menu" style="margin-left: 8%;" src="/assets/images/analyst/ico_menu/firmaico.png"  alt=""><span> Transferir fondos </span></a> 
+            </li>
+            <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='outstanding'}">
+                <a class="link_elements"[ngClass]="{'elementos_a':obtenerurlactual()=='outstanding'}" (click)="goToRoute('/outstanding')" > <img style="margin-left: 11%;" class="ico_menu" src="/assets/images/analyst/ico_menu/pendienteico.png"  alt=""><span> Pendientes de revision por COO </span></a>
+            </li>
+            <li class="menu_elements elements"[ngClass]="{'elementos':obtenerurlactual()=='valid'}">
+                <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='valid'}" (click)="goToRoute('/valid')"> <img style="    margin-left: 13%;" class="ico_menu" src="/assets/images/analyst/ico_menu/vigenteico.png"  alt=""><span> Vigentes </span></a> 
+            </li>
+            <li class="menu_elements elements">
+                <a class="link_elements" > <img style="    margin-left: 11%;" class="ico_menu" src="/assets/images/analyst/ico_menu/liquidadaico.png"  alt=""><span> Liquidadas </span></a> 
+            </li>
+            <li class="menu_elements elements">
+                <a class="link_elements" > <img style="    margin-left: 14%;" class="ico_menu" src="/assets/images/analyst/ico_menu/anuladaico.png"  alt=""><span> Anuladas </span></a> 
+            </li>
+            <li class="menu_elements elements">
+                <a class="link_elements" > <img style="    margin-left: 12%;" class="ico_menu" src="/assets/images/analyst/ico_menu/conciliacionico.png"  alt=""><span> Conciliación </span></a> 
+            </li>
+        </ng-template>
+    </ul>
+ </div> 

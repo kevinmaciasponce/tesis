@@ -1,0 +1,89 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="content-modal">
+
+    <div class="row_" style=" gap:0px; color: #1225aa;">
+        <div type="submit" class="persona_j btn-xs"  style="padding-left: 1%; padding-top: 1%;">
+            <a style="font-family: NexaBlack;">AGREGAR VALORACIÓN DEL MDD (Ministerio del Deporte)
+            </a>
+        </div>
+        <div class="line-title"></div>
+    </div>
+
+    <form class="form-style" [formGroup]="FormGroup">
+        <div class="column-form">
+            
+            <div class="row-form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Seleccionar Año</mat-label>
+                    <select matNativeControl (change)="actualizarAnio()" formControlName="selectyear">
+                        <option value="2022" selected>2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </mat-form-field>
+                <div>
+                    <div>
+                        Adjuntar el oficio de aprobación(.pdf) MDD 
+                    </div>
+                    <div class="container-input ">
+                        <input type="file" name="file-9" id="file-9" class="inputfile inputfile-7" (change)="onFilechange($event,1)" />
+                        <label for="file-9" placeholder="Cargar Documento" class="upload">
+                        <span class="iborrainputfile">{{nombredocfrontal3}}</span>
+                            <strong class="img-load">
+                                <img class="imgdoc" src="assets/images/shared/uploadDoc.png" alt="">
+                            </strong>
+                        </label>
+                    </div>
+                    <div class="centrar upload" *ngIf="urlphoto3" >
+                        <a [attr.href]="urlphoto3"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 50%;" alt="">Ver </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row-form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Código de valoración MDD </mat-label>
+                    <input type="text" matInput name="cod"  formControlName="cod" required>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha De Calificación MDD </mat-label>
+                    <input type="date" matInput name="fechaCalificacion" formControlName="fechaCalificacion" required>
+                </mat-form-field>
+            </div>
+            <div class="row-form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Presupuesto aprobado {{anio}} USD</mat-label>
+                    <input type="text" matInput name="preAprobado1" formControlName="preAprobado1" value="0" currencyMask required >
+                </mat-form-field>
+                <section >
+                    <mat-checkbox  [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Presupuesto Bianual</mat-checkbox>
+                </section>
+            </div>
+            <div class="row-form"  >
+                <mat-form-field appearance="fill" >
+                    <mat-label>Vigencia del Presupuesto</mat-label>
+                    <input type="date" matInput name="fechaVigencia" formControlName="fechaVigencia" required>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Valor Recibido a la fecha</mat-label>
+                    <input type="text" matInput name="valRecibido" formControlName="valRecibido" value="0" currencyMask >
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row-form"  >
+            <div  class="button-steps">
+                <button  class="btn-orange" (click)="regresar()">Cancelar</button>
+                <button  class="btn-orange" (click)="guardaValoracion()">Guardar</button>
+            </div>
+        </div>
+        
+    
+    </form>
+
+    <div>
+
+        
+    </div>
+
+
+</div>

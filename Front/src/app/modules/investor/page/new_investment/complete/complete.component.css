@@ -1,0 +1,268 @@
+.top{
+    display: flex;
+    flex-direction: column;
+    margin-top:3% ;
+}
+.container_{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.line-title{
+    height: 3px;
+    border-radius: 1px;
+    width: 100%;
+    background-image: linear-gradient(to right, #e8a721, #e66122);
+}
+
+.pblue-n{
+    color: #1225aa;
+    font: 1.6em;
+    font-family: "NexaBlack";
+}
+
+.container_body{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.body{
+    padding-top: 110px;
+}
+.bg{ 
+    box-shadow: rgb(0 0 0 / 48%) 0px 12px 14px;
+    padding: 9px;
+    border-radius: 10px;
+    width: 100%;
+    font-family:  NexaRegular;
+}
+
+.box {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 10px;
+}
+
+.box::after{
+    position: absolute;
+    top: -4px; bottom: -4px;
+    left: -4px; right: -4px;
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+}
+
+.background_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: url('/assets/images/investor/background.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 88%;
+    font-family:  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 9%;
+    padding: 5%;
+    padding-bottom: 10%;
+    padding-top: 10%;
+    margin-bottom: 3%;
+    color: gray;
+}
+
+.btns{
+    margin-bottom: 9%;
+    margin-top: 4%;
+    gap: 25px;
+}
+
+.row_{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.justificado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noActive{
+    background-color: #dfdfdf !important;
+}
+.btn-orange, .btn-blue{
+    border-radius: 7px;
+    border: 0;
+    padding: 0.25rem;
+    width: 225px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+  }
+  
+  .btn-orange > a , .btn-blue > a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  
+  .btn-orange:hover ,  .btn-blue:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+.btn-blue{
+background-color: #1225aa;
+}
+
+.input_style{
+    border-radius: 10px !important;
+    flex-basis: 200px;
+    width: 230px;
+    background-color: transparent;  
+    border: solid 1px #1225aa;
+    padding-left: 1%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-left: 6px;
+    font-size: 0.8em;
+    margin-right: 6px;
+}
+
+.column_{
+    display: flex;
+    flex-direction: column;
+}
+
+.radio_container{
+    display:flex;
+    align-items: center;
+}
+
+.radio_container>input{
+    width: 15px;
+}
+
+.theader{
+    background-color: #1225aa;
+    border-bottom: white 1px solid;
+    color: white;
+    margin-left: 5px;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+}
+
+
+@media (max-width: 800px) {
+    .container_{
+        flex-direction: column;
+    }
+    .top{
+        display: block;
+        width: 100%;
+    }
+   
+}
+
+@media (max-width: 500px) {
+
+.background_card{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 2px 5px 15px;
+    border: #e06222 1px solid;
+    width: 90%;
+    font-family:  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 9%;
+    padding: 5%;
+    margin-bottom: 3%;
+}
+
+}
+
+@media (max-width: 530px) {
+    .box{
+        align-items: center;
+    }
+    .row_{
+        justify-content: center;
+    }
+    .input_style{
+        flex-basis: 350px;
+        width: 350px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    
+    }
+    .pj-n{
+        font-size: 19px !important;
+    }
+    .pblue-n{
+        width: 336px;
+    }
+    
+}
+
+@media (max-width: 410px) {
+    .box{
+        align-items: center;
+    }
+    .row_{
+        justify-content: center;
+    }
+    .input_style{
+        flex-basis: 270px;
+        width: 270px;
+    }
+    .pblue-n{
+        width: 270px;
+    }
+    .pj-n{
+        font-size: 14px !important;
+    }
+    .btns{
+        gap: 5px;
+        padding-top: 2%;
+    }
+}
+
+@media (max-width: 300px) {
+    .box{
+        align-items: center;
+    }
+    .row_{
+        justify-content: center;
+    }
+    .input_style{
+        flex-basis: 185px;
+        width: 185px;
+    }
+    .pblue-n{
+        width: 175px;
+    }
+    .pj-n{
+        font-size: 10px !important;
+    }
+}

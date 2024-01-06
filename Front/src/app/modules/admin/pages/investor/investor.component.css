@@ -1,0 +1,17 @@
+.title{
+    font-size: 1.6em;
+    display: flex;
+    background-color: #1225aa;
+    color: white;
+    justify-content: center;
+    padding: 1% 5%;
+    border-radius: 3px;
+    width: fit-content;
+    align-self: center;
+}
+::ng-deep .mat-snack-bar-container {
+    background-color: #a9f1a9;
+    color: rgb(59, 58, 58);
+    border: 1px solid;
+    border-color: #19ff19;
+  }

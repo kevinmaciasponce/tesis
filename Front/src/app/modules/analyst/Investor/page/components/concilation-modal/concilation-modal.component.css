@@ -1,0 +1,237 @@
+.row_ {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    align-content: space-around;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.titles {
+    color: white;
+    background-color: #004889;
+    border-color: #004889;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    font-size: 1.3em;
+    white-space: nowrap;
+    max-width: max-content;
+}
+
+.theader {
+    background-color: #0b65b1;
+    border-bottom: white 1px solid;
+    color: white;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 25px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.input_style {
+    border-radius: 10px !important;
+    flex-basis: 200px;
+    width: 100%;
+    background-color: transparent;
+    border: solid 2px #005fad;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.input_content {
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+    font-size: 0.9em;
+    color: black;
+    font-weight: lighter;
+}
+.btn_ {
+    padding-top: 3px;
+    border-radius: 8px;
+    border-color: black;
+    border-right: 1px;
+    border-top: 1px;
+    width: 100%;
+}
+
+.btn_:hover {
+    border-left: 1px;
+}
+
+.titlesorange {
+    color: white;
+    background-color: #e06222;
+    border-color: #e06222;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    font-size: 1.7em;
+    white-space: nowrap;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+.inputfile-7 + label {
+    color: #a0a0a0;
+}
+
+.inputfile-7 + label {
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0;
+}
+
+.inputfile-7 + label span,
+.inputfile-7 + label strong {
+    padding: 0.7rem;
+}
+
+.inputfile-7 + label span {
+    width: 94%;
+    min-height: 1em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+    margin-top: 3%;
+    border: 1px solid #1d6ea2;
+    border-radius: 10px;
+}
+
+.inputfile-7 + label strong {
+    height: 100%;
+    color: #fff;
+    display: inline-block;
+}
+
+.inputfile-7:focus + label strong,
+.inputfile-7.has-focus + label strong,
+.inputfile-7 + label:hover strong {
+
+    border-radius: 100px;
+}
+
+::ng-deep .modal-content {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 10px;
+    margin: auto;
+}
+
+
+::ng-deep .mat-tab-body-content {
+    width: 100%;
+    height: 100%;
+}
+
+::ng-deep .modal-content::after {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    background: linear-gradient(to right, #44a3f1, #004889);
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+}
+
+@media (min-width: 576px) {
+     ::ng-deep .my-class .modal-dialog {
+        max-width: 1000px;
+    }
+}
+
+@media (max-width: 1600px) {
+     ::ng-deep .modal-content {
+        width: 1000px;
+    }
+}
+
+@media (max-width: 1200px) {
+     ::ng-deep .modal-content {
+        width: 800px;
+    }
+    .row_ {
+        justify-content: left;
+    }
+}
+
+@media (max-width: 850px) {
+     ::ng-deep .modal-content {
+        width: 700px;
+    }
+}
+
+@media (max-width: 750px) {
+     ::ng-deep .modal-content {
+        width: 600px;
+    }
+}
+
+@media (max-width: 650px) {
+     ::ng-deep .modal-content {
+        width: 500px;
+    }
+}
+
+@media (max-width: 550px) {
+     ::ng-deep .modal-content {
+        width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+     ::ng-deep .modal-content {
+        width: 300px;
+    }
+}

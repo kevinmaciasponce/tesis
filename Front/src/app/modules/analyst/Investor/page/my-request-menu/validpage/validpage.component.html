@@ -1,0 +1,165 @@
+<div class="body">
+    <div class="container_">
+        <!-- <div class="top">
+            <app-menu-conteiner></app-menu-conteiner>
+        </div> -->
+        <div class="container_body">
+            <ul class="menu_items">
+                <li class="items_conteiner"><img class="ico_menu" src="/assets/images/investor/icoconf.png" alt="">Inversiones Vigentes </li>
+            </ul>
+            <div class="background_card">
+                <div class="bg">
+                    <div class="box">
+                        <form [formGroup]="registrationForm" (submit)="consultar()">
+                            <div class="row_">
+                                <div>
+                                    <table>
+                                        <div (click)="isOpenConsulta=toggleState(isOpenConsulta)" style="text-align: left; width: 100%; margin-bottom: 5px; cursor: pointer;">
+                                            <section class="titles" style="font-size: 1.5em; display: flex;">Filtros de consulta <span style="font-size: 10px;">&nbsp; ▼</span></section>
+                                        </div>
+                                        <div *ngIf="isOpenConsulta;else close">
+                                        </div>
+                                        <ng-template #close>
+                                        <tr>
+                                            <th class="theader ">Nombre de Empresa:</th>
+                                            <select class="box-style" id="codProyecto" name="codProyecto" (blur)="consultar()" formControlName="codProyecto" [ngClass]="{}">
+                                                <option class="input_content" value=null>TODOS</option>
+                                                <option class="input_content" *ngFor="let item of empresas"
+                                                    [value]="item.codProyecto">
+                                                    {{item.nombreEmpresa}}
+                                                </option>
+                                            </select>
+                                        </tr>
+                                        <!-- <tr>
+                                            <th class="theader ">Calificación de Riesgo:</th>
+                                            <select class="box-style" id="riesgos" name="riesgos" formControlName="riesgos" [ngClass]="{}">
+
+                                                <option class="input_content" value=null> TODOS</option>
+                                                <option class="input_content" *ngFor="let item of calificaciones"
+                                                    [value]="item.idTipoCalificacion">{{item.nombre}}
+                                                </option>
+                                            </select>
+                                        </tr>
+                                        <tr>
+                                            <th class="theader ">Sector:</th>
+                                            <select class="box-style" id="sectors" name="sectors" formControlName="sectors">
+                                                <option value=null>TODOS</option>
+                                                <option *ngFor="let item of sectores" [value]="item.idActividad">
+                                                    {{item.nombre}}
+                                                </option>
+                                            </select>
+                                        </tr> -->
+                                        <tr>
+                                            <th class="theader ">Estado:</th>
+                                            <input value="VIGENTES" (placeholder)="functions($event)"  
+                                            (focus)="functions($event)" (blur)="functions($event)"
+                                            class="box-style" readonly>
+                                        </tr>
+                                    </ng-template>
+                                    </table>
+                                </div>
+                                <div>
+                                    <section class="validy-style" style="cursor: pointer;">
+                                        <img matTooltipPosition="above" class="" (click)="openProyectsvalidy()"
+                                        src="/assets/images/analyst/ico_btns/vigentes.png" alt="">
+                                        <section>Proyectos Vigentes</section>
+                                       </section>
+                                </div>
+                            </div>
+                            <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                <button type="submit" style="width: 180px;" class="btn_">
+                                    <section class="titlesorange">Consultar</section>
+                                </button>
+                            </div>
+                        </form>
+                        <div style="display: flex; flex-direction: row; width: 100%;">
+                            <div style="justify-content: flex-start; width: 70%; ">
+                                <div style="width: 300px;">
+                                    <section class="titles" style="margin-top: 15px; font-size: 1.7em;">Detalles de la Consulta
+                                    </section>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; width: 40%;">
+                                <img (click)="exportToExcel()" class="ico_menu justify-content: flex-end;" src="/assets/images/investor/icoword.png" alt="">
+                            </div>
+                        </div>
+                        <div class="scrollbar_">
+                            <table id="season-tble">
+                                <tr>
+                                    <th><section class="theader-flex">Nro Solicitud</section> </th>
+                                    <th><section class="theader-flex">Código de proyecto</section> </th>
+                                    <th><section class="theader-flex">Nombre de la Empresa</section></th>
+                                    <th><section class="theader-flex">Plazo Meses</section></th>
+                                    <th><section class="theader-flex">Fecha Vigencia</section></th>
+                                    <th><section class="theader-flex">Monto total </section></th>
+                                    <th><section class="theader-flex">Nr Cuota/ Plazo</section></th>
+                                    <!-- <th><section class="theader-flex">Cuota</section></th> -->
+                                    <th><section class="theader-flex">Estado Pago</section></th>
+                                    <th><section class="theader-flex">Fecha Próxima</section></th>
+                                    <th><section class="theader-flex">Estado <img *ngIf="!!detallestatus" class="ico_menu" src="/assets/images/shared/status.png" alt="" matTooltipPosition="above" matTooltip={{detallestatus.detalle}}></section></th>                 
+                                </tr>
+                                <tr *ngFor="let datos of solicitudes ; let i = index">
+                                    <td class="rowborder ">
+                                        <section class="box-flex" style="display: flex ;justify-content: center; cursor: pointer;" (click)="goDetallesUser(datos.numSolicitud,datos.identificacion)" matTooltipPosition="above" matTooltip="Ver datos del usuario">
+                                             <a style="text-decoration:underline; color: black;">
+                                            {{datos.numSolicitud}}</a> </section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content" style="cursor: pointer;" > {{datos.codProyecto}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.nomEmpresa}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content" style="display: flex ;flex-direction:row;">{{datos.plazo }} 
+                                            <section style="justify-content: flex-end ;">
+                                                <img matTooltipPosition="above" matTooltip="Ver tabla de amortización" (click)="goTablaAmortizacionUsuario(datos.numSolicitud)" class="ico_width"
+                                                src="/assets/images/analyst/ico_btns/icoTabla.png" alt="">
+                                               </section>
+                                        </section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.fechaProxima}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.monto| currency:'':'symbol'}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.cuota}}/{{datos.plazo}}</section>
+                                    </td>
+                                    <!-- <td class="rowborder ">
+                                        <section class="input_content">{{datos.cuota}}</section>
+                                    </td> -->
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.estadoPago}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{sumFechas(datos.fechaProxima)}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">VIGENTE</section>
+                                    </td>
+                                    <td class="rownoborder input_content" style="width: 180px;">
+                                        <section matTooltipPosition="above" matTooltip="Registrar pago de cuota" (click)="registerPayment(datos.codProyecto, datos.numSolicitud,datos.nomEmpresa,datos.cuota,datos.cuotaPago,datos.plazo)" class="ico_style"> 
+                                            <img style="width: 74%;" src="/assets/images/analyst/registrarpago.png" alt=""></section>
+                                    </td>
+                                    <!-- <td>
+                                        <button type="submit" class="btn_" (click)="goTablaAmortizacionPagare(datos.numSolicitud)">
+                                            <section class="titlesorange">Ver pagaré</section>
+                                        </button>
+                                    </td> -->
+
+                                </tr>
+                            </table>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="btn_conteiner">
+                
+            </div>
+        </div>
+    </div>
+</div>

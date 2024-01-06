@@ -1,0 +1,628 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div style="padding-top: 110px; min-height: 750px;" id="stepper3"s>
+
+    <ng-container [ngSwitch]="stepperOrientation | async">
+      <button mat-button mat-stroked-button [routerLink]="['/promoter/home']"
+            style="background-color: #767676;color: white;">Regresar</button>
+    </ng-container>
+     
+      <mat-stepper #stepper  [linear]="true" 
+        class="example-stepper" 
+        [orientation]="(stepperOrientation | async)!">
+        <mat-step [stepControl]="firstFormGroup" label="DATOS BÁSICOS DE CLIENTE" >
+          <form [formGroup]="firstFormGroup" class="forms" >
+
+            <div class="form-div" >
+              <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div>
+                    <a style="font-family: NexaBlack;">DATOS PROMOTOR (JURÍDICO)
+                    </a>
+                </div>
+                <div class="line-title"></div>
+              </div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nombre Empresa</mat-label>
+                  <input matInput placeholder="Nombre" oninput="javascript:this.value=this.value.toUpperCase();" formControlName="nombre" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Razón Social</mat-label>
+                  <input matInput placeholder="Razon Social" formControlName="razonSocial" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>RUC</mat-label>
+                    <input matInput placeholder="RUC" formControlName="ruc" (keypress)="keyPressNumbers($event)" required>
+                    
+                    <mat-error *ngIf="ruc?.errors?.['minlength']">
+                      El campo tiene menos de 13 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="ruc?.errors?.['maxlength']">
+                      El campo tiene mas de 13 caracteres
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Correo</mat-label>
+                    <input matInput placeholder="Correo" formControlName="correo" required>
+                    <mat-error *ngIf="correo?.errors?.['email']">
+                      El campo no cumple con el formato requerido
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Cargo</mat-label>
+                    <input matInput placeholder="Cargo" formControlName="cargo" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre Contacto</mat-label>
+                    <input matInput placeholder="Nombre contacto" formControlName="nombreContacto" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Dirección </mat-label>
+                    <input matInput placeholder="Direccion" formControlName="direccion" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Teléfono Contacto </mat-label>
+                    <input matInput placeholder="Télefono Contacto" (keypress)="keyPressNumbers($event)" formControlName="telefonoContacto" required>
+                    <mat-error *ngIf="telefonoContacto?.errors?.['minlength']">
+                      El campo tiene menos de 10 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="telefonoContacto?.errors?.['maxlength']">
+                      El campo tiene mas de 10 caracteres
+                    </mat-error>
+                </mat-form-field>
+
+                <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px;     width: 200px;
+                height: 52px;"
+                        [items]="paises" [ngModelOptions]="{standalone: true}" 
+                        required
+                        [multiple]="false"
+                        bindLabel="pais"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="true"
+                        bindValue="idNacionalidad"
+                        placeholder="Seleccione el país"
+                        [(ngModel)]="pais">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.pais}}
+                        </ng-template>
+                    </ng-select>
+
+                    <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px;     width: 200px;
+                    height: 52px;" required
+                        [items]="ciudades" [ngModelOptions]="{standalone: true}"
+                        required (change)="control()"
+                        [multiple]="false"
+                        bindLabel="ciudad"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="true"
+                        bindValue="ciudad"
+                        placeholder="Seleccione la ciudad"
+                        [(ngModel)]="ciudad">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.ciudad}} 
+                        </ng-template>
+                    </ng-select>
+
+                    <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px; width: 200px;
+                    height: 52px;" required (change)="changeValidator()"
+                        [items]="sectores" [ngModelOptions]="{standalone: true}"
+                        required
+                        [multiple]="false"
+                        bindLabel="nombre"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="true"
+                        bindValue="idActividad"
+                        placeholder="Seleccione la actividad"
+                        [(ngModel)]="sector">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                            <input id="item-{{index}}" type="checkbox" matTooltip="{{item.nombre}}" matTooltipPosition="above" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                        </ng-template>
+                    </ng-select>
+
+                    <mat-form-field appearance="fill" *ngIf="sector==6">
+                      <mat-hint>
+                        Si su eleccción fue otros Ingresar la Actividad
+                      </mat-hint>
+                      <mat-label>Actividades </mat-label>
+                      <input matInput placeholder="Actividad" formControlName="actividadDesc" >
+                      
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                      <mat-label>Año Inicio Actividades </mat-label>
+                      <input matInput type="number" placeholder="Año Inicio" (keypress)="keyPressNumbers($event)" formControlName="anioinicio" required>
+                      <mat-error *ngIf="anioinicio?.errors?.['min']">
+                        El año no debe ser menor a 1980
+                      </mat-error>
+                      <mat-error *ngIf="anioinicio?.errors?.['max']">
+                        El año no debe ser mayor a 2023
+                      </mat-error>
+                    </mat-form-field>
+
+                    <div class="row_" style=" gap:0px; color: #1225aa;">
+                      <div>
+                          <a style="font-family: NexaBlack;">ANTECEDENTES DE LA EMPRESA
+                          </a>
+                      </div>
+                      <div class="line-title"></div>
+                  </div>
+                 
+                <!-- ID EMPRESA  -->
+                <input type="hidden" formControlName="idEmpresa">
+                  
+                <mat-form-field appearance="fill" style="width: 98%;">
+                    <mat-label>Descripción de la historia de la compañia </mat-label>
+                    <textarea matInput placeholder="Antecedentes" formControlName="antecedentes" required></textarea>
+                    <mat-hint align="end">{{antecedentes?.value?.length}} / {{1000}}</mat-hint>
+                    <mat-error *ngIf="antecedentes?.errors">Error en el campo</mat-error>
+                </mat-form-field>
+
+                  <div class="row_" style=" gap:0px; color: #1225aa;">
+                    <div>
+                        <a style="font-family: NexaBlack;">VENTAJA COMPETITIVA
+                        </a>
+                    </div>
+                    <div class="line-title"></div>
+                </div>
+                
+                <mat-form-field appearance="fill" style="width: 98%;"> 
+                    <mat-label>Descripción sobre la ventaja competitiva y enumere al menos 3 ventajas sobre sus competidores </mat-label>
+                    <textarea matInput placeholder="Enumere al menos 3 ventajas sobre sus competidores" formControlName="ventaja" required></textarea>
+                    <mat-hint align="end">{{ventaja?.value?.length}} / {{1000}}</mat-hint>
+                    <mat-error *ngIf="ventaja?.errors">Error en el campo</mat-error>
+                  </mat-form-field>
+                <mat-form-field appearance="fill" style="flex-basis: 48%;">
+                    <mat-label>Item 1 </mat-label>
+                    <input matInput placeholder="item1" formControlName="item1" required>
+                </mat-form-field>
+                  <mat-form-field appearance="fill" style="flex-basis: 48%;">
+                      <mat-label>Item 2</mat-label>
+                      <input matInput placeholder="item2" formControlName="item2" required>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" style="flex-basis: 48%;">
+                      <mat-label>Item 3</mat-label>
+                      <input matInput placeholder="item3" formControlName="item3" required>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" style="flex-basis: 48%;">
+                      <mat-label>Item 4</mat-label>
+                      <input matInput placeholder="item4" formControlName="item4">
+                  </mat-form-field>
+
+            </div>
+            <div>
+              <button mat-button mat-stroked-button (click)="enviarDatos()" 
+              style="background-color: #1225aa;color: white;" class="upload">Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="businessform" label="DESCRIPCIÓN DE SU NEGOCIO">
+          <form [formGroup]="businessform" class="forms">
+            <div class="form-div" >
+              <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div>
+                    <a style="font-family: NexaBlack;">DESCRIPCIÓN DEL NEGOCIO
+                    </a>
+                </div>
+                <div class="line-title"></div>
+              </div>
+                <mat-form-field appearance="fill" style="width: 98%;">
+                  <mat-label>Descripción Sobre Sus Productos/ Marcas O Servicios Relevantes Vs. El Resto DelMercado </mat-label>
+                  <textarea matInput placeholder="Descripción sobre sus productos" formControlName="descripcionNegocio" required></textarea>
+                  <mat-error *ngIf="descripcionNegocio?.errors?.['minLength']">
+                    El campo no debe ser menor a 3 caracteres
+                  </mat-error>
+                  <mat-hint align="end">{{descripcionNegocio?.value?.length}} / {{1000}}</mat-hint>
+                 
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 263px;">
+                  <mat-label>Ingrese el Margen de contribución (Año anterior)</mat-label>
+                  <input matInput formControlName="margenContribucion" [options]="{ align : 'left' }" currencyMask placeholder="" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 263px;">
+                  <mat-label>Ingrese las Ventas Totales (Año anterior)</mat-label>
+                  <input matInput formControlName="ventasTotales" [options]="{ align : 'left' }" currencyMask placeholder="" required>
+                </mat-form-field>
+              </div>
+
+              <div style="display: flex; gap: 10px;">
+                <button mat-button mat-stroked-button matStepperPrevious
+                style="background-color: #ff5f00;color: white;" class="upload">Regresar</button>
+                <button mat-button mat-stroked-button  (click)="enviarDatos2()" 
+                style="background-color: #1225aa;color: white;" class="upload">Siguiente</button>
+              </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="DATOS DE FINANCIAMIENTO (PROYECTO)">
+          <form [formGroup]="secondFormGroup" class="forms">
+            <div class="form-div" >
+              <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div>
+                    <a style="font-family: NexaBlack;">DATOS PROYECTO
+                    </a>
+                </div>
+                <div class="line-title"></div>
+              </div>
+
+              <input type="hidden" formControlName="idProyecto">
+
+              <mat-form-field appearance="fill" style="width: 98%;" (click)="mostrarForm()">
+                <mat-label>Explique El Detalle Del Destino Del Crédito</mat-label>
+                <input matInput formControlName="destinoFinanciamiento" placeholder="" >
+                <mat-error *ngIf="destinoFinanciamiento?.errors?.['minLength']">
+                  El campo no debe ser menor a 3 caracteres
+                </mat-error>
+              </mat-form-field>
+              <!-- <mat-form-field appearance="fill">
+                <mat-label>Tasa Efectiva Anual</mat-label>
+                <span matSuffix>% &nbsp;</span>
+                <input matInput style="text-align: right;" type="number" formControlName="tasaEfectivaAnual" required>
+                <mat-error *ngIf="tasaEfectivaAnual?.errors?.['min']">
+                  El campo no debe ser menor a 5%
+                </mat-error>
+                <mat-error *ngIf="tasaEfectivaAnual?.errors?.['max']">
+                  El campo no debe ser mayor a 50%
+                </mat-error>
+              </mat-form-field> -->
+              <mat-form-field appearance="fill">
+                <mat-label>Monto Solicitado</mat-label>
+                <input matInput placeholder="25,000.00" currencyMask [options]="{ align : 'left' }" formControlName="montoSol" required>
+                <mat-error *ngIf="montoSol?.errors?.['min']">
+                  El monto no debe ser menor a $25,000
+                </mat-error>
+                <mat-error *ngIf="montoSol?.errors?.['max']">
+                  El monto no debe ser mayor a $300,000
+                </mat-error>
+              </mat-form-field>
+              
+              <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px; width: 200px;
+              height: 52px;" required (change)="changePeriodoPago($event)"
+                  [items]="periodoPagos" [ngModelOptions]="{standalone: true}"
+                  required
+                  [multiple]="false"
+                  bindLabel="name"
+                  groupBy="todos"
+                  [selectableGroup]="true"
+                  [selectableGroupAsModel]="true"
+                  [closeOnSelect]="true"
+                  bindValue="id"
+                  placeholder="Seleccione el pago de Interes"
+                  [(ngModel)]="periodoPago">
+                  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                      <input id="item-{{index}}" type="checkbox" matTooltip="{{item.nombre}}" matTooltipPosition="above" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.name}} 
+                  </ng-template>
+              </ng-select>
+
+              <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px; width: 200px;
+              height: 52px;" required  (change)="changePagoCapital($event)"
+                  [items]="plazos" [ngModelOptions]="{standalone: true}"
+                  required
+                  [multiple]="false"
+                  bindLabel="name"
+                  groupBy="todos"
+                  [selectableGroup]="true"
+                  [selectableGroupAsModel]="true"
+                  [closeOnSelect]="true"
+                  bindValue="id"
+                  placeholder="Seleccione el plazo"
+                  [(ngModel)]="plazo">
+                  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                      <input id="item-{{index}}" type="checkbox" matTooltipPosition="above" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.name}} 
+                  </ng-template>
+              </ng-select>
+
+              <input type="hidden" formControlName="pagoInteres" readonly required>
+              <mat-form-field appearance="fill" style="display: none;">
+                <mat-label>Pago interes</mat-label>
+                <input matInput formControlName="pagoInteres" readonly required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Pago capital</mat-label>
+                <input matInput formControlName="pagoCapital" readonly required>
+              </mat-form-field>
+
+              
+
+              <!-- <ng-select class="filter-look"  style="padding-bottom: 0;top: -9px; width: 200px;
+              height: 52px;" required (change)="changeValidator()"
+                  [items]="riesgos" [ngModelOptions]="{standalone: true}"
+                  required
+                  [multiple]="false"
+                  bindLabel="nombre"
+                  groupBy="todos"
+                  [selectableGroup]="true"
+                  [selectableGroupAsModel]="true"
+                  [closeOnSelect]="true"
+                  bindValue="idTipoCalificacion"
+                  placeholder="Seleccione la calificacion"
+                  [(ngModel)]="riesgo">
+                  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                      <input id="item-{{index}}" type="checkbox" matTooltip="{{item.nombre}}" matTooltipPosition="above" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                  </ng-template>
+              </ng-select> -->
+
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button mat-button mat-stroked-button matStepperPrevious
+              style="background-color: #ff5f00;color: white;" class="upload">Regresar</button>
+              <button mat-button mat-stroked-button (click)="ingresarProyectos()"
+              style="background-color: #1225aa;color: white;" class="upload">Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" label="DOCUMENTACIÓN REQUERIDA">
+          <form [formGroup]="thirdFormGroup" class="forms">
+            <div class="form-div">
+              <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div>
+                    <a style="font-family: NexaBlack;">DOCUMENTACIÓN REQUERIDA (DATOS JURIDICOS)
+                    </a>
+                </div>
+                <div class="line-title"></div>
+              </div>
+
+                <div class="scrollbar_">
+                  <table mat-table [dataSource]="dataSource" matSort 
+                        style="width: 100%;" class="table-upload">
+                
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id" >
+                      <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                        No.
+                      </th>
+                      <td class="mobile-display"  [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Nombre
+                      </th>
+                      <td  [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" style=" overflow: hidden; cursor: default;" mat-cell  matTooltipPosition="above" [matTooltip]="docArchivosJuridicos[indice].fileName"  *matCellDef="let element;let indice=index"> {{ (docArchivosJuridicos[indice].fileName.length>20)? (docArchivosJuridicos[indice].fileName  | slice:0:20)+'...':(docArchivosJuridicos[indice].fileName )}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="tipo">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Tipo Documento
+                      </th>
+                      <td [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> {{element.tipo}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="peso" >
+                      <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                        Peso
+                      </th>
+                      <td class="mobile-display" style="white-space: pre;" [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index">
+                         <div *ngIf="docArchivosJuridicos[indice].file">
+                          {{docArchivosJuridicos[indice].file!.size/1048576| number:'1.0-2'}}mb/{{element.peso}}
+                         </div>
+                         <div *ngIf="!docArchivosJuridicos[indice].file">
+                         --- mb/{{element.peso}}
+                         </div>
+                        </td>
+                   </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="accion">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                        Acción
+                      </th>
+                      <td [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> 
+                          <div class="container-input " style="width: 50px;">
+                            <input type="file" name="file-1{{indice}}" id="file-1{{indice}}" class="inputfile inputfile-7" (change)="onFilechange($event,indice)" />
+                            <label matTooltip="Cargar" matTooltipPosition="above" for="file-1{{indice}}" placeholder="Cargar Documento" class="upload">
+                            <span class="iborrainputfile mobile-display" style="display: none;">{{this.docArchivosJuridicos[indice].fileName}}</span>
+                                <strong class="img-load ">
+                                  <i class="fa fa-duotone fa-upload " style="font-size: 25px;"></i>
+                                </strong>
+                            </label>
+                            <i class="fa fa-solid fa-minus upload" matTooltipPosition="above" matTooltip="Cancelar" (click)="cancelUpload($event,indice,1)" style="font-size: 25px; margin-left:5px"></i>
+                          </div> 
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ver">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Documento Subido
+                      </th>
+                      <td style="text-align: center;" [ngClass]="docArchivosJuridicos[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> 
+                        <a *ngIf="this.docArchivosJuridicos[indice].url" matTooltipPosition="above" matTooltip="Ver" target="_blank" class="upload" style="text-decoration: none; color: black; display: flex; flex-direction: column;" [attr.href]="this.docArchivosJuridicos[indice].url">
+                           <i class="fa fa-solid fa-file"></i> 
+                           <div style="font-size: 12px;">Ver</div> 
+                        </a> 
+                      </td>       
+                      </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>  
+                </div>
+
+                  <div class="row_" style=" gap:0px; color: #1225aa;">
+                    <div>
+                        <a style="font-family: NexaBlack;">DOCUMENTACIÓN REQUERIDA (DATOS TRIBUTARIOS)
+                        </a>
+                    </div>
+                    <div class="line-title"></div>
+                  </div>
+                  <div class="scrollbar_">
+                  <table mat-table [dataSource]="dataSource2" matSort 
+                        style="width: 100%;" class="table-upload">
+                
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id" >
+                      <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                        No.
+                      </th>
+                      <td class="mobile-display"   [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Nombre
+                      </th>
+                      <td  [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" style=" overflow: hidden; cursor: default;" mat-cell  matTooltipPosition="above" [matTooltip]="docArchivosTributario[indice].fileName"  *matCellDef="let element;let indice=index"> {{ (docArchivosTributario[indice].fileName.length>20)? (docArchivosTributario[indice].fileName  | slice:0:20)+'...':(docArchivosTributario[indice].fileName )}} </td></ng-container>
+
+                    <ng-container matColumnDef="tipo">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Tipo Documento
+                      </th>
+                      <td  [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> {{element.tipo}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="peso" >
+                      <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                        Peso
+                      </th>
+                      <td class="mobile-display" [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" style="white-space: pre;"  mat-cell *matCellDef="let element;let indice=index">
+                        <div *ngIf="docArchivosTributario[indice].file">
+                          {{docArchivosTributario[indice].file!.size/1048576| number:'1.0-2'}}mb/{{element.peso}}
+                         </div>
+                         <div *ngIf="!docArchivosTributario[indice].file">
+                         --- mb/{{element.peso}}
+                         </div>
+                        </td>
+                   </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="accion">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                        Acción
+                      </th>
+                      <td  [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> 
+                          <div class="container-input " style="width: 50px;">
+                            <input type="file" name="file-2{{indice}}" id="file-2{{indice}}" class="inputfile inputfile-7" (change)="onFilechange2($event,indice)" />
+                            <label matTooltip="Cargar" matTooltipPosition="above" for="file-2{{indice}}" placeholder="Cargar Documento" class="upload">
+                            <span class="iborrainputfile mobile-display" style="display: none;"></span>
+                                <strong class="img-load ">
+                                  <i class="fa fa-duotone fa-upload " style="font-size: 25px;"></i>
+                                </strong>
+                            </label>
+                            <i class="fa fa-solid fa-minus upload" matTooltipPosition="above" matTooltip="Cancelar" (click)="cancelUpload($event,indice,2)" style="font-size: 25px; margin-left:5px"></i>
+                          </div> 
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ver">
+                      <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                        Documento Subido
+                      </th>
+                      <td style="text-align: center;"  [ngClass]="docArchivosTributario[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> 
+                        <a *ngIf="this.docArchivosTributario[indice].url" matTooltipPosition="above" matTooltip="Ver" target="_blank" class="upload" style="text-decoration: none; color: black; display: flex; flex-direction: column;" [attr.href]="this.docArchivosTributario[indice].url">
+                           <i class="fa fa-solid fa-file"></i> 
+                           <div style="font-size: 12px;">Ver</div> 
+                        </a>
+                      </td>       
+                      </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>  
+                  </div>
+
+                  
+                  <div class="row_" style=" gap:0px; color: #1225aa;">
+                    <div>
+                        <a style="font-family: NexaBlack;">DOCUMENTACIÓN REQUERIDA (DATOS CONTABLES FINANCIEROS)
+                        </a>
+                    </div>
+                    <div class="line-title"></div>
+                  </div>
+                  <div class="scrollbar_">
+                    <table mat-table [dataSource]="dataSource3" matSort 
+                          style="width: 100%;" class="table-upload">
+                  
+                      <ng-container matColumnDef="id" >
+                        <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                          No.
+                        </th>
+                        <td class="mobile-display" [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'"  mat-cell *matCellDef="let element;let indice=index"> {{element.id}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="name">
+                        <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                          Nombre
+                        </th>
+                        <td  [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'" style=" overflow: hidden; cursor: default;" mat-cell  matTooltipPosition="above" [matTooltip]="docArchivosContables[indice].fileName"  *matCellDef="let element;let indice=index"> {{ (docArchivosContables[indice].fileName.length>20)? (docArchivosContables[indice].fileName  | slice:0:20)+'...':(docArchivosContables[indice].fileName )}} </td>
+                        </ng-container>
+
+                      <ng-container matColumnDef="tipo">
+                        <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                          Tipo Documento
+                        </th>
+                        <td [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> {{element.tipo}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="peso" >
+                        <th class="header-table mobile-display" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                          Peso
+                        </th>
+                        <td [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'" class="mobile-display" style="white-space: pre;"  mat-cell *matCellDef="let element;let indice=index">
+                          <div *ngIf="docArchivosContables[indice].file">
+                            {{docArchivosContables[indice].file!.size/1048576| number:'1.0-2'}}mb/{{element.peso}}
+                          </div>
+                          <div *ngIf="!docArchivosContables[indice].file">
+                          --- mb/{{element.peso}}
+                          </div>
+                    </ng-container>
+
+                      <ng-container matColumnDef="accion">
+                        <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                          Acción
+                        </th>
+                        <td [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'" mat-cell *matCellDef="let element;let indice=index"> 
+                            <div class="container-input " style="width: 50px;">
+                              <input type="file" name="file-3{{indice}}" id="file-3{{indice}}" class="inputfile inputfile-7" (change)="onFilechange3($event,indice)" />
+                              <label matTooltip="Cargar" matTooltipPosition="above" for="file-3{{indice}}" placeholder="Cargar Documento" class="upload">
+                              <span class="iborrainputfile mobile-display" style="display: none;"></span>
+                                  <strong class="img-load ">
+                                    <i class="fa fa-duotone fa-upload " style="font-size: 25px;"></i>
+                                  </strong>
+                              </label>
+                              <i class="fa fa-solid fa-minus upload" matTooltipPosition="above" matTooltip="Cancelar" (click)="cancelUpload($event,indice,3)" style="font-size: 25px; margin-left:5px"></i>
+                            </div> 
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="ver">
+                        <th class="header-table" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                          Documento Subido
+                        </th>
+                        <td [ngClass]="docArchivosContables[indice].upload ? 'pass':'unpass'" style="text-align: center;"  mat-cell *matCellDef="let element;let indice=index"> 
+                          <a *ngIf="this.docArchivosContables[indice].url" matTooltipPosition="above" matTooltip="Ver" target="_blank" class="upload" style="text-decoration: none; color: black; display: flex; flex-direction: column;" [attr.href]="this.docArchivosContables[indice].url">
+                            <i class="fa fa-solid fa-file"></i> 
+                            <div style="font-size: 12px;">Ver</div> 
+                        </a>
+                        </td>       
+                        </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>  
+                    </div>
+            </div>
+
+
+
+            <div style="display: flex; gap: 10px;"  >
+              <button mat-button mat-stroked-button matStepperPrevious
+              style="background-color: #ff5f00;color: white;" class="upload" >Regresar</button>
+              <button mat-button mat-stroked-button
+              style="background-color: #1225aa;color: white;" class="upload"(click)="enviarArchivos()">Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+</div>

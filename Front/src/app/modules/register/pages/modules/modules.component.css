@@ -1,0 +1,32 @@
+.background{
+    padding-top: 110px; 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap:wrap; 
+    gap: 15px;
+    background-image: url('/assets/images/register/backmodule.webp');
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    background-color: #8b8b8b80;
+    background-position: center;
+    align-items: center;
+}
+
+.cards{
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    display: flex; flex-direction: column; align-items: center; height: fit-content;
+}
+
+::ng-deep .mat-card-header-text{
+    margin: 0;
+}
+
+.elements-hover:hover{
+    transition: transform .3s;
+      transform: scale(1.2);
+  }

@@ -1,0 +1,44 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <!-- <img src="/assets/images/sponsorship/register/sports.webp" style="    width: 100%;
+    height: 100%;
+    position: absolute;"> -->
+    <div class="row_">
+        <div class="columna_ ">
+            <div class="conteiner_general">
+            <div class="conteiner_form">
+                <div class="form ">
+                    <div class="data">
+                        Crea tu cuenta
+                    </div>
+                    <form class="formulario"  (ngSubmit)=" clickprobarservicio()"  [formGroup]="registrationForm">
+                         
+                        <div class="columna">
+                           
+                            <div>
+                                <img src="/assets/images/register/newDesign/logoblue.png" alt="">
+                            </div>
+                            <div class="input">
+                                <input type="text" name="registrarCorreo" id="registrarCorreo" placeholder ="Registra tu correo electrónico"
+                                class="input-label form-control" [(ngModel)]="text_placeholder" formControlName="registrarCorreo">
+                            </div>
+                            <div class="registrarse">
+                                <div class="" > 
+                                    <button type="submit" class=" btn btncolor w-100" > 
+                                        Registrarse
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="texto2">
+                                <div class="ingresa"><h3 >¿Ya te has registrado?</h3><br></div>
+                                <div><a   class="ingresa"><h3 class="ingresa">Ingresa aqui</h3></a></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+<mat-drawer-container class="example-container" style=" height: 750px; padding-top: 110px;">
+   <mat-drawer #snav style="padding-top: 110px; width: 250px; display: flex; flex-direction: column;" mode="side" opened>
+      <div (click)="elementSelect='admin'" class="btn btn-outline-dark ">
+      Administrador
+      </div>
+      <div (click)="elementSelect='acount'" class="btn btn-outline-dark ">
+      Cuentas
+      </div>
+      <div (click)="elementSelect='sponsor'" class="btn btn-outline-dark ">
+      Auspicios
+      </div>
+      <div (click)="elementSelect='investor'" class="btn btn-outline-dark ">
+      Inversionistas
+      </div>
+      <div (click)="elementSelect='promoter'" class="btn btn-outline-dark ">
+      Promotor
+      </div>
+   </mat-drawer>
+   <mat-drawer-content>
+      <div (click)="snav.toggle()"  matTooltip="Menu de administrador" 
+         style="display: inline-block; position: relative;" class="btn btn-outline-secondary">...</div> 
+      <div [ngSwitch]="elementSelect" style="padding-left: 2%; padding-right: 2%; display: flex; flex-direction: column;">
+         <!-- <app-admin *ngSwitchDefault></app-admin> -->
+      <app-admin *ngSwitchCase="'admin'"></app-admin>
+      <app-sponsor *ngSwitchCase="'sponsor'" style="width:90%;display: flex; flex-direction: column;"></app-sponsor>
+      <app-acount *ngSwitchDefault></app-acount>
+      <app-investor *ngSwitchCase="'investor'" style="    display: flex;
+      flex-direction: column;"></app-investor>
+      <app-promoter *ngSwitchCase="'promoter'"></app-promoter>
+      </div>
+   </mat-drawer-content>
+        
+  </mat-drawer-container>

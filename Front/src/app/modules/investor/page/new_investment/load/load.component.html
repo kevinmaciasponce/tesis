@@ -1,0 +1,84 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <div class="container_">
+       
+         <!-- <app-menu-conteiner></app-menu-conteiner> -->
+        <div class="container_body">
+            <app-menu-investor></app-menu-investor>
+            <div class="row2">
+                <div class="margin">
+                    <div class="bg">
+                        <div class="box">
+                            <form class="column " >
+                                <div class="column">
+                                    <h3>Cédula Frontal</h3>
+                                    <div class="container-input">
+                                        <input type="file" name="file-7" id="file-7" class="inputfile inputfile-7" (change)="this.onFilechange($event,1)" />
+                                        <label for="file-7" placeholder="Cargar Documento">
+                                        <span class="iborrainputfile">{{nombredocfrontal}}</span>
+                                            <strong class="img-load">
+                                                <img class="imgdoc" src="/assets/images/shared/uploadDoc.png" alt="">
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="centrar" *ngIf="solicitudNueva">
+                                        <a href="{{rutafrontal}}"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 15%;" alt="">Ver {{nombrefrontal}} </a>
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <h3>Cédula Posterior</h3>
+                                    <div class="container-input">
+                                        <input type="file" name="file-8" id="file-8" class="inputfile inputfile-7" (change)="this.onFilechange($event,2)" />
+                                        <label for="file-8" placeholder="Cargar Documento">
+                                        <span class="iborrainputfile">{{nombredocposterior}}</span>
+                                            <strong class="img-load">
+                                                <img class="imgdoc" src="/assets/images/shared/uploadDoc.png" alt="">
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="centrar" *ngIf="solicitudNueva">
+                                        <a href="{{rutaposterior}}"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 15%;" alt=""> {{nombreposterior}} </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin">
+                    <div class="bg">
+                        <div class="boxblue">
+                            <form class="column " >
+                                <div class="container-cedula">
+                                    <h1 class="title_cedula">Tener en consideración:</h1>
+                                    <h5>1. Revisar que se muestre las 4 esquinas de su cédula de identidad.</h5>
+                                    <h5>2. La imagen debe ser clara y legible.</h5>
+                                    <h5>3. Incluir el anverso y reverso de la cédula en un solo documento.</h5>
+                                    <h5>4. El documento debe estar en un solo archivo en formato jpeg/png</h5>
+                                    <h5>5. El archivo debe tener un peso máximo de 3MB.</h5>
+                                    <img class="cedula" src="/assets/images/investor/cedula.png" alt="">
+                                </div>
+                                <!-- <div class="centrar">
+                                    <a href="{{ruta}}">{{nombre}}</a>
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btns">
+                <div class="row_ btns" *ngIf="!solicitudNueva">
+                    <button type="submit" class="btn-orange" [routerLink]="'/investor/home'" ><a class="">Cancelar</a></button>
+                    <button type="submit" class="btn-blue" (click)="create()" ><a class="">Guardar y continuar</a></button>
+                </div>
+
+                <div class="row_ btns justificado" *ngIf="solicitudNueva">
+                    <button type="submit" class="btn-orange" [routerLink]="'/investor/home'"><a class="">Cancelar</a></button>
+                    <button type="submit" class="btn-blue" (click)="upload()" ><a class="">Actualizar y continuar</a></button>
+                    <button type="" class="btn-orange" [routerLink]="'/investor/investement'"><a class="">Siguente</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

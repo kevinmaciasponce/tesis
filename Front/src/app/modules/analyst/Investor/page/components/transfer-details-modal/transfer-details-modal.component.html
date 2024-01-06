@@ -1,0 +1,39 @@
+<div>
+    <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; align-items: center;">
+        <ul class="menu_items">
+            <li class="items_conteiner">Lista de solicitudes</li>
+        </ul>
+        <div  style="margin-bottom: 10px;"> <section style="border-radius: 20px !important; height: 40px; width: 250px; padding: 2%; font-size: 1.3em;" class="box-flex" > {{nombreEmpresa}} </section> </div>
+        <div class="scrollbar_">
+            <table>
+                <tr>
+                    <th > <section class="theader-flex">Código Solicitud</section>  </th>
+                    <th > <section class="theader-flex">Monto Recaudado</section></th>
+                    <th > <section class="theader-flex">Inversionistas</section></th>
+                </tr>
+                <tr *ngFor="let datos of solicitudes">
+                    <td class=" ">
+                        <section class="box-flex"  ngbTooltip="Ver datos del usuario"   style="cursor: pointer; text-decoration:underline;" (click)="goDetallesUser(datos.numeroSolicitud,datos.identificacion)"> 
+                            <a>{{datos.numeroSolicitud}}</a> </section>
+                    </td>
+                    <td>
+                        <section style="width:100%;" class="box-flex"> ${{datos.montoInversion}}</section>
+                    </td>
+                    <td>
+                        <section style="width:100%;" class="box-flex"> {{datos.inversionista}}</section>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn_" (click)="goTablaAmortizacionUsuario(datos.numeroSolicitud)">
+                            <section class="titles">Ver tabla de amortización</section>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn_" (click)="goTablaAmortizacionPagare(datos.numeroSolicitud)">
+                            <section class="titlesorange">Ver pagaré</section>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

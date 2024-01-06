@@ -1,0 +1,26 @@
+.body{
+    padding-bottom: 5%;
+}
+.title{
+    background-color: #1225aa;
+    padding: 5%;
+    color: white;
+}
+
+.btn-orange{
+    border-radius: 7px;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+    color: white 
+  }
+  .btn-orange:hover {
+    transition: transform .3s;
+    transform: scale(1.2);
+  }

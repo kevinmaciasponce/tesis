@@ -1,0 +1,298 @@
+<p>edit-sponsor works!</p>
+<div style="padding-top:110px ;">
+    <app-loading *ngIf="cargando"></app-loading>
+  
+    <mat-stepper #stepper 
+    class="example-stepper" 
+    [orientation]="(stepperOrientation | async)!">
+      <mat-step [stepControl]="thirdFormGroup" label="Agregar Auspicio">
+        <form  [formGroup]="thirdFormGroup" #formRefer="ngForm"  class="formDatos"  >
+          <div class="row_" style=" gap:0px; color: #1225aa; margin-bottom: 1%;">
+            <div type="submit" class="persona_j btn-xs" >
+                <a style="font-family: NexaBlack;">AGREGAR AUSPICIO</a>
+            </div>
+            <div class="line-title"></div>
+          </div>
+          <div class="row_ element-title">
+            <div type="submit" class="persona_j btn-xs" >
+                <a style="font-family: NexaBlack;">Presupuesto Solicitado</a>
+            </div>
+          </div>
+          <div class="data-content width-auspicio">
+            <input type="hidden" formControlName="id" >
+            <mat-form-field appearance="fill" style="flex-basis:97%;" class="auspiciosAdd">
+                <mat-label>Presupuesto Solicitado</mat-label>
+                <input matInput placeholder="presupuesto"  formControlName="presupuesto" currencyMask required>
+            </mat-form-field>
+          </div>
+          <div class="row_ element-title" >
+            <div type="submit" class="persona_j btn-xs" >
+                <a style="font-family: NexaBlack;">Recompensas</a>
+            </div>
+          </div>
+          <div class="data-content width-auspicio">
+            <input type="hidden" formControlName="id1" name="id1" >
+            <mat-form-field appearance="fill" class="data-formfield auspiciosAdd" >
+                <mat-label>Categoria</mat-label>
+                <input matInput placeholder="Nombres" value='ORO'  readonly formControlName="categoria1"  oninput="javascript:this.value=this.value.toUpperCase();" required >
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+                <mat-label>Porcentaje</mat-label>
+                <input matInput placeholder="Porcentaje" value="> 35%" readonly formControlName="porcentaje1"  oninput="javascript:this.value=this.value.toUpperCase();" required>
+            </mat-form-field>
+          </div>
+          <div  class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper">
+              <mat-label>Detalle</mat-label>
+              <textarea matInput placeholder="Detalle" formControlName="detalle1" required
+                ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id2" name="id2" >
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+              <mat-label>Categoria</mat-label>
+              <input matInput placeholder="Nombres" value='PLATA'  readonly formControlName="categoria2"  oninput="javascript:this.value=this.value.toUpperCase();" required >
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+              <mat-label>Porcentaje</mat-label>
+              <input matInput placeholder="Porcentaje" value="Entre 16% y 34%" readonly formControlName="porcentaje2"  oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+        </div>
+        <div  class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper" >
+            <mat-label>Detalle</mat-label>
+            <textarea matInput placeholder="Detalle"  formControlName="detalle2" required
+              ></textarea>
+         </mat-form-field>
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id3" name="id3" >
+          <mat-form-field appearance="fill"  class="data-formfield auspiciosAdd">
+            <mat-label>Categoria</mat-label>
+            <input matInput placeholder="Nombres" value='BRONCE'  readonly formControlName="categoria3"  oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill"  class="data-formfield auspiciosAdd">
+            <mat-label>Porcentaje</mat-label>
+            <input matInput placeholder="Porcentaje" value="Menor 15%" readonly formControlName="porcentaje3"  oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+        </div>
+        <div  class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper">
+              <mat-label>Detalle</mat-label>
+              <textarea matInput placeholder="Detalle" name="cedula" id="cedula" formControlName="detalle3" required
+                ></textarea>
+          </mat-form-field>
+        </div>
+        <div  class="button-steps" style="margin-top: 5%;">
+          <button mat-button (click)="RegresarVentana()" class="btn-orange" style="background: #767676;">Regresar</button>
+          <button mat-button (click)="siguienteForm()" class="btn-orange">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Agregar Torneos a participar">
+        <div style="display: flex; flex-direction: column;">
+          <div class="row_ element-title" >
+            <div type="submit" class="persona_j btn-xs" >
+                <a style="font-family: NexaBlack;">TORNEOS A PARTICIPAR</a>
+            </div>
+          </div>
+          <div *ngFor="let torneo of torneos; let in=index" class="column">
+            <div>
+              Torneo N: {{in+1}}
+            </div>
+            <div class="row_3">
+                <mat-form-field appearance="fill">
+                  <mat-label>Nombre Competencia</mat-label>
+                  <input type="text" matInput [(ngModel)]="torneo.nombreTorneo" autocomplete="disabled" name="nombretorneo{{in}}"   #name="ngModel" required
+                  [ngModelOptions]="{standalone: true}"
+                  >
+                </mat-form-field>
+            
+                <ng-select class="filter-look"  style="padding-bottom: 0;
+                  top: 7px;"
+                      [items]="nacionalidades" [ngModelOptions]="{standalone: true}"
+                      required
+                      [multiple]="false"
+                      bindLabel="pais"
+                      groupBy="todos"
+                      [selectableGroup]="true"
+                      [selectableGroupAsModel]="true"
+                      [closeOnSelect]="true"
+                      bindValue="idNacionalidad"
+                      placeholder="Seleccione el país"
+                      [(ngModel)]="torneo.pais.idNacionalidad">
+                      <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                          <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.pais}} 
+                      </ng-template>
+                  </ng-select>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha</mat-label>
+                    <input type="date" matInput [(ngModel)]="torneo.fecha" [ngModelOptions]="{standalone: true}" name="fecha{{in}}" autocomplete="disabled"  #name="ngModel" > 
+                </mat-form-field>
+            </div>
+          </div>
+          <div style="border-radius: 15px; padding: 5px 10px 5px 10px;
+                        background: #e8a721; color: white; width: 100%; margin-bottom: 2%;">
+              <span>
+                Se deben agregar mínimo 3 y máximo 10 títulos
+              </span>
+          </div>
+          <div style="justify-content: start;
+          display: flex;
+          width: 100%;
+          margin-bottom: 3%;" >
+            <button  class="btn-orange" 
+            style="background-color: #1225aa;"  (click)="addtorneos()">Agregar Torneos</button>
+          </div>
+          <div  class="button-steps">
+            <button (click)="regresarForm()" class="btn-orange" style="background: #767676;">Regresar</button>
+            <button mat-button  class="btn-orange" (click)="agregarTorneos()" >Siguiente</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step >
+        <ng-template matStepLabel>
+          Verfica tus datos
+        </ng-template>
+  
+        <div style="display: flex;
+        flex-direction: column;
+        align-items: center;">
+  
+       
+      <div class="content-card">
+        <div class="card_conteiner right" >
+          <div class="img_contenier" > 
+            <img [attr.src]="urlphoto" lass="imagen-proyect" alt="" loading="lazy" style="width: 100%;
+            height: 100%;">
+          </div>
+          <div class="ico-shared hover-elements" matTooltip="Copiar enlace" matTooltipPosition="above" >
+            <img src="/assets/images/shared/share.png" width="25px" alt="">
+          </div>
+          <div class="text_conteiner">
+  
+            <div class="title-content" style="flex-basis: 25%;" *ngIf="!!Beneficiary.persona">
+              <div class="row_card_conteiner" >
+                <div class="column_card title-proyect" style="align-items: center; text-align: center;">
+                <span *ngIf="Beneficiary.persona.nombre!=''"> 
+                    {{Beneficiary.persona.nombres}} <br> {{Beneficiary.persona.apellidos}}</span>
+                <span *ngIf="Beneficiary.persona.razonSocial!=''"> 
+                  {{Beneficiary.persona.razonSocial}} </span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row_card_conteiner">
+              <div class="progress" >
+                <div class="progressbarWrapper">
+                  <span class="yellowBar" [ngClass]="porcenatjeprueba >=100?'suceessBar':'yellowBar'" [ngStyle]="{'width':porcenatjeprueba >=100?100:porcenatjeprueba+ '%'}" ></span>
+                  <div class="percent" [ngStyle]="{'color': porcenatjeprueba>=50?'#fff':'#1225aa'}"> <p *ngIf="porcenatjeprueba>=100">EXITOSO &nbsp;</p> {{porcenatjeprueba}}%</div>
+                </div>
+              </div>
+            </div>
+          
+  
+          <div class="description_conteiner">
+            <div class="row_card_conteiner">
+               <div class="column_card marginbuttom" style="align-items: center;">
+                <div style="display: flex; justify-content:center; flex-direction:column; font-size: 1.5em;" >
+                  <span class="titulo_card" style="display: flex; justify-content: center;">Disciplina</span>
+                  <!-- <span *ngIf="Beneficiary.beneficiario.disciplina&&Beneficiary.beneficiario.categoria" class="text_card"> {{getDisciplina(Beneficiary.beneficiario.disciplina)}} / {{getCategoria(Beneficiary.beneficiario.categoria)}}</span> -->
+                </div>
+              </div>
+            </div>
+  
+            <div class="row_card">
+              <div class="column_card">
+                <div class="row_card mrgtop">
+                  <div class="column_card marginbuttom" >
+                    <span class="titulo_card">Ranking
+                    </span>
+                    <ul class="text_card" style="font-size: 1em; margin: 0;
+                   padding: 0 0 0 15px;">
+                      <li *ngIf="!!words2[0] && !!words2[0].internacional ">{{words2[0].internacional | slice:0:35}}</li>
+                      <li *ngIf="!!words2[0] && !!words2[0].nacional">{{words2[0].nacional  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[0] && !!words2[0].otros ">{{words2[0].otros  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[1] && !!words2[1].internacional ">{{words2[1].internacional  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[1] && !!words2[1].nacional">{{words2[1].nacional  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[1] && !!words2[1].otros ">{{words2[1].otros  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[2] && !!words2[2].internacional ">{{words2[2].internacional  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[2] && !!words2[2].nacional">{{words2[2].nacional  | slice:0:35}}</li>
+                      <li *ngIf="!!words2[2] && !!words2[2].otros ">{{words2[2].otros  | slice:0:35}}</li>
+                    </ul>
+                    <span class="text_card" style="font-size: 1.2em;"></span>
+                  </div>
+                  
+                </div>
+  
+               
+              </div>
+  
+              <div class="column_card mrgend" style="flex-basis: 40%;" *ngIf="!!Beneficiary.persona">
+                <div class="row_card mrgtop">
+                  <div class="column_card marginbuttom" >
+                    <span class="titulo_card">PAÍS</span>
+                    <span  class="text_card">{{getPais(Beneficiary.persona.nacionalidad)}}</span>
+                  </div>
+                </div>
+                
+                <div class="row_card mrgtop" >
+                  <div class="column_card marginbuttom">
+                    <span class="titulo_card">Monto solicitado </span>
+                    <span class="text_card">{{presupuesto|currency}}</span>
+                    
+                  </div>
+                </div>
+                <div class="row_card mrgtop">
+                  <div class="column_card marginbuttom">
+                    <span class="titulo_card">Monto recaudado </span>
+                    <span class="text_card">$00.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="btn_conteiner" style="flex-basis: 50%;">
+            <div class="row_">
+                <div class="column_">
+                  <div >
+                    <div class="btn-orange" > 
+                      <a >EMPIEZA TU PATROCINIO</a>
+                  </div>
+                  </div>
+                      <div class="btn-container">
+                        <div class="btn-blue"  > 
+                          <a >MÁS DETALLES</a>
+                      </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+  
+        <div  class="button-steps">
+          <button mat-button matStepperPrevious class="btn-orange" style="align-self: center; background: #767676;">REGRESAR</button>
+          <div class="imgcontent hoverElement" (click)="aprobarAuspicio()" >Aprobar <img src="assets/images/sponsorship/shared/aprove.png" class="img_state" alt=""> </div>
+          <div class="imgcontent hoverElement" (click)="cancelarAuspicio()">Cancelar <img src="assets/images/sponsorship/shared/cancel.png" class="img_state" alt=""> </div>
+          <div class="imgcontent hoverElement" (click)="pendienteAuspicio()">Pendiente <img src="assets/images/sponsorship/shared/pending.png" class="img_state" alt=""> </div>
+          <button mat-button class="btn-orange" style="align-self: center;" (click)="irEditarBeneficiario(Beneficiary.beneficiario.identificacion)" >EDITAR BENEFICIARIO</button>
+          
+        </div>
+        
+        </div>
+      </div>
+      </mat-step>
+      <mat-step label="Listo">
+        <div style="display: flex; flex-direction:column; justify-content: space-evenly;height: 450px;align-items: center;">              
+          <img src="/assets/images/register/newDesign/logoblue.png" class="logo-img" />
+          <div>
+              <button mat-button (click)="RegresarVentana()" style="background: #5fd455;" class="btn-orange">Regresar</button>
+          </div>
+      </div>
+     </mat-step>
+    </mat-stepper>
+  </div>

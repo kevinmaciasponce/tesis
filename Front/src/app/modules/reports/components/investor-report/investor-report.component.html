@@ -1,0 +1,195 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="content">
+
+    <div class="filter-content-box" >
+        <div class="title-filter">
+            Filtros de consulta
+        </div>
+
+        <div class="filtercontent">
+
+            <div class="filter-year">
+                <div class="column_">
+                    <span>  Seleccione el año </span>
+                    <div class="radio_container ">
+                        <div>
+                            <label for="si_residente">2022</label>
+                            <input type="radio" [checked]="anio22" (change)="changeGender($event)"  id="si_residente" name="es_residente"  value="2022"  class="input_style">                           
+                        </div>
+                        <div>
+                            <label for="no_residente">2023</label>
+                            <input type="radio" [checked]="anio23" (change)="changeGender($event)" id="no_residente" name="es_residente" value="2023"  class="input_style">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="filter">
+                    <ng-select class="month-filter"
+                        [items]="month"
+                        [multiple]="true"
+                        bindLabel="month"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="false"
+                        bindValue="id"
+                        placeholder="Seleccione los meses"
+                        [(ngModel)]="selectmonth">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" placeholder="Selecciones un mes" [ngModel]="item$.selected"/> {{item.month}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+
+            <div *ngIf="esInversionista=='manager'">
+                <div class="filter">
+                    <ng-select class="month-filter"
+                        [items]="persona"
+                        [multiple]="true"
+                        bindLabel="nombres"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="false"
+                        bindValue="identificacion"
+                        placeholder="Seleccione los inversionistas"
+                        [(ngModel)]="personaselected">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" placeholder="Selecciones un mes" [ngModel]="item$.selected"/> {{item.nombres}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+
+        </div>
+        <div class="justify-center">
+            <button class="btn-orange" (click)="consultar()">
+                <div>
+                    Consultar
+                </div>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="tble" class="data">
+
+    
+    <div class="title-report">
+        REPORTE DE DEPÓSITOS POR MESES
+    </div>
+
+    <div class="investor-content">
+        <div class="inverstor-data"  *ngIf="!!investor">
+            <div class="investor tot">
+                <div class="title-investor">
+                    Inversionista: &nbsp;
+                </div>
+                <div class="title-description">{{investor.nombres}} {{investor.apellidos}}</div>
+            </div>
+            <div class="investor year">
+                <div class="title-investor">
+                    Identificación: &nbsp;
+                </div>
+                <div class="title-description">{{investor.identificacion}}</div>
+            </div>
+            
+        </div>
+    
+        <div class="inverstor-data">
+            <div class="investor year"  *ngIf="!!datos">
+                <div class="title-investor">
+                    Año de consulta: &nbsp;
+                </div>
+                <div class="title-description">{{datos.anio}}</div>
+            </div>
+            
+        </div>
+
+        <div>
+            <img src="/assets/images/landing2/movil/logo.png" class="logo-img">
+        </div>
+    </div>
+    <div class="investor tot" *ngIf="!!datos">
+        <div class="title-investor total">
+            Total a Recibir: &nbsp;
+        </div>
+        <div class="title-description total">${{datos.totalReporte| currency:'':'' : '1.2'}}</div>
+    </div>
+</div>
+
+
+
+    <div class="scrollbar_">
+
+        
+        <table class="table-outer" id="tble2" >
+
+            <table *ngFor="let reporteFecha of userReport ; last as i" style=" border-collapse: separate;
+            border-spacing: 0px 1px;" >
+                <tr  *ngIf="esInversionista=='manager'">
+                    <th colspan="4">
+                        <div style="display: flex; justify-content: flex-start;">
+                            
+                            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                                    
+                                <div class="title-group">
+                                    <div class="title-investor"> Inversionista:</div> &nbsp;
+                                    <div>{{reporteFecha.nombre}}</div>
+                                </div>
+                                <div class="title-group">
+                                    <div class="title-investor"> Identificacion:</div>&nbsp;
+                                    <div>{{reporteFecha.identificacion}}</div>
+                                </div>
+                                <div class="title-group">
+                                    <div class="title-investor" > Total a Recibir:</div>&nbsp;
+                                    <div>${{reporteFecha.totalInvestor| currency:'':'' : '1.2'}}</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </th>
+                </tr>
+                <tr *ngFor="let item of reporteFecha.reportePorFechas ; first as i" >
+                    <th class="theader trow bussines-title"> <div class="justify-center" style="justify-content: flex-start;
+                        padding-left: 10%;"> {{item.mes}} <br /> TOTAL:
+                        <br />  ${{item.totalMes| currency:'':'' : '1.2'}} </div> </th>
+
+                        <table *ngFor="let ite of item.reporteFechaProyecto; first as j2">
+                            <tr>
+                                <th class="theader trow " style="width: 145px;">
+                                     <div class="justify-center" style="width: 145px;">{{ite.nombreEmpresa}} </div>  
+                                </th>
+                                
+                                <table >
+                                    <tr *ngIf="j2&&i">
+                                        <th class=""> <section class="theader justify-center">Fecha</section> </th>
+                                        <th class=""> <section class="theader justify-center">Nro Cuota</section> </th>
+                                        <th class=""> <section class="theader justify-center">Cuota</section> </th>
+                                        <th class=""> <section class="theader justify-center">Estado</section> </th>
+                                    </tr>
+                                    <tr *ngFor="let ites of ite.listaCuotas">
+                                        <td  > <section class="background"> <section class="border">{{ites.fechaCuota}}</section>  </section> </td>
+                                        <td  > <section class="background"> <section class="border">{{ites.cuota}}</section>  </section> </td>
+                                        <td  > <section class="background" style="width: 100px;"> <section class="border" style="width: 96px;">${{ites.totalCuota| currency:'':'' : '1.2'}} </section>  </section> </td>
+                                        <td  > <section class="background"> <section class="border" [ngClass]="ites.estadoPago=='Al dia'?'fondo-verde':''">{{ites.estadoPago}} </section>  </section> </td>
+                                    </tr>
+                                </table>
+
+                            </tr>
+                        </table>
+                </tr>
+
+            </table>
+        </table>
+    </div>
+
+    <div class="centrarbtn" >
+        <div class="centrarbtn" (click)="captureScreen()" style="cursor: pointer;">
+            <img type="button" value="Exportar PDF" src="/assets/images/analyst/ico_btns/cargaArchivos.png" ngbTooltip="Descargar PDF" class="img" />
+            <p>Exportar PDF</p>
+        </div>
+        
+    </div>
+</div>

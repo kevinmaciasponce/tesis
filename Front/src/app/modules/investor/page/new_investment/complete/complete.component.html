@@ -1,0 +1,296 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <!-- <app-loading></app-loading> -->
+    <div class="container_">
+        
+         <!-- <app-menu-conteiner></app-menu-conteiner> -->
+        <div class="container_body">
+            <app-menu-investor></app-menu-investor>
+           
+            <form action="" [formGroup]="registrationForm" #ngForm="ngForm" (ngSubmit)="onSubmit()" >
+            <div class="bg">
+               <div class="box">
+                    <div class="row_ " >
+                        <input type="text" name="tipo_Cliente" id="tipo_Cliente" ngbTooltip="Tipo Cliente"  placeholder="Tipo de cliente" value="{{user?.user?.tipoCliente}}" class="input_style noActive" readonly>
+                        <input type="text" name="fecha_Registro" id="fecha_Registro" ngbTooltip="Fecha de registro" placeholder="Fecha de registro" class="input_style noActive"  value="{{fecha}} " readonly >
+                    </div>
+                    <div class="row_">
+                        <div type="submit" (click)="isOpendatospersonales=toggleState(isOpendatospersonales)" class="persona_j btn-xs" >
+                            <a class="pblue-n btn btn-xs">Datos Personales
+                            </a>
+                            
+                        </div>
+                        <div class="line-title">         </div>
+                    </div>
+                    <div *ngIf="isOpendatospersonales;else close">
+
+                    </div>
+                    <ng-template #close>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <input type="text" name="nombres" id="nombres" formControlName="nombres" placeholder="Nombres" class="input_style noActive" value="{{user?.user?.nombres}}" 
+                                [ngClass]="{'is-invalid': ngForm.submitted && IsInvalid('nombres')}" readonly
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                                <span class="" *ngIf="IsInvalid('nombres')">
+                                    <div class="alert alert-danger">{{'Este campo requiere entre 3 y 50 carácteres'}}</div>
+                                  </span>
+                            </div>
+                            <div class="column">
+                                <input type="text" name="apellidos" id="apellidos" formControlName="apellidos" placeholder="Apellidos" class="input_style noActive" value="{{user?.user?.nombres}}" 
+                                [ngClass]="{'is-invalid': ngForm.submitted && IsInvalid('apellidos')}" readonly
+                                oninput="javascript:this.value=this.value.toUpperCase();">
+                                <span class="" *ngIf="IsInvalid('apellidos')">
+                                    <div class="alert alert-danger">{{'Este campo requiere entre 3 y 50 carácteres'}}</div>
+                                  </span>
+                            </div>
+                            <div class="column">
+                                <input type="text" name="cedula" id="cedula" formControlName="cedula" placeholder="Cédula o pasaporte" class="input_style noActive" value="{{user?.user?.nombres}}" 
+                                [ngClass]="{'is-invalid': ngForm.submitted && IsInvalid('cedula')}" readonly
+                                (keypress)="keyPressNumbers($event)"> 
+                                <span class="" *ngIf="IsInvalid('cedula')">
+                                    <div class="alert alert-danger" *ngIf="cedula?.errors?.['required']">
+                                        Este campo es requerido
+                                      </div>
+                                      <div class="alert alert-danger" *ngIf="cedula?.errors?.['minlength']">Campo no cumple el mínimo
+                                        de {{ cedula?.errors?.['minlength'].requiredLength }} caracteres</div>
+                                      <div class="alert alert-danger" *ngIf="cedula?.errors?.['maxlength']">Campo supera máximo
+                                        de {{ cedula?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <input type="text" name="celular" id="celular" formControlName="celular" placeholder="Celular" class="input_style" value="{{user?.user?.nombres}}" 
+                                [ngClass]="{'is-invalid': ngForm.submitted && IsInvalid('celular')}"
+                                (keypress)="keyPressNumbers($event)">
+                                <span class="" *ngIf="IsInvalid('celular')">
+                                    <div class="alert alert-danger" *ngIf="celular?.errors?.['required']">
+                                        Este campo es requerido
+                                      </div>
+                                      <div class="alert alert-danger" *ngIf="celular?.errors?.['minlength']">Campo no cumple el mínimo
+                                        de {{ celular?.errors?.['minlength'].requiredLength }} caracteres</div>
+                                      <div class="alert alert-danger" *ngIf="celular?.errors?.['maxlength']">Campo supera máximo
+                                        de {{ celular?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                                  </span>
+                            </div>
+                        </div>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <ng-select id="estado_Civil" name="estado_Civil" formControlName="estado_Civil"  [ngClass]="{}"
+                                class="input_style" placeholder="- Estado Civil- " >
+                                        <ng-option *ngFor="let estado of estado_civil"  [value]="estado.codParametro">{{estado.valor}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('estado_Civil')">
+                                    <div class="alert alert-danger" >  {{'Este campo es requerido'}} </div>
+                                </span>
+                            </div>
+
+                            <div class="column">
+                                <ng-select id="sexo" name="sexo" formControlName="sexo"  [ngClass]="{}"
+                                class="input_style" placeholder="- Sexo - " >
+                                    <ng-option *ngFor="let estado of tipo_sexo"   [value]="estado.codParametro">{{estado.valor}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('sexo')">
+                                    <div class="alert alert-danger" >  {{'Este campo es requerido'}} </div>
+                                </span>
+                                
+                            </div>
+                            <div class="column">
+                                <input type="email" name="correo" id="correo" formControlName="correo" placeholder="Correo" class="input_style noActive" readonly>
+                                <span class="" *ngIf="IsInvalid('correo')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <ng-select id="nacionalidad" name="nacionalidad" formControlName="nacionalidad"  [ngClass]="{}"
+                                            class="input_style" placeholder="- Nacionalidad- " >
+                                                <ng-option *ngFor="let item of nacionalidades"  [value]="item.idNacionalidad">{{item.gentilicio}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('nacionalidad')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpeninfo=toggleState(isOpeninfo)" >
+                            <a class="pblue-n btn btn-xs">Información domiciliaria
+                            </a>
+                        </div>
+                        <div class="line-title">         </div>
+                    </div>
+                    <div *ngIf="isOpeninfo;else closeinfo">
+
+                    </div>
+                    <ng-template #closeinfo>
+                        <div class="row_">
+                            <div class="column">
+                                <ng-content></ng-content><ng-select id="pais_residencia" name="pais_residencia" formControlName="pais_residencia" [(ngModel)]="Nciudad" (change)="llenar_ciudades()"
+                                            class="input_style" placeholder="- Pais de residencia- " >
+                                            <ng-option *ngFor="let item of nacionalidades"   [value]="item.idNacionalidad">{{item.pais}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('pais_residencia')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <ng-select id="ciudad" name="ciudad" formControlName="ciudad" [ngClass]="{}" 
+                                            class="input_style" placeholder="- Ciudad - " >
+                                            <ng-option *ngFor="let item of ciudades"  [value]="item.ciudad" >{{item.ciudad}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('ciudad')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <input type="text" name="direccion_dom" id="direccion_dom" formControlName="direccion_dom" placeholder="Dirección domiciliaria" class="input_style">
+                                <span class="" *ngIf="IsInvalid('direccion_dom')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row_" >
+                            <div class="column">
+                                <input type="text" (keypress)="keyPressNumbers($event)" name="num_domicilio" id="num_domicilio" formControlName="num_domicilio" placeholder="Número de domicilio" class="input_style">
+                                <span class="" *ngIf="IsInvalid('num_domicilio')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <input type="text" name="tel_adicional" (keypress)="keyPressNumbers($event)" id="tel_adicional" formControlName="tel_adicional" placeholder="Télefono adicional" class="input_style">
+                                <span class="" *ngIf="IsInvalid('tel_adicional')">
+                                    <div class="alert alert-danger" *ngIf="tel_adicional?.errors?.['required']">
+                                        Este campo es requerido
+                                      </div>
+                                      <div class="alert alert-danger" *ngIf="tel_adicional?.errors?.['minlength']">Campo no cumple el mínimo
+                                        de {{ tel_adicional?.errors?.['minlength'].requiredLength }} caracteres</div>
+                                      <div class="alert alert-danger" *ngIf="tel_adicional?.errors?.['maxlength']">Campo supera máximo
+                                        de {{ tel_adicional?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpenfuente=toggleState(isOpenfuente)">
+                            <a class="pblue-n btn btn-xs">Fuentes de Ingreso
+                            </a>
+                        </div>
+                        <div class="line-title">         </div>
+                    </div>
+                    <div *ngIf="isOpenfuente;else closefuente">
+
+                    </div>
+                    <ng-template #closefuente>
+                        <div class="row_">
+
+                            <div class="column">
+                                <ng-select id="fuente_ingreso" name="fuente_ingreso" formControlName="fuente_ingreso"  [ngClass]="{}"
+                                    class="input_style" placeholder="- Fuente de ingreso - " >
+                                    <ng-option *ngFor="let estado of fuente_ingresos" [value]="estado.codParametro">{{estado.valor}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('fuente_ingreso')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <ng-select id="tipo_cargo" name="tipo_cargo" formControlName="tipo_cargo"  [ngClass]="{}"
+                                    class="input_style" placeholder="- Tipo de cargo - " >
+                                    <ng-option *ngFor="let estado of tipo_cargos"   [value]="estado.codParametro">{{estado.valor}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('tipo_cargo')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpencuenta=toggleState(isOpencuenta)">
+                            <a class="pblue-n btn btn-xs">Cuenta bancaria
+                            </a>
+                        </div>
+                        <div class="line-title">         </div>
+                    </div>
+                    <div *ngIf="isOpencuenta;else closecuenta">
+
+                    </div>
+                    <ng-template #closecuenta>
+                        <div class="row_ datos_personales">
+                            <div class="column">
+                                <input type="text" name="titular" id="titular" formControlName="titular" placeholder="Titular" class="input_style">
+                                <span class="" *ngIf="IsInvalid('titular')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            
+                            <div class="column">
+                                <ng-select id="banco" name="banco" formControlName="banco"  [ngClass]="{}"
+                                    class="input_style" placeholder="- Banco - " >
+                                    <ng-option *ngFor="let estado of banco"   [value]="estado.nombre">{{estado.nombre}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('banco')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+
+                            <div class="column">
+                                <ng-select id="tipo_cuenta" name="tipo_cuenta" formControlName="tipo_cuenta"  [ngClass]="{}"
+                                    class="input_style" placeholder="- Tipo de cuenta - " >
+                                    <ng-option *ngFor="let estado of tipo_cuentas"   [value]="estado.codParametro">{{estado.valor}}</ng-option>
+                                </ng-select>
+                                <span class="" *ngIf="IsInvalid('tipo_cuenta')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                            
+                            <div class="column">
+                                <input type="text" name="n_cuenta" id="n_cuenta" formControlName="n_cuenta" placeholder="Nro de cuenta" class="input_style" 
+                                (keypress)="keyPressNumbers($event)">
+                                <span class="" *ngIf="IsInvalid('n_cuenta')">
+                                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="row_">
+                        <div type="submit" class="persona_j btn-xs" (click)="isOpendomicilio=toggleState(isOpendomicilio)">
+                            <a class="pblue-n btn btn-xs">Domicilio Fiscal
+                            </a>
+                        </div>
+                        <div class="line-title">         </div>
+                    </div>
+                    <div *ngIf="isOpendomicilio;else closedomicilio">
+
+                    </div>
+                    <ng-template #closedomicilio>
+                        <div class="row_ ">
+                            <div class="column_">
+                                <span>  ¿Es usted residente de otro país dentro de Ecuador, para fines fiscales? </span>
+                                <div class="radio_container ">
+                                    <label for="si_residente">Si</label>
+                                    <input type="radio" [checked]="si_residente" (change)="changeGender($event)"  id="si_residente" name="es_residente" formControlName="es_residente" value="S"  class="input_style">
+                                    <label for="si_residente">No</label>
+                                    <input type="radio" [checked]="no_residente" (change)="changeGender($event)" id="no_residente" name="es_residente" formControlName="es_residente" value="N"  class="input_style">
+                                </div>
+                            </div>
+                            <div *ngIf="si_residente">
+                                <div class="theader">Si su respuesta fue afirmativa indique el país</div>
+                                <ng-select id="pais_fiscal" name="pais_fiscal" formControlName="pais_fiscal"  [ngClass]="{}"
+                                            class="input_style" placeholder="- Pais - " >
+                                                <ng-option *ngFor="let item of nacionalidades"  [value]="item.pais">{{item.pais}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                </div>
+                <div class="row_ btns justificado" *ngIf="!solicitudNueva">
+                    <button type="submit" class="btn-orange" [routerLink]="'/investor/home'"><a class="">Cancelar</a></button>
+                    <button type="submit" class="btn-blue" ><a class="">Guardar y continuar</a></button>
+                </div>
+                <div class="row_ btns justificado" *ngIf="solicitudNueva">
+                    <button type="" class="btn-orange" [routerLink]="'/investor/home'"><a class="">Cancelar</a></button>
+                    <div type="" class="btn-blue" (click)="onUpdate()" ><a class="">Actualizar y continuar</a></div>
+                    <button type="" class="btn-orange" [routerLink]="'/investor/load'"><a class="">Siguente</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

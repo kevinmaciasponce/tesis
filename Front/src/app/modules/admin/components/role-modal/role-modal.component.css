@@ -1,0 +1,14 @@
+thead>tr{
+    background-color: #1225aa;
+}
+thead>tr>th{
+    color: white;
+}
+
+::ng-deep .custom-css-class{
+    z-index: 100;
+
+}
+::ng-deep .cdk-overlay-container {
+    z-index: 10000; 
+}

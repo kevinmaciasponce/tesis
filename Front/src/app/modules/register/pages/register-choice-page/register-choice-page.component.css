@@ -1,0 +1,246 @@
+.body{    padding-top: 110px;
+    display: flex;
+    flex-direction: column;
+    font-family: GillantsMT;
+}
+.background{ 
+    background-image: url('/assets/images/register/newDesign/background.webp');
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.elemts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 53px;
+
+}
+.container_{
+    margin-right: 0px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    background-size: contain;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: auto;
+    margin-top: 3vh;
+}
+.datos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-mobile{
+    display: none !important;
+}
+::ng-deep .my-class .modal-dialog { 
+    max-width: 80%;
+    width: 80%;
+    max-height: 60%;
+    height: 60%;
+    margin-top: 9%;
+}
+
+::ng-deep .modal-content{
+    border-radius: 55px;
+}
+
+
+.contenedor-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+.btnRegister{
+    border-radius: 7px; 
+    padding: 0.25rem; 
+    width: 324px;
+    height: 35px;
+    text-align: center; 
+    font-family: 'NexaBook' !important;
+    background-color: #1225aa;
+}
+.btnfinanciamiento{
+    background-color: #e8a721 !important;
+}
+
+.btnRegister{
+    color: white !important;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+.elemts:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: transform 0.4s;
+  }
+
+.money{
+    width: 55%;
+}
+
+.mobile{
+    width: 40%;
+}
+
+
+.banner{
+    width: 95%;
+    height: 95%;
+}
+
+.pj-n:hover{
+    color: white;
+    background-color: #5699ff;
+    margin-left: 3px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 10px;
+}
+
+.banner{
+    width: 95%;
+    height: 95%;
+}
+
+.texto{
+    display: flex;
+    justify-content: end;
+}
+
+
+
+.separador-azul{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgb(255, 255, 255);
+}
+.ganancias{
+    color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+    .datos{
+        margin-right: 0vh;
+    }
+    .contenedor-btn{
+        display: flex;
+        flex-direction: row;
+    }
+    .contenedor-btn{
+        display: flex;
+        flex-direction: row;
+        margin-right: 4vh; 
+    }
+    ::ng-deep.modal-backdrop{
+        width: 300%;
+        height: 300%;
+    }
+
+    ::ng-deep .my-class .modal-dialog { 
+        position: fixed;
+        margin-top: 12%;
+        margin-left: 10vh;
+        max-width: 90%;
+        width: 80%;
+        max-height: 120%;
+        height: 120%;
+        margin-bottom: 2%;
+        margin-right: 10vh;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    
+    .data{
+        font-size: 3em;
+    }
+
+    .container{
+        margin-right: 0px;
+        width: 100%;
+        height: auto;
+        display: flex; 
+        background-size: contain;
+        flex-direction: column;
+        align-items: flex-end;
+        flex: auto;
+        margin-top: 4vh;
+    }
+
+    .steps-separator {
+        display: none;
+    }
+    ::ng-deep .my-class .modal-dialog { 
+        position: fixed;
+        margin-top: 26%;
+        margin-left: 5vh;
+        max-width: 90%;
+        width: 90%;
+        max-height: 120%;
+        height: 120%;
+        margin-bottom: 2%;
+        margin-right: 10%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .mobile{
+        width: 20%;
+    }
+    .money{
+        width:28%;
+    }
+    .btnRegister{
+        width: 224px;
+    }
+    .contenedor-btn{
+        gap: 30px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .background{ 
+        min-height: 80vh;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+    .contenedor-btn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0vh;
+    }
+
+    ::ng-deep .my-class .modal-dialog { 
+        position: fixed;
+        margin-top: 25%;
+        margin-left: 5%;
+        max-width: 90%;
+        width: 90%;
+        max-height: 140%;
+        height: 140%;
+        margin-bottom: 25%;
+        margin-right: 5%;
+    }
+    .container_{
+        margin-bottom: 17%;
+    }
+    .mobile{
+        width: 17%;
+    }
+    .money{
+        width:25%;
+    }
+    .btnRegister{
+        width: 184px;
+    }
+}

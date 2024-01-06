@@ -1,0 +1,21 @@
+<div class="background">
+
+    
+    <div *ngFor="let item of modules" style="display: flex; justify-content: center; width: 250px;" >
+            
+        <mat-card *ngIf="!item.activo" class="cards elements-hover" >  
+            <mat-card-header>
+                <mat-card-title style="font-size: 15px;">
+                    {{item.descripcion}}
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image style="width: 45px;"
+            src=" {{item.urlIco}}"
+            alt="Icono">
+            <mat-card-actions>
+                <button mat-button class="btn btn-primary" (click)="gotoRoute(item.ruta,item.menu)">Ingresar </button>
+              </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>

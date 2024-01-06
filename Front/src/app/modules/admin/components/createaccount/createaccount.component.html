@@ -1,0 +1,80 @@
+
+
+<div class="body">
+
+    <div style="    display: flex;
+        justify-content: space-between; align-items: center;">
+            <mat-form-field appearance="standard">
+                <mat-label>Buscar</mat-label>
+                <input matInput  (keyup)="applyFilterAcount($event)" placeholder="Individual" #input>
+            </mat-form-field>
+            <button style="height: fit-content;" (click)="openModal('nuevo')" class="btn btn-success">
+                Agregar
+            </button>
+        </div>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourceAcount" #AcountSort="matSort" matSort style="width: 100%;">
+          
+              <!-- ID Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.idPersInterno}} </td>
+              </ng-container>
+          
+              <!-- Nombre Column -->
+              <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombres}} </td>
+              </ng-container>
+          
+              <!-- Descripcion Column -->
+              <ng-container matColumnDef="apellidos">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+                <td mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+                <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="activo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
+                <mat-checkbox *matCellDef="let row"
+                  (change)="eliminar(row,$event)"
+                  class="example-margin"
+                  checked="{{row.activo =='S'?true:false}}"
+                  [labelPosition]="'before'">
+                
+              </mat-checkbox>
+              </ng-container>
+
+              <!-- Editar Column -->
+              <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let row">
+                  <button class="btn btn-warning" (click)="asignarRoles(row.idPersInterno,row.usuario)" style="margin-right: 5%; width: 90px; color: white;">
+                    Roles
+                 </button>
+                    <button class="btn btn-primary" style="width: 90px;" (click)="openModal(row.idPersInterno)">
+                        Editar
+                    </button>
+                   
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsAcount; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsAcount;"></tr>
+          
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No se encuentran datos para el valor "{{input.value}}"</td>
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons  #paginatorAcount
+                 aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+
+</div>

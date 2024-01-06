@@ -1,0 +1,44 @@
+<div class="body  ">
+    <div class="container_">
+        <div class="top">
+            <app-menu-manager></app-menu-manager>
+        </div>
+        <div class="container_body">
+            <!-- <app-retarted-state-report style="width: 100%;"></app-retarted-state-report> -->
+
+            
+             
+            <div [ngSwitch]="OpenReport">
+                <div *ngSwitchCase="'nn'"><div class="content-card">
+                    <div class="content-row-card">
+                        <div class="elements blue" (click)="OpenReport='Rmora'">
+                            REPORTE DE DEPÓSITOS EN MORA
+                        </div>
+                        <div class="elements orange" (click)="OpenReport='Rinvestor'">
+                            REPORTE DE DEPÓSITOS POR MESES
+                        </div>
+                    </div>
+                </div></div>
+
+                <div *ngSwitchCase="'Rmora'" style="display: flex; align-items:center;flex-direction:column;">
+                    <button (click)="OpenReport='nn'" class="btn-orange">
+                        <div>
+                        Regresar
+                        </div>
+                    </button>
+                    <app-retarted-state-report style="width: 100%;"></app-retarted-state-report>
+                </div>
+                <div *ngSwitchCase="'Rinvestor'" style="display: flex; align-items:center;flex-direction:column;">
+                    <button (click)="OpenReport='nn'" class="btn-orange">
+                        <div>
+                        Regresar
+                        </div>
+                    </button>
+                    <app-investor-report style="width: 100%;"></app-investor-report>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

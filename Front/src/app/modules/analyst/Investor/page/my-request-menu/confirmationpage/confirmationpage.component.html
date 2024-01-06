@@ -1,0 +1,356 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <div class="container_">
+        <!-- <div class="top">
+            <app-menu-conteiner></app-menu-conteiner>
+        </div> -->
+        <div class="container_body">
+            <ul class="menu_items">
+                <li class="items_conteiner"><img class="ico_menu" src="/assets/images/investor/icoconf.png"
+                alt="">Inversiones Por Confirmar </li>
+            </ul>
+            <div style=" width: 100%; display: flex;flex-direction: column; justify-content: center;
+            align-items: center;">
+                <div class="background_card">
+                    <div class="bg">
+                        <div class="box">
+
+                            <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                <section class="titlesScaleRed">
+                                    DATOS DE LAS SOLICITUDES
+                                </section>
+                            </div>
+
+                            <form [formGroup]="registrationForm" (submit)="consultar()">
+                                <div class="row_">
+                                    <div>
+                                        <table>
+                                            <div (click)="isOpenConsulta=toggleState(isOpenConsulta)"
+                                                style="text-align: left; width: 100%; margin-bottom: 5px; cursor: pointer;">
+                                                <section class="titles ico_style2">Filtros de consulta <span style="font-size: 10px;">▼</span></section>
+                                            </div>
+                                            <div *ngIf="isOpenConsulta;else close">
+                                            </div>
+                                            <ng-template #close>
+                                                <tr>
+                                                    <th class="theader ">Nombre de Empresa:</th>
+                                                    <select class="box-style" id="codProyecto" name="codProyecto"
+                                                        formControlName="codProyecto" [ngClass]="{}">
+                                                        <option class="input_content" value=null>TODOS</option>
+                                                        <option class="input_content" *ngFor="let item of empresas"
+                                                            [value]="item.codProyecto">
+                                                            {{item.nombreEmpresa}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th class="theader ">Calificación de Riesgo:</th>
+                                                    <select class="box-style" id="riesgos" name="riesgos"
+                                                        formControlName="riesgos" [ngClass]="{}">
+                                                        <option class="input_content" value=null> TODOS</option>
+                                                        <option class="input_content"
+                                                            *ngFor="let item of calificaciones"
+                                                            [value]="item.idTipoCalificacion">{{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th class="theader ">Sector:</th>
+                                                    <select class="box-style" id="sectors" name="sectors"
+                                                        formControlName="sectors">
+                                                        <option value=null>TODOS</option>
+                                                        <option *ngFor="let item of sectores"
+                                                            [value]="item.idActividad">
+                                                            {{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th class="theader ">Fecha:</th>
+                                                    <input type="date" name="fecha" id="fecha" placeholder=""
+                                                        class="box-style">
+                                                </tr>
+                                                <tr>
+                                                    <th class="theader ">Estado:</th>
+                                                    <input value="POR CONFIRMAR" class="box-style" readonly>
+                                                </tr>
+                                            </ng-template>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                    <button type="submit" style="width: 180px;" class="btn_">
+                                        <section class="titlesorange ico_style2">Consultar</section>
+                                    </button>
+                                </div>
+
+                            </form>
+                            <div style="display: flex; flex-direction: row; width: 100%;">
+                                <div style="    display: flex;
+                                justify-content: flex-start;
+                                align-items: end;
+                                width: 70%; ">
+                                    <div style="width: 300px;">
+                                        <section class="titles" style=" font-size: 1.7em;">Detalles de
+                                            la Consulta
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scrollbar_">
+                                <table id="season-tble">
+                                    <thead>
+
+                                        <th>
+                                            <section class="theader-flex">Número de Solicitud</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Código de proyecto</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Nombre de la Empresa</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Inversión realizada</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Plazo Meses</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Número del documento</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Fecha de depósito</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Valor transferido</section>
+                                        </th>
+                                        <th>
+                                            <section class="theader-flex">Estado <img *ngIf="!!detallestatus" class="ico_menu"
+                                                    src="/assets/images/shared/status.png" alt=""
+                                                    matTooltipPosition="above"  matTooltip={{detallestatus.detalle}}>
+                                            </section>
+                                        </th>
+                                    </thead>
+
+                                    <tr *ngFor="let datos of porconfirmar ; let i = index"
+                                        [ngClass]="{'shadow':shadow}">
+                                        <td class=" " matTooltipPosition="above" matTooltip="Ver datos del Ver datos del usuario" style="cursor: pointer; text-decoration:underline;"
+                                        (click)="goDetallesUser(datos.identificacion, datos.numeroSolicitud)">
+                                            <section class="box-flex"> <a>
+                                                    {{datos.numeroSolicitud}}</a> </section>
+                                        </td>
+                                        <td class=" ">
+                                            <section class="box-flex"> {{datos.codProyecto}}</section>
+                                        </td>
+                                        <td class=" ">
+                                            <section class="box-flex">{{datos.nombreEmpresa}}</section>
+                                        </td>
+                                        <td class=" ">
+                                            <section style="display: flex; justify-content:flex-end;" class="box-flex"><div >{{datos.inversion| currency:'':'symbol'}}</div></section>
+                                        </td>
+                                        <td class=" ">
+                                            <section class="box-flex" style="display: flex ;flex-direction:row;">
+                                                <section style="width: 100%;">
+                                                    {{datos.plazo}}
+                                                </section>
+                                               <section style="justify-content: flex-end ;">
+                                                <img  (click)="goMasdetalle(datos.numeroSolicitud)" class="ico_width ico_style2"
+                                                matTooltipPosition="above" matTooltip="Ver Tabla de Amortización"
+                                                src="/assets/images/analyst/ico_btns/icoTabla.png" alt="">
+                                               </section>
+                                            </section>
+                                        </td>
+                                        <td class=" ">
+                                            <input #numCom class="inp-green" placeholder="{{datos.numeroComprobante}}">
+                                        </td>
+                                        <td class=" ">
+                                            <input #fecha onfocus="(this.type='date')" onblur="(this.type='text')"
+                                                class="inp-green" placeholder="{{datos.fechaPago}}">
+                                        </td>
+                                        <td class=" ">
+                                            <input currencyMask  class="inp-green"  style="display: flex; text-align: end; " [(ngModel)]="monto[i]"  placeholder="{{datos.montoPago| currency:'':'symbol'}}"   >
+                                        </td>
+                                        <td class=" ">
+                                            <section class="box-flex">{{datos.estado}}</section>
+                                        </td>
+                                        <td style=" width: 50%;">
+                                            <img (click)="actualizarTransaccion(datos.numeroSolicitud,numCom.value,fecha.value,monto[i])" class="ico_style" style="width: 40px;"
+                                            matTooltipPosition="above" matTooltip="Actualizar los cambios" src="/assets/images/shared/modificar.png" alt="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="background_card" style="width: 100% !important;">
+                        <div class="bg">
+                            <div class="box">
+
+                                <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                    <section class="titlesScaleRed">
+                                        ESTADO DE CUENTA BANCARIA
+                                    </section>
+                                </div>
+                                <form [formGroup]="registrationForm" (submit)="consultar()">
+                                    <div class="row_">
+                                        <div style="width:100% ;">
+                                            <table style="width:100% ;">
+
+                                                <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                                    <div class="container-input">
+                                                        <input type="file" name="file-7" id="file-7"
+                                                            class="inputfile inputfile-7"
+                                                            (input)="onFilechange($event);"
+                                                             />
+                                                        <label for="file-7" placeholder="Cargar Documento" >
+                                                            <span class="iborrainputfile">{{nombredoc}}</span>
+                                                            <strong class="img-load">
+                                                                <img class="ico_load"
+                                                                    src="/assets/images/investor/download.png" alt="">
+                                                            </strong>
+                                                        </label>
+                                                    </div>
+                                                    <button id="btncde" (click)="cargarDatosExcel()" type="submit"
+                                                        style="width: 180px;" class="btn_">
+                                                        <section class="titles">Subir Excel </section>
+                                                    </button>
+
+
+                                                </div>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+                                <div style="display: flex; flex-direction: row; width: 100%;">
+                                    <div style="justify-content: flex-start; width: 70%; ">
+
+
+                                    </div>
+
+                                    <div style="display: flex; justify-content: flex-end; width: 40%;">
+                                        <a href="https://multiploalmacenamiento.blob.core.windows.net/multiplo-qa-publico/formato.xlsx"
+                                            download="Formato">
+                                            <section class="ico_style"> <img style="width: 100%;"
+                                                    src="/assets/images/shared/xls.png" alt=""> </section>Descargar
+                                            formato
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="scrollbar_">
+                                    <table id="season-tble">
+                                        <thead>
+                                            <th>
+                                                <section class="theader-flex">Nombre de banco</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Número de cuenta</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Fecha efectivo</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Número de dcto</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Crédito/Monto</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Lugar</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Tipo Transacción</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Concepto</section>
+                                            </th>
+                                            <th>
+                                                <section class="theader-flex">Observación</section>
+                                            </th>
+                                        </thead>
+                                        <tr [ngClass]="{'shadow':shadow}" *ngFor="let campo of tablaExcel">
+                                            <td>
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.nombreBanco}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.numeroCuenta}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.fechaEfectivo}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.numeroComprobante}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    ${{campo.monto}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.lugar}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.tipoTransaccion}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.concepto}}
+                                                </section>
+                                            </td>
+                                            <td class=" ">
+                                                <section
+                                                    [ngClass]=" campo.observacion=='CONCILIADO CORRECTAMENTE'? 'box-green' : 'box-flex'">
+                                                    {{campo.observacion}}
+                                                </section>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="" style=" margin: 5% 5%; display: flex; flex-direction:row; align-items:center;">
+
+                        <div style="margin: auto; display: flex; flex-direction:row;">
+                            <section (click)="conciliar()" class="ico_style"> <img style="width: 100%;"
+                                    src="/assets/images/analyst/conciliar.png" alt="">Conciliar</section>
+                            <section (click)="aprobarAfter()" class="ico_style"> <img style="width: 100%;"
+                                    src="/assets/images/analyst/aprobar.png" alt="">Aprobar</section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

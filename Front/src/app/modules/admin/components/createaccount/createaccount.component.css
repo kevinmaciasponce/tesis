@@ -1,0 +1,6 @@
+::ng-deep .mat-snack-bar-container {
+    background-color: #a9f1a9;
+    color: rgb(59, 58, 58);
+    border: 1px solid;
+    border-color: #19ff19;
+  }

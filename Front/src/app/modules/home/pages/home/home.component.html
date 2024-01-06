@@ -1,0 +1,191 @@
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<!-- Agregar el enlace al archivo de la biblioteca FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+
+
+<div id="carouselExampleIndicators" class="background-img carousel slide" data-bs-ride="carousel" data-bs-interval="4420">
+  <div class="carousel-indicators "  style="top: 151px;
+  height: 55%;
+  margin-right: 0%;
+  margin-bottom: 1rem;
+  margin-left: 0%;" >
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <div class="carousel-inner content-carousel">
+      <div class="carousel-item active" style="margin-right: 0px;">
+          <div style="display: flex; justify-content: center; text-align: center;"> 
+            <div style="display: flex; flex-direction:column;"> 
+                <div class="title-style2 row_style"> 
+                  <p> ¡INVIERTE Y </p> <p style="color:#E06222;"> &nbsp; MULTIPLICA </p></div>  
+                <div  class="title-style" >
+                  <p class="ganancias"> TUS GANANCIAS! </p>  
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="carousel-item" style="margin-right: 0px;">
+        <div class="row_" style="margin-left: 5%;">
+            <div class="txt_pasos title-style pc-content">
+              3 SENCILLOS <br>
+              PASOS PARA <br>
+             <p style="color:#E06222;"> INVERTIR Y <br>
+              GANAR</p> 
+            </div>
+            
+            <div class="txt_pasos title-style mobile-content">
+              3 SENCILLOS PASOS <br>
+               <div style="display: flex;">
+                PARA &nbsp; <p style="color:#E06222;"> INVERTIR</p> 
+               </div>
+               <p style="color:#E06222; margin-top: -3%;"> Y GANAR</p> 
+            </div>
+
+
+            <div class="row_2">
+              <div class="ico_text" style="flex-basis:30%;">
+                <div class="ico_align">
+                  <img class="ico_steps" src="/assets/images/landing2/pc/user.png" alt="">
+                  
+                  <div style="color: white; display: flex; flex-direction: column;  font-size: 2em;  margin-top: 21%; text-align: center;">
+                    <div style="display: flex; justify-content: center;"> <p style="color:#E06222; margin-bottom: 0px;"> 1. </p>  Crea tu  <br> </div>
+                    <div style="display: flex; justify-content: center;"> cuenta <br> </div>
+                    </div>
+                </div>
+               
+              </div>
+              <div class="verticalLine"></div>
+              <div class="ico_text" style="flex-basis:40%;">
+                <div class="ico_align">
+                  <img class="ico_steps2" src="/assets/images/landing2/pc/mobile.png" alt="">
+                  <div class="style_icotxt">
+                    <div class="texto-monto"> <p style="color:#E06222; margin-bottom: 0px;"> 2. </p> Selecciona la <br> </div>
+                    <div class="texto-monto"> empresa y el monto</div>
+                    <div class="texto-monto">  a Invertir <br> </div>
+                  </div>
+                </div>
+              </div>
+              <div class="verticalLine"></div>
+              <div class="ico_text" style="flex-basis:30%;">
+                <div class="ico_align">
+                  <img class="ico_steps3" src="/assets/images/landing2/pc/money.png" alt="">
+                  <div style="color: white; display: flex; flex-direction: column;  font-size: 2em;  margin-top: 21%; text-align: center;">
+                    <div style="display: flex; justify-content: center;"> <p style="color:#E06222; margin-bottom: 0px;"> 3. </p>  Invierte <br> </div>
+                    <div style="display: flex; justify-content: center;"> y gana <br> </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>
+  <div class="elements-below">
+    <div class="elements-conteniners" id="aboutUs">
+      <div class="text-conteiner"> Tu inversión obtiene un <b>  retorno
+        del 9% al 13% </b> superior al banco
+        tradicional.
+      </div>  
+      <div class="btn-orange" [routerLink]="'/register/iniciar_sesion'" > <a > QUIERO INVERTIR </a>  </div>
+    </div> 
+    <div class="elements-conteniners">
+      <div class="text-conteiner"> Te acercamos a una <b>liquidez
+        eficiente</b> con financiamiento
+        colaborativo </div>
+      <div  class="btn-orange" (click)="financiamiento()"> <a >SOLICITAR FINANCIAMIENTO</a>  </div>  
+    </div>
+  </div>
+  
+  <button class="carousel-control-prev" style="width: 6% !important; z-index: 2;"  type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" style="width: 6% !important; z-index: 2;"  type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="space">
+
+  
+
+</div>
+
+
+
+
+
+<div class="chatbot-popup" [ngClass]="{ 'visible': isChatbotVisible }">
+
+
+  <div class="chat-container">
+    <div class="chat-header">
+      En que te puedo ayudar?
+    </div>
+
+    <div class="chat-messages">
+      <div *ngIf="showq">
+        <div  (click)="mostrar()" class="chat-container-option">
+          Proyectos con mas interes.
+         </div>
+   
+         <div (click)="mostrarR()"
+         class="chat-container-option">
+           Como se retorna la inversion.
+         </div>
+      </div>
+      
+
+      <div *ngIf="shwolets" >
+        <div class="chat-container-option"style="display: flex;flex-direction:column">
+         <a href="http://localhost:4200/statics/proyects">FERROINDUPLAST S.A.</a> 
+         <a href="http://localhost:4200/statics/proyects">SALUDYFITNESS S.A.</a> 
+        </div>
+        <div (click)="regresar()"
+         class="chat-container-option" style="background-color: black;">
+          Regresar
+         </div>
+      </div>
+      
+
+      <div *ngIf="shwoRe" >
+        <div class="chat-container-option"style="display: flex;flex-direction:column">
+         El capital se retorna por trimestre semestre y anual, dependiendo del plazo del proyecto
+        </div>
+        <div (click)="regresar()"
+         class="chat-container-option" style="background-color: black;">
+          Regresar
+         </div>
+      </div>
+
+
+
+      <div style="background-color: rgb(105, 198, 184); color:rgb(0, 0, 0); border-radius: 4px; margin-bottom: 2px;"
+        *ngFor="let message of messages" [ngClass]="message.sender">
+        {{ message.text }}
+      </div>
+
+
+    </div>
+    <div class="chat-input">
+      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Escribe un mensaje...">
+      <button (click)="sendMessage()">Enviar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<button (click)="toggleChatbot()"
+    class="fixed bottom-4 right-4 inline-flex items-center justify-center text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border rounded-full w-16 h-16 bg-black hover:bg-gray-700 m-0 cursor-pointer border-gray-200 bg-none p-0 normal-case leading-5 hover:text-gray-900"
+    type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed">
+    <svg xmlns=" http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="text-white block border-gray-200 align-middle">
+      <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" class="border-gray-200">
+      </path>
+    </svg>
+  </button>

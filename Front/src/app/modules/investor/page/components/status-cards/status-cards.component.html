@@ -1,0 +1,64 @@
+
+<ul class="status_cards">
+    <li class="blue_card">
+        <a class="link_elements_card columna" (click)="goToRoute('inprocess')">
+            <div class="fila">
+                <img class="ico_card" src="/assets/images/investor/ico1_w.png" alt="">
+                <div class="txt_card"> En proceso
+                </div>
+            </div>
+            <div>
+                Numero de solicitudes: {{canp}}
+            </div>
+        </a>
+        
+    </li>
+    <li class="orange_card">
+        <a class="link_elements_card columna" (click)="goToRoute('inconfirmation')">
+            <div class="fila">
+                <img class="ico_card" src="/assets/images/investor/ico2_w.png" alt="">
+                <div class="txt_card">Por confirmar
+                </div>
+            </div>
+            <div>
+                Numero de solicitudes: {{canc}}
+            </div>
+        </a>
+    </li>
+    <li class="blue_card">
+        <a class="link_elements_card columna">
+            <div class="fila">
+                <img class="ico_card" src="/assets/images/investor/ico3_w.png" alt="">
+                <div class="txt_card">En tránsito
+                </div>
+            </div>
+            <div>
+                Numero de solicitudes: {{tran}}
+            </div>
+        </a>
+    </li>
+    <li class="orange_card">
+        <a class="link_elements_card columna" >
+            <div class="fila">
+                <img class="ico_card" src="/assets/images/investor/ico4_w.png" alt="">
+                <div class="txt_card">Vigentes
+                </div>
+            </div>
+            <div>
+                Numero de solicitudes: {{vig}}
+            </div>
+        </a>
+    </li>
+    <li class="blue_card">
+        <a class="link_elements_card columna" >
+            <div class="fila">
+                <img class="ico_card" src="/assets/images/investor/ico5_w.png" alt="">
+                <div class="txt_card">Liquidadas
+                </div>
+            </div>
+            <div>
+                Numero de solicitudes: {{liq}}
+            </div>
+        </a>
+    </li>
+</ul>

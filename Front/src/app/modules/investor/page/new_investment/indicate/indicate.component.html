@@ -1,0 +1,122 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="body">
+    <div class="container_">
+        <div class="container_body">
+            <app-menu-investor></app-menu-investor>
+            <div class="bg">
+                <div class="box">
+                    <div class="row_ " >
+                        <form class="form_row"
+                        action="">
+                        <div class="monto_invertir">
+                            <div *ngIf="idEmpresa!=5" class="ingrese_monto"><span>Ingrese el monto a invertir</span> </div>
+                            <input *ngIf="idEmpresa!=5" type="text" currencyMask name="monto_input" id="" class="input_monto"  (blur)="generartabla()" (keypress)="keyPressNumbers($event)" [(ngModel)]="monto">
+                            
+                            <ng-select  *ngIf="idEmpresa==5"  class="ingrese_monto" style="top: 17px;" (change)="imprimirValor()"
+                                [items]="tipo_cuentas" [ngModelOptions]="{standalone: true}"
+                                [multiple]="false"
+                                bindLabel="valor"
+                                groupBy="todos"
+                                [selectableGroup]="true"
+                                [selectableGroupAsModel]="true"
+                                [closeOnSelect]="true"
+                                bindValue="monto"
+                                placeholder="Seleccione el valor a invertir"
+                                [(ngModel)]="tipo_cuenta">
+                                <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.valor}} 
+                                </ng-template>
+                            </ng-select>
+                            
+                            <div><button type="submit" class="btn-orange calcular" ><a class=""  (click)="generartabla()">Calcular</a></button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="scrollbar_">
+                        <div class="row_ " *ngIf="!!datos_tabla">
+                            <div class="mobile">
+                                <div class="table_text">{{project}}</div>
+                                <table class="" >
+                                    <tr><th class="theader ts">Cliente:</th>
+                                        <td  class="trow">{{datos_tabla.cliente}}</td> </tr>
+                                    <tr><th class="theader ts">País:</th>
+                                        <td class="trow">{{datos_tabla.pais}}</td> </tr>
+                                    <tr><th class="theader ts">Proyecto:</th>
+                                        <td class="trow">{{datos_tabla.nombreProyecto}}</td></tr>
+                                    <tr><th class="theader ts">Inversión:</th>
+                                        <td class="trow">${{datos_tabla.montoInversion | currency:'':'' : '1.2'}}</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="">
+                                <table class="table-responsive">
+                                    <tr><th class="theader tl">Fecha: </th>
+                                        <td class="trow">{{fechaActual}}</td> </tr>
+                                    <tr><th class="theader tl">Plazo: </th>
+                                        <td class="trow">{{datos_tabla.plazo}} días</td> </tr>
+                                    <tr><th class="theader tl">Rendimiento neto:</th>
+                                        <td class="trow">{{datos_tabla.rendimientoNeto}}%</td></tr>
+                                    <tr><th class="theader tl">Rendimiento total USD inversión</th>
+                                        <td class="trow">${{datos_tabla.rendimientoTotalInversion | currency:'':'' : '1.2'}}</td></tr>
+                                    <tr><th class="theader tl tlb">TOTAL A RECIBIR</th>
+                                        <td class="trow">${{datos_tabla.totalRecibir | currency:'':'' : '1.2' }}</td></tr>
+                                </table>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row_">
+                        <div class="table_s">
+                            <table class="table-responsive " style=" border-collapse: separate;
+                            border-spacing: 1px 1px;">
+                                <tr>
+                                    <th class="theader tl tc centar_texto">Nro </th> 
+                                    <th class="theader tl tc centar_texto">Mensual</th> 
+                                    <th class="theader tl tc centar_texto mobile">Saldo de Capital</th> 
+                                    <th class="theader tl tc centar_texto">Abonos al Capital</th> 
+                                    <th class="theader tl tc centar_texto">Total a Recibir</th>
+                                </tr>
+                                <tr *ngFor="let obj of values ; last as isLast">
+                                    <td  *ngIf="!isLast" class=" background"> 
+                                        <section class="flex_row border izquierda_texto">{{ obj.detalleCobro  }} </section>
+                                    </td> 
+                                    <td  *ngIf="!isLast" class="background">
+                                        <section class="flex_row border">${{obj.rendimientoMensual | currency:'':'' : '1.2' }} </section> 
+                                    </td> 
+                                    <td  *ngIf="!isLast" class="background mobile"> 
+                                        <section class="flex_row border">${{obj.saldoCapital | currency:'':'' : '1.2' }}</section> 
+                                    </td>
+                                    <td  *ngIf="!isLast" class="background"> 
+                                        <section class="flex_row border"> ${{obj.cobrosCapital | currency:'':'' : '1.2' }} </section>
+                                    </td> 
+                                    <td  *ngIf="!isLast" class="background"> 
+                                        <section class="flex_row border">${{obj.totalRecibir | currency:'':'' : '1.2' }}</section> 
+                                    </td>
+                                    <td  *ngIf="isLast" class="theader tdatos ttotales ">{{ obj.detalleCobro }}
+                                    </td>
+                                     <td *ngIf="isLast" class="theader tdatos ttotales "> 
+                                        <section class="flex_row margin_tot color_white">${{obj.rendimientoMensual | currency:'':'' : '1.2' }}</section> 
+                                    </td> 
+                                    <td *ngIf="isLast" class="mobile"></td>
+                                    <td *ngIf="isLast" class="theader tdatos ttotales"> 
+                                        <section class="flex_row margin_tot color_white">${{obj.cobrosCapital | currency:'':'' : '1.2' }}</section>
+                                    </td> 
+                                    <td *ngIf="isLast" class="theader tdatos ttotales"> 
+                                        <section class="flex_row margin_tot color_white">${{obj.totalRecibir | currency:'':'' : '1.2' }}</section> 
+                                    </td>
+                                </tr>
+                            </table>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row_ btns">
+                <div type="submit" class="btn-orange" [routerLink]="'/investor/home'" ><a class="">Cancelar</a></div>
+                <button type="submit" class="btn-blue" (click)="guardar()" ><a class="">Guardar y continuar</a></button>
+            </div>
+        </div>
+    </div>
+</div>

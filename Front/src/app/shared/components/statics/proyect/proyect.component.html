@@ -1,0 +1,246 @@
+<div class="container_">
+    <div class="row_">
+      <div class="conteiner-bg">
+              <div class="proyect box">
+                  <div class="column_">
+                      <div class="row_">
+                          <div class="media-container">
+                              <div class="video-container">
+                                <iframe class="video" [src]="safeURL" title="YouTube video player" frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowfullscreen>
+                                </iframe>
+                              </div>
+                              <div class="image-container">
+                                  <img loading="lazy" [src]="imgURL" [alt]="'Imagen de: ' + project.empresa.nombre" class="logo_proyecto">
+                                  <div class=" cod_opra">
+                                      <div>CÓDIGO DE LA OPERACIÓN</div>
+                                      <div>{{project.codigoOperacion}}</div>
+                                </div>
+                              </div>
+                          </div> 
+                      </div>
+                      <div class="description-container">
+                          <span class="text-primary-400 font-bold text-lg titles">ANTECEDENTES DE LA EMPRESA:</span>
+                          <p class="">{{project.empresa.antecedentes.parrafo}}</p>
+                          <span class="text-primary-400 font-bold text-lg titles">VENTAJA COMPETITIVA:</span>
+                          <p class="">{{project.empresa.ventajaCompetitiva.parrafo}}</p>
+                          <ul>
+                            <li>
+                              {{project.empresa.ventajaCompetitiva.item1}}
+                            </li>
+                            <li>
+                              {{project.empresa.ventajaCompetitiva.item2}}
+                            </li>
+                            <li>
+                              {{project.empresa.ventajaCompetitiva.item3}}
+                            </li>
+                            <li>
+                              {{project.empresa.ventajaCompetitiva.item4}}
+                            </li>
+                          </ul>
+                
+                      </div>
+                  </div>
+              </div>
+        </div>
+        
+
+        <div class="content">
+            <div class="monto_conteiner">
+                <div class="monto-max">
+                  <div class="mnto">
+                    <span class=""  >
+                    Monto máximo
+                    </span>
+                </div>
+                <div>
+                  <div class="btn-orange">
+                    <span class="" >
+                      ${{project.montoSolicitado}}
+                      </span>
+                  </div>
+                </div>
+                </div>
+                <div class="monto-max">
+                  <div class="mnto" >
+                    <span class="" >Monto colocado</span>
+                      <div class=""></div>
+                  </div>
+                  <div class="btn-blue">
+                      <span class="" >${{project.avanceInversion}}</span>
+                  </div>
+                </div>
+                <div class="progresss">
+                  <div class="progressbarWrapper">
+                    <span id="greenBar" [ngStyle]="{'width':convert((project.avanceInversion*100)/project.montoSolicitado)>=100? 100 :convert((project.avanceInversion*100)/project.montoSolicitado)+ '%'}" ></span>
+                    <p class="percent" [ngStyle]="{'color': project.avanceInversion/project.montoSolicitado*100 >=50?'#fff':'#1225aa'}">{{convert((project.avanceInversion*100)/project.montoSolicitado)| number:'2.0-2' }}%</p>
+                  </div>
+                </div>
+                
+                <div class="start_date">
+                  <div class="inicio-inversion" style="display: flex;flex-direction: column;align-items: center;">
+                      <span class="color_startdate text-secondary-400 font-bold">Plazo de la operación <br></span>
+                      {{project.fechaInicioInversion}} al {{project.fechaLimiteInversion}}
+                  </div>
+              </div>
+          </div>
+
+            <div class="column2">
+              <div class="caracters">
+                  <div class="row2  ">
+                    <div class="fila">
+                      <div class="elements">
+                        <div class="title">
+                          <span class="">
+                            Actividad
+                          </span>
+                      </div>
+                      <div class="">
+                          <span class="border-orange">
+                          {{project.empresa.nombre}}
+                          </span>
+                      </div>
+                      </div>
+                      <div class="elements">
+                        <div class="title" >
+                          <span class=" ">
+                          Pago de capital
+                          </span>
+                      </div>
+                      <div>
+                          <span class="border-orange">
+                          100% al {{project.pagoCapital}}
+                          </span>
+                      </div>
+                      </div>
+                      <div class="elements">
+                        <div class="title">
+                          <span class="">Calificación interna</span>
+                      </div>
+                      <div>
+                          <span class="border-orange">{{project.calificacion.nombre}}</span>
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="fila">
+                      <div class="elements">
+                        <div  class="title">
+                          <span class="">Destino</span>
+                      </div>
+                      <div>
+                          <span class="border-orange">{{project.destinoFinanciamiento}}</span>
+                      </div>
+                       </div>
+                      <div class="elements">
+                        <div  class="title">
+                          <span class="">Rentabilidad neta anual</span>
+                        </div>
+                        <div>
+                            <span class="border-orange">{{project.tasaEfectivaAnual}}%</span>
+                        </div>
+                      </div>
+                      <div class="elements">
+                        <div  class="title">
+                          <span class="">Tipo de inversión</span>
+                        </div>
+                        <div>
+                            <span class="border-orange">{{project.tipoInversion}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+
+              
+                <div class="col-12 text-center" style="    margin-top: 10%; margin-bottom: 3%;">
+                    <span class="titles " style="font-size: 35px;">Indicadores 2021</span>
+                  </div>
+                <div class="row_cards">
+
+                  <div class="content-card">
+                      <div class="margin_cards">
+                          <div class="indicador-image-container"  (click)="p1=toggleState(p1)"> 
+                            <div class="title" style="display: flex;justify-content: center;">
+                              Solvencia  &nbsp; <div class=" text-primary-400">
+                                {{project.indicadores.porcentajeSolvencia}}%
+                              </div>
+                            </div> 
+                            <div class="description" *ngIf="p1"> 
+                              {{project.indicadores.solvencia}}
+                            </div>
+                            <div class="btn-arrows">
+                              <div [ngClass]="!p1?'btn-arrows2':'btn-arrows1'"></div>
+                              <div [ngClass]="!p1?'btn-arrows2-':'btn-arrows1-'"></div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="margin_cards">
+                          <div class="indicador-image-container" (click)="p2=toggleState(p2)">
+                            <div class="title" style="display: flex;justify-content: center;">
+                              Liquidez&nbsp; <div class=" text-primary-400">
+                                {{project.indicadores.porcentajeLiquidez}}%
+                              </div>
+                            </div>
+                            <div class="description" *ngIf="p2">
+                              {{project.indicadores.liquidez}}
+                            </div>
+                            <div class="btn-arrows">
+                              <div [ngClass]="!p2?'btn-arrows2':'btn-arrows1'"></div>
+                              <div [ngClass]="!p2?'btn-arrows2-':'btn-arrows1-'"></div>
+                            </div>
+                          </div>
+                      </div>
+
+                    </div>
+
+                    <div class="content-card">
+                      <div class="margin_cards">
+                        <div class="indicador-image-container" (click)="p3=toggleState(p3)">
+                            <div class="title" style="display: flex;justify-content: center;">
+                              Retorno/ Capital &nbsp;<div class=" text-primary-400">
+                                {{project.indicadores.porcentajeRetornoCapital}}%
+                              </div>
+                            </div>
+                            <div class="description" *ngIf="p3">
+                              {{project.indicadores.retornoCapital}}
+                            </div>
+                            <div class="btn-arrows">
+                              <div [ngClass]="!p3?'btn-arrows2':'btn-arrows1'"></div>
+                              <div [ngClass]="!p3?'btn-arrows2-':'btn-arrows1-'"></div>
+                            </div>
+                          </div>
+                      </div>
+
+                      
+                      <div class="margin_cards">
+                          <div class="indicador-image-container" (click)="p4=toggleState(p4)">
+                            <div class="title" style="display: flex;justify-content: center;">
+                              Garantía &nbsp;<div class=" text-secondary-400">
+                                {{project.indicadores.porcentajeGarantia}}%
+                              </div>
+                            </div>
+                            <div class="description" *ngIf="p4">
+                              {{project.indicadores.garantia}}
+                            </div>
+                            <div class="btn-arrows">
+                              <div [ngClass]="!p4?'btn-arrows2':'btn-arrows1'"></div>
+                              <div [ngClass]="!p4?'btn-arrows2-':'btn-arrows1-'"></div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!-- <div style="display: flex; justify-content:center; margin-top:6%;margin-bottom:6%;">
+                <div class="btn-orange">
+                  <span>
+                      INVERTIR
+                  </span>
+                </div>
+              </div> -->
+        </div>
+</div>

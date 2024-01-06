@@ -1,0 +1,354 @@
+.top{
+    display: flex;
+    flex-direction: column;
+    margin-top:3% ;
+}
+.container_{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.container_body{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.body{
+    padding-top: 110px;
+}
+.background_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: url('/assets/images/investor/background.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 60%;
+    height: 38%;
+    font-family:  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 9%;
+    padding: 3%;
+    margin-bottom: 3%;
+}
+
+form{
+    width: 100%;
+}
+
+.container-input {
+    text-align: center;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.container-cedula{
+    color: #1225aa;
+    text-align: start;
+    padding: 10px 0;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.title_cedula{
+    text-align: center;
+    color: #1225aa;
+}
+
+.img-load{
+    margin-left: -8%;
+    margin-top: -3%;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+.inputfile-7 + label {
+    color: #a0a0a0;
+}
+
+.inputfile-7 + label {
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0;
+}
+
+.inputfile-7 + label span,
+.inputfile-7 + label strong {
+    padding: 0.7rem;
+}
+
+.inputfile-7 + label span {
+    width: 200px;
+    min-height: 1em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+    margin-top: 3%;
+    border: 1px solid #ff5f00;
+    border-radius: 10px;
+}
+.imgdoc{
+    width: 63px;
+    padding-top: 4px;
+}
+.inputfile-7 + label strong {
+    height: 100%;
+    color: #fff;
+    display: inline-block;
+}
+
+.inputfile-7:focus + label strong,
+.inputfile-7.has-focus + label strong,
+.inputfile-7 + label:hover strong {
+
+    border-radius: 100px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+}
+
+.row_ced{
+    display: flex;
+    flex-direction: row;
+}
+
+.cedula{
+    width: 100%;
+    height: 100%;
+}
+
+::ng-deep .btn-primary{
+    background-color: #3085d6 !important;
+    margin: 6px;
+    margin-left: 13px;
+    border-color: white;
+}
+
+h3{
+    margin: 30px 0 0;
+}
+.centrar{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:#a0a0a0;
+    width: 40%;
+    border-radius: 10px;
+    background-color: #eeeeee;
+}
+
+.centrar>a{
+    color: rgb(90, 90, 90);
+    text-decoration: none;
+    width: 100%;
+}
+
+.row_{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: space-around;
+    width: 100%;
+    margin-top: 2%;
+    flex-wrap: wrap;
+}
+.btns{
+    margin-bottom: 6%;
+    justify-content: center;
+    gap: 35px;
+}
+
+.btn-orange, .btn-blue{
+    border-radius: 7px;
+    border: 0;
+    padding: 0.25rem;
+    width: 225px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+  }
+  
+  .btn-orange > a , .btn-blue > a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  
+  .btn-orange:hover ,  .btn-blue:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  .btn-blue{
+    background-color: #1225aa;
+    }
+
+.bg{ 
+    box-shadow: rgb(0 0 0 / 48%) 0px 12px 14px;
+    padding: 9px;
+    border-radius: 10px;
+    width: 100%;
+    font-family:  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.box {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 10px;
+}
+
+.box::after{
+    position: absolute;
+    top: -4px; bottom: -4px;
+    left: -4px; right: -4px;
+    /* background: linear-gradient(to right, #f1a349, #de1f1b) ; */
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+}
+.boxblue {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 10px;
+}
+
+.boxblue::after{
+    position: absolute;
+    top: -4px; bottom: -4px;
+    left: -4px; right: -4px;
+    /* background: linear-gradient(to top, #264176, rgb(11, 179, 230)); */
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+}
+
+.row2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.margin{
+    margin: 4%;
+}
+
+
+@media (max-width: 1400px) {
+ .row2{
+     flex-wrap: wrap;
+ }
+}
+
+@media (max-width: 800px) {
+    .container_{
+        flex-direction: column;
+    }
+    .top{
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px) {
+    .row_{
+        margin-bottom: 5%;
+    }
+    
+
+}
+
+@media (max-width: 400px) {
+    .column{
+        width: 100%;
+    }
+
+    .inputfile-7 + label span {
+        width: 131px;
+    }
+    .inputfile-7 + label{
+        max-width: 84%;
+    }
+    
+    .img-load{
+        margin-left: -20%;
+        margin-top: -6%;
+    }
+    .img-load>img{
+        width: 59px;
+    }
+    .imgdoc{
+        padding-top: 8px;
+        margin-left: 17px;
+    }
+    .btns{
+        gap: 7px;
+        padding-top: 6%;
+    }
+
+    .inputfile-7 + label span,
+    .inputfile-7 + label strong {
+    padding-top: 0.5rem;
+    }
+    .iborrainputfile{
+        font-size: 10px;
+    }
+}

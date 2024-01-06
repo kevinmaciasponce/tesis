@@ -1,0 +1,554 @@
+<app-loading *ngIf="cargando"></app-loading>
+<!-- [linear]="true" -->
+<div class="body">
+  <mat-stepper #stepper [linear]="true" class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="datosdeportista" label="Datos personales" style="display: flex; justify-content: center;">
+      <form [formGroup]="datosdeportista" class="formDatos">
+        <div class="row_" style=" gap:0px; color: #1225aa;">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">DATOS BENEFICIARIO (NATURAL - JURIDICO)
+            </a>
+          </div>
+          <div class="line-title"></div>
+        </div>
+        <div class="data-content">
+          <div class="error-style">
+            <mat-form-field appearance="fill">
+              <mat-label>Cédula/RUC</mat-label>
+              <input matInput placeholder="Cédula/RUC" (blur)="consultarBeneficiario()"
+                (keypress)="keyPressNumbers($event)" (input)="setearData()" name="cedula" id="cedula"
+                formControlName="cedula" required>
+            </mat-form-field>
+            <span class="" *ngIf="IsInvalid('cedula')">
+              <div class="alert alert-danger" *ngIf="cedula?.errors?.['minlength']">Campo no cumple el mínimo
+                de {{ cedula?.errors?.['minlength'].requiredLength }} caracteres</div>
+              <div class="alert alert-danger" *ngIf="cedula?.errors?.['maxlength']">Campo supera máximo
+                de {{ cedula?.errors?.['maxlength'].requiredLength }} caracteres</div>
+            </span>
+          </div>
+          <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombres" formControlName="nombre"
+              oninput="javascript:this.value=this.value.toUpperCase();">
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Apellidos" formControlName="apellido"
+              oninput="javascript:this.value=this.value.toUpperCase();">
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="tipoCliente=='JUR'">
+            <mat-label>Razón social</mat-label>
+            <input matInput placeholder="Razon Social" formControlName="razonSocial"
+              oninput="javascript:this.value=this.value.toUpperCase();">
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="tipoCliente=='JUR'">
+            <mat-label>Año de inicio de actividad</mat-label>
+            <input type="number" matInput placeholder="Año Actividad" formControlName="anioActividad"
+              oninput="javascript:this.value=this.value.toUpperCase();">
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput placeholder="Fecha de nacimiento" type="date" formControlName="fechanacimiento">
+          </mat-form-field>
+
+          <ng-select class="filter-look" style="padding-bottom: 0;
+                top: 7px;" [items]="nacionalidades" [ngModelOptions]="{standalone: true}" required [multiple]="false"
+            bindLabel="gentilicio" groupBy="todos" [selectableGroup]="true" [selectableGroupAsModel]="true"
+            [closeOnSelect]="true" bindValue="iso" placeholder="Seleccione la nacionalidad" [(ngModel)]="nacionalidad">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.gentilicio}}
+            </ng-template>
+          </ng-select>
+          <div class="error-style">
+            <mat-form-field appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input matInput placeholder="Título" (keypress)="keyPressNumbers($event)" formControlName="celular"
+                required>
+            </mat-form-field>
+            <span class="" *ngIf="IsInvalid('celular')">
+              <div class="alert alert-danger" *ngIf="celular?.errors?.['minlength']">Campo no cumple el mínimo
+                de {{ celular?.errors?.['minlength'].requiredLength }} caracteres</div>
+              <div class="alert alert-danger" *ngIf="celular?.errors?.['maxlength']">Campo supera máximo
+                de {{ celular?.errors?.['maxlength'].requiredLength }} caracteres</div>
+            </span>
+          </div>
+
+          <ng-select class="filter-look" style="top: 17px;" [items]="disciplinas" [ngModelOptions]="{standalone: true}"
+            required [multiple]="false" bindLabel="nombre" groupBy="todos" [selectableGroup]="true"
+            [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="id" placeholder="Seleccione la disciplina"
+            [(ngModel)]="disciplina">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <ng-select class="filter-look" style="top: 17px;" [items]="modalidades" [ngModelOptions]="{standalone: true}"
+            required [multiple]="false" bindLabel="nombre" groupBy="todos" [selectableGroup]="true"
+            [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="id" placeholder="Seleccione la modalidad"
+            [(ngModel)]="modalidad">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <ng-select class="filter-look" style="top: 17px;" [items]="categorias" [ngModelOptions]="{standalone: true}"
+            required [multiple]="false" bindLabel="nombre" groupBy="todos" [selectableGroup]="true"
+            [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="id" placeholder="Seleccione la categoría"
+            [(ngModel)]="categoria">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input type="email" matInput placeholder="Correo" formControlName="correo" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="perfil-deportivo">
+            <mat-label>Perfil deportivo</mat-label>
+            <input matInput placeholder="Perfil deportivo" formControlName="perfil" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="perfil-deportivo">
+            <mat-label>Título Actual</mat-label>
+            <input matInput placeholder="Título Actual" formControlName="tituloAct" required>
+          </mat-form-field>
+        </div>
+
+        <div class="row_" style=" gap:0px; color: #1225aa;">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">DATOS BANCARIOS
+            </a>
+          </div>
+          <div class="line-title"></div>
+        </div>
+        <div class="data-content">
+          <ng-select class="filter-look" style="top: 17px;" [items]="bancos" [ngModelOptions]="{standalone: true}"
+            [multiple]="false" bindLabel="nombre" groupBy="todos" [selectableGroup]="true"
+            [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="idBanco" placeholder="Seleccione el banco"
+            [(ngModel)]="banco">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <!-- <mat-form-field appearance="fill">
+                <mat-label>Títular de cuenta</mat-label>
+                <input matInput placeholder="Título" oninput="javascript:this.value=this.value.toUpperCase();" formControlName="titular" >
+              </mat-form-field> -->
+          <ng-select class="filter-look" style="top: 17px;" [items]="tipo_cuentas" [ngModelOptions]="{standalone: true}"
+            [multiple]="false" bindLabel="valor" groupBy="todos" [selectableGroup]="true"
+            [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="valor"
+            placeholder="Seleccione el tipo cuenta" [(ngModel)]="tipo_cuenta">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                [ngModelOptions]="{standalone: true}" /> {{item.valor}}
+            </ng-template>
+          </ng-select>
+          <mat-form-field appearance="fill">
+            <mat-label>Nro Cuenta</mat-label>
+            <input matInput placeholder="Nro Cuenta" (keypress)="keyPressNumbers($event)" formControlName="cuenta">
+          </mat-form-field>
+        </div>
+        <div class="row_" style=" gap:0px; color: #1225aa;">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">INGRESE FOTO
+            </a>
+          </div>
+          <div class="line-title"></div>
+        </div>
+        <div class="row_" style="justify-content: center; margin-top: 3%;
+          margin-bottom: 5%;">
+          <div class="column">
+            <div class="container-input ">
+              <input type="file" name="file-7" id="file-7" class="inputfile inputfile-7"
+                (change)="onFilechange($event,1)" />
+              <label for="file-7" placeholder="Cargar Documento" class="upload">
+                <span class="iborrainputfile">{{nombredocfrontal}}</span>
+                <strong class="img-load">
+                  <img class="imgdoc" src="assets/images/shared/uploadDoc.png" alt="">
+                </strong>
+              </label>
+            </div>
+            <div class="centrar upload" *ngIf="urlphoto">
+              <a [attr.href]="urlphoto" target="_blank"><img src="/assets/images/investor/ico_cedula.png"
+                  style="width: 50%;" alt="">Ver </a>
+            </div>
+          </div>
+          <div class="column">
+            <div class="container-input ">
+              <input type="file" name="file-8" id="file-8" class="inputfile inputfile-7"
+                (change)="onFilechange($event,2)" />
+              <label for="file-8" placeholder="Cargar Documento" class="upload">
+                <span class="iborrainputfile">{{nombredocposterior}}</span>
+                <strong class="img-load">
+                  <img class="imgdoc" src="assets/images/shared/uploadDoc.png" alt="">
+                </strong>
+              </label>
+            </div>
+            <div class="centrar upload" *ngIf="urlphoto2">
+              <a [attr.href]="urlphoto2" target="_blank"><img src="/assets/images/investor/ico_cedula.png"
+                  style="width: 50%;" alt="">Ver </a>
+            </div>
+          </div>
+        </div>
+        <div class="button-steps">
+          <button mat-button (click)="validar()" class="btn-orange">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Agregar títulos">
+      <form #formRef="ngForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 655px;">
+        <div class="row_" style=" gap:0px; color: #1225aa;">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">TÍTULOS OBTENIDOS
+            </a>
+          </div>
+          <div class="line-title"></div>
+        </div>
+        <div *ngFor="let word2 of words2; let in=index" class="column">
+          <div>
+            Título N: {{in+1}}
+          </div>
+          <div class="row_3">
+            <!--<p [hidden]="words2[in].value">Field is required</p>
+              {{formRef.form.name1}}-->
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre Competencia</mat-label>
+              <input type="text" matInput [(ngModel)]="words2[in].nombreCompetencia" autocomplete="disabled"
+                name="nombre{{in}}" #name="ngModel" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Año</mat-label>
+              <input type="number" min="1970" max="2029" step="1" matInput [(ngModel)]="words2[in].anio"
+                name="anio{{in}}" autocomplete="disabled" #name="ngModel" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Ranking nacional</mat-label>
+              <input type="text" matInput [(ngModel)]="words2[in].nacional" name="nacional{{in}}"
+                autocomplete="disabled"
+                [readonly]="words2[in].internacional!=''||words2[in].otros!='' ? 'true' : 'false'" #name="ngModel">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Ranking internacional</mat-label>
+              <input type="text" matInput [(ngModel)]="words2[in].internacional" name="internacional{{in}}"
+                [readonly]="words2[in].nacional!=''||words2[in].otros!='' ? 'true' : 'false'" autocomplete="disabled"
+                #name="ngModel">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Otros</mat-label>
+              <input type="text" matInput [(ngModel)]="words2[in].otros" name="otros{{in}}"
+                [readonly]="words2[in].internacional!=''||words2[in].nacional!='' ? 'true' : 'false'"
+                autocomplete="disabled" #name="ngModel">
+            </mat-form-field>
+            <input type="hidden" [(ngModel)]="words2[in].idTitulo" autocomplete="disabled" name="idTitulo{{in}}"
+              #name="ngModel">
+          </div>
+        </div>
+        <div style="border-radius: 15px; padding: 5px 10px 5px 10px;
+                      background: #e8a721; color: white;">
+          <span>
+            Se deben agregar mínimo 3 y máximo 10 títulos
+          </span>
+        </div>
+        <div>
+          <button class="btn-orange" style="background-color: #1225aa;" (click)="add(formRef.form.valid)">Agregar
+            Títulos</button>
+        </div>
+
+
+        <div class="button-steps">
+          <button mat-button matStepperPrevious style="background: #767676;" class="btn-orange">Regresar</button>
+          <button mat-button (click)="validarForm2()" class="btn-orange">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Agregar Auspicio">
+      <form [formGroup]="thirdFormGroup" #formRefer="ngForm" class="formDatos">
+        <div class="row_" style=" gap:0px; color: #1225aa; margin-bottom: 1%;">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">AGREGAR AUSPICIO</a>
+          </div>
+          <div class="line-title"></div>
+        </div>
+        <div class="row_ element-title">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">Presupuesto Solicitado</a>
+          </div>
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id">
+          <mat-form-field appearance="fill" style="flex-basis:97%;" class="auspiciosAdd">
+            <mat-label>Presupuesto Solicitado</mat-label>
+            <input matInput placeholder="presupuesto" formControlName="presupuesto" currencyMask required>
+          </mat-form-field>
+        </div>
+        <div class="row_ element-title">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">Recompensas</a>
+          </div>
+        </div>
+        <div class="text-infor">
+          Indicar a su discreción su oferta, para presencia de logos de marcas auspiciantes,
+          dentro de los uniformes y otras actividades de activación de marketing.
+          Los porcentajes detallados es una sugerencia, en cada contrato con el
+          patrocinador se definen de forma específica las recompensas.
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id1" name="id1">
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Categoria</mat-label>
+            <input matInput placeholder="Nombres" value='ORO' readonly formControlName="categoria1"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Porcentaje</mat-label>
+            <input matInput placeholder="Porcentaje" value="> 35%" readonly formControlName="porcentaje1"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+        </div>
+        <div class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper">
+            <mat-label>Detalle</mat-label>
+            <textarea matInput placeholder="Detalle" formControlName="detalle1" required></textarea>
+          </mat-form-field>
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id2" name="id2">
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Categoria</mat-label>
+            <input matInput placeholder="Nombres" value='PLATA' readonly formControlName="categoria2"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Porcentaje</mat-label>
+            <input matInput placeholder="Porcentaje" value="Entre 16% y 34%" readonly formControlName="porcentaje2"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+        </div>
+        <div class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper">
+            <mat-label>Detalle</mat-label>
+            <textarea matInput placeholder="Detalle" formControlName="detalle2" required></textarea>
+          </mat-form-field>
+        </div>
+        <div class="data-content width-auspicio">
+          <input type="hidden" formControlName="id3" name="id3">
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Categoria</mat-label>
+            <input matInput placeholder="Nombres" value='BRONCE' readonly formControlName="categoria3"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="data-formfield auspiciosAdd">
+            <mat-label>Porcentaje</mat-label>
+            <input matInput placeholder="Porcentaje" value="Menor 15%" readonly formControlName="porcentaje3"
+              oninput="javascript:this.value=this.value.toUpperCase();" required>
+          </mat-form-field>
+        </div>
+        <div class="data-wrapper-content">
+          <mat-form-field appearance="fill" class="text-area wrapper">
+            <mat-label>Detalle</mat-label>
+            <textarea matInput placeholder="Detalle" name="cedula" id="cedula" formControlName="detalle3"
+              required></textarea>
+          </mat-form-field>
+        </div>
+        <div class="button-steps" style="margin-top: 5%;">
+          <button mat-button matStepperPrevious class="btn-orange" style="background: #767676;">Regresar</button>
+          <button mat-button (click)="siguienteForm()" class="btn-orange">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Agregar Torneos a participar">
+      <div style="display: flex; flex-direction: column;">
+        <div class="row_ element-title">
+          <div type="submit" class="persona_j btn-xs">
+            <a style="font-family: NexaBlack;">TORNEOS A PARTICIPAR</a>
+          </div>
+        </div>
+        <div *ngFor="let torneo of torneos; let in=index" class="column">
+          <div>
+            Torneo N: {{in+1}}
+          </div>
+          <div class="row_3">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre Competencia</mat-label>
+              <input type="text" matInput [(ngModel)]="torneo.nombreTorneo" autocomplete="disabled"
+                name="nombretorneo{{in}}" #name="ngModel" required [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+
+            <ng-select class="filter-look" style="padding-bottom: 0;
+                    top: 7px;" [items]="nacionalidades" [ngModelOptions]="{standalone: true}" required
+              [multiple]="false" bindLabel="pais" groupBy="todos" [selectableGroup]="true"
+              [selectableGroupAsModel]="true" [closeOnSelect]="true" bindValue="idNacionalidad"
+              placeholder="Seleccione el país" [(ngModel)]="torneo.pais.idNacionalidad">
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                  [ngModelOptions]="{standalone: true}" /> {{item.pais}}
+              </ng-template>
+            </ng-select>
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha</mat-label>
+              <input type="date" matInput [(ngModel)]="torneo.fecha" [ngModelOptions]="{standalone: true}"
+                name="fecha{{in}}" autocomplete="disabled" #name="ngModel">
+            </mat-form-field>
+          </div>
+        </div>
+        <div style="border-radius: 15px; padding: 5px 10px 5px 10px;
+                          background: #e8a721; color: white; width: 100%; margin-bottom: 2%;">
+          <span>
+            Se deben agregar mínimo 3 y máximo 10 títulos
+          </span>
+        </div>
+        <div style="justify-content: start;
+            display: flex;
+            width: 100%;
+            margin-bottom: 3%;">
+          <button class="btn-orange" style="background-color: #1225aa;" (click)="addtorneos()">Agregar Torneos</button>
+        </div>
+        <div class="button-steps">
+          <button (click)="regresarForm()" class="btn-orange" style="background: #767676;">Regresar</button>
+          <button mat-button class="btn-orange" (click)="agregarTorneos()">Siguiente</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        Verfica tus datos
+      </ng-template>
+
+      <div style="display: flex;
+          flex-direction: column;
+          align-items: center;">
+
+
+        <div class="content-card">
+          <div class="card_conteiner right">
+            <div class="img_contenier" (click)="gotoStepper(0)" matTooltip="Editar foto" matTooltipPosition="below">
+              <img [attr.src]="urlphoto" lass="imagen-proyect" alt="" loading="lazy" style="width: 100%;
+              height: 100%;">
+            </div>
+            <div class="ico-shared hover-elements" matTooltip="Copiar enlace" matTooltipPosition="above">
+              <img src="/assets/images/shared/share.png" width="25px" alt="">
+            </div>
+            <div class="text_conteiner">
+
+              <div class="title-content" style="flex-basis: 25%;">
+                <div class="row_card_conteiner" (click)="gotoStepper(0)">
+                  <div class="column_card title-proyect" style="align-items: center; text-align: center;">
+                    <span *ngIf="nombre!=''">
+                      {{nombre}} <br> {{apellido}}</span>
+                    <span *ngIf="razonSocial!=''">
+                      {{razonSocial}} </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row_card_conteiner">
+                <div class="progress">
+                  <div class="progressbarWrapper">
+                    <span class="yellowBar" [ngClass]="porcenatjeprueba >=100?'suceessBar':'yellowBar'"
+                      [ngStyle]="{'width':porcenatjeprueba >=100?100:porcenatjeprueba+ '%'}"></span>
+                    <div class="percent" [ngStyle]="{'color': porcenatjeprueba>=50?'#fff':'#1225aa'}">
+                      <p *ngIf="porcenatjeprueba>=100">EXITOSO &nbsp;</p> {{porcenatjeprueba}}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="description_conteiner">
+                <div class="row_card_conteiner">
+                  <div class="column_card marginbuttom" style="align-items: center;">
+                    <div style="display: flex; justify-content:center; flex-direction:column; font-size: 1.5em;"
+                      (click)="gotoStepper(0)">
+                      <span class="titulo_card" style="display: flex; justify-content: center;">Disciplina</span>
+                      <span *ngIf="disciplina&&categoria" class="text_card"> {{getDisciplina(disciplina)}} /
+                        {{getCategoria(categoria)}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row_card">
+                  <div class="column_card">
+                    <div class="row_card mrgtop">
+                      <div class="column_card marginbuttom" (click)="gotoStepper(1)">
+                        <span class="titulo_card">Ranking
+                        </span>
+                        <ul class="text_card" style="font-size: 1em; margin: 0;
+                     padding: 0 0 0 15px;">
+                          <li *ngIf="!!words2[0] && !!words2[0].internacional ">{{words2[0].internacional | slice:0:35}}
+                          </li>
+                          <li *ngIf="!!words2[0] && !!words2[0].nacional">{{words2[0].nacional | slice:0:35}}</li>
+                          <li *ngIf="!!words2[0] && !!words2[0].otros ">{{words2[0].otros | slice:0:35}}</li>
+                          <li *ngIf="!!words2[1] && !!words2[1].internacional ">{{words2[1].internacional | slice:0:35}}
+                          </li>
+                          <li *ngIf="!!words2[1] && !!words2[1].nacional">{{words2[1].nacional | slice:0:35}}</li>
+                          <li *ngIf="!!words2[1] && !!words2[1].otros ">{{words2[1].otros | slice:0:35}}</li>
+                          <li *ngIf="!!words2[2] && !!words2[2].internacional ">{{words2[2].internacional | slice:0:35}}
+                          </li>
+                          <li *ngIf="!!words2[2] && !!words2[2].nacional">{{words2[2].nacional | slice:0:35}}</li>
+                          <li *ngIf="!!words2[2] && !!words2[2].otros ">{{words2[2].otros | slice:0:35}}</li>
+                        </ul>
+                        <span class="text_card" style="font-size: 1.2em;"></span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                  <div class="column_card mrgend" style="flex-basis: 40%;" *ngIf="!!nacionalidad">
+                    <div class="row_card mrgtop">
+                      <div class="column_card marginbuttom" (click)="gotoStepper(0)">
+                        <span class="titulo_card">PAÍS</span>
+                        <span class="text_card">{{getPais(nacionalidad)}}</span>
+                      </div>
+                    </div>
+
+                    <div class="row_card mrgtop" (click)="gotoStepper(2)">
+                      <div class="column_card marginbuttom">
+                        <span class="titulo_card">Monto solicitado </span>
+                        <span class="text_card">{{presupuesto}}</span>
+
+                      </div>
+                    </div>
+                    <div class="row_card mrgtop">
+                      <div class="column_card marginbuttom">
+                        <span class="titulo_card">Monto recaudado </span>
+                        <span class="text_card">$00.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn_conteiner" style="flex-basis: 50%;">
+                <div class="row_">
+                  <div class="column_">
+                    <div>
+                      <div class="btn-orange">
+                        <a>EMPIEZA TU PATROCINIO</a>
+                      </div>
+                    </div>
+                    <div class="btn-container">
+                      <div class="btn-blue">
+                        <a>MÁS DETALLES</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="button-steps">
+            <button mat-button matStepperPrevious class="btn-orange" style="background: #767676;">Regresar</button>
+            <button mat-button class="btn-orange" (click)="confirmarDatos()">Confirmar Datos</button>
+          </div>
+
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

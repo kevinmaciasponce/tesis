@@ -1,0 +1,83 @@
+
+<app-home id="inicio"></app-home>
+<!-- 
+<div>
+    <div>
+        <img (click)="isOpenContact=toggleState(isOpenContact)" style="cursor: pointer;" class="ico-chat" src="assets/images/iconos/vermasico.png" alt="">
+    </div>
+    
+    <div [ngClass]="!isOpenContact?'show':'hide'"  class="chat show">
+        <header class="head-chat">
+
+        </header>
+        <main class="main-chat" >
+            <div class="display-elemets">
+                <div style="cursor: pointer;"  (click)="p1=toggleState(p1)" class="elements-chat">
+                    <p>
+                      Quiero mas información para invertir 
+                    </p>
+                </div>
+
+                <div *ngIf="p1">
+                    <div class="answer">
+                        La LA la
+                    </div>
+                </div>
+    
+                <div style="cursor: pointer;" (click)="p2=toggleState(p2)" class="elements-chat">
+                    <p>
+                      Quiero financiar mi empresa 
+                    </p>
+                </div>
+
+                <div *ngIf="p2">
+                    <div class="answer">
+                        La LA la
+                    </div>
+                </div>
+    
+                <div style="cursor: pointer;" (click)="p3=toggleState(p3)" class="elements-chat">
+                    <p>
+                      Quiero contactarme con un ejecutivo
+                    </p>
+                    
+                </div>
+                <div *ngIf="p3">
+                    <div class="answer">
+                        La LA la
+                    </div>
+                </div>
+
+            </div>
+           
+        </main>
+    </div>
+</div> -->
+
+
+<!-- Quienes SOMOS -->
+<app-about-us ></app-about-us>
+
+
+<!-- Como lo logramos? -->
+<app-how-we-did ></app-how-we-did>
+
+<div class="btn-invest">
+    <div class="btn-orange" [routerLink]="'/register/iniciar_sesion'">
+        <a > QUIERO INVERTIR </a>
+      </div>
+</div>
+
+<!--Elige tu oportunidad de invertir-->
+<app-choise-oportunity id="choise-oportunity"></app-choise-oportunity>
+
+<!--Auspicios deportivos-->
+<!-- <app-sport-sponsor></app-sport-sponsor> -->
+
+<!-- Calcula tu ganancia-->
+<app-simulator></app-simulator>
+
+<!-- Cuales son los beneficios? -->
+<app-profits></app-profits>
+
+

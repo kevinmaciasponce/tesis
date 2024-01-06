@@ -1,0 +1,28 @@
+<div class="start_menu">
+    <div class="">
+        <a class="link_inicio" [routerLink]="'/managerOper/home'"> <img class="btn_inicio" src="/assets/images/investor/btn_home.png" alt="">
+            <div class="txt_inicio btn_inicio">Inicio </div>
+        </a>
+    </div>
+</div>
+<div class="status_menu">
+    <ul class="menu_conteiner">
+        <li class="title_menu_elements menu_elements">
+            <div class="link_elements title_element" > <img class="ico_menu" src="/assets/images/investor/ico_1.png" alt="">
+                <div>Mis Solicitudes</div>
+            </div>
+        </li>
+        <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='intransit'}">
+            <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='intransit'}" (click)="goToRoute('/intransit')" > <img class="ico_menu" src="/assets/images/manager/intransit.png" alt=""><span> Pendientes de Aprobación </span> </a>
+        </li>
+        <li class="menu_elements elements" [ngClass]="{'elementos':obtenerurlactual()=='valid'}">
+            <a class="link_elements" [ngClass]="{'elementos_a':obtenerurlactual()=='valid'}" (click)="goToRoute('/valid')" > <img class="ico_menu" src="/assets/images/manager/vigentes.png" alt=""><span> Vigentes </span></a>
+        </li>
+        <li class="menu_elements elements">
+            <a class="link_elements" > <img class="ico_menu" src="/assets/images/manager/liquidadas.png" alt=""><span> Liquidadas </span></a>
+        </li>
+        <li class="menu_elements elements">
+            <a class="link_elements"> <img class="ico_menu" src="/assets/images/manager/consulta.png" alt=""><span> Consulta de liquidadas</span></a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,76 @@
+<div class="content-">
+
+
+    <h1 >Flujo de Cobros </h1>  
+    <div class="filter-content-box" >
+        <div class="title-filter" >
+            Filtros de consulta
+        </div>
+        
+        <div class="filtercontent">
+            <div class="filter-year">
+                <div class="column_">
+                    <span>  Seleccione el año </span>
+                    <div class="radio_container ">
+                        <div>
+                            <label for="si_residente">2022</label>
+                            <input type="radio" [checked]="anio22" (change)="changeGender($event)"  id="si_residente" name="es_residente"  value="2022"  class="input_style">                           
+                        </div>
+                        <div>
+                            <label for="no_residente">2023</label>
+                            <input type="radio" [checked]="anio23" (change)="changeGender($event)" id="no_residente" name="es_residente" value="2023"  class="input_style">
+                        </div>
+                        <div>
+                            <label for="no_residente">2024</label>
+                            <input type="radio" [checked]="anio23" (change)="changeGender($event)" id="on_residente" name="es_residente" value="2024"  class="input_style">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="filter">
+                    <ng-select class="month-filter"
+                        [items]="month"
+                        [multiple]="true"
+                        bindLabel="month"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="false"
+                        bindValue="id"
+                        placeholder="Seleccione los meses"
+                        [(ngModel)]="selectmonth">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.month}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="justify-center">
+            <button class="btn-orange" (click)="consultar()">
+                <div>
+                    Consultar
+                </div>
+            </button>
+        </div>
+
+    </div>
+
+
+    <div style="display: block;" class="chart">
+    <canvas baseChart 
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+        [colors]="backgroundColor">
+        
+    </canvas>
+    </div>
+
+</div>

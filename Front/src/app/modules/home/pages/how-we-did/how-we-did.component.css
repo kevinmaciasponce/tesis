@@ -1,0 +1,112 @@
+.howWeDid{
+  font-family: "NexaRegular", Arial, Helvetica, sans-serif;
+}
+
+b{
+  font-family: "NexaBlack";
+}
+
+.title-aboutus {
+  color: #1225aa;
+  font-weight: 900;
+  font-family: "NexaBlack";
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  height: 45px;
+  margin-bottom: 4%;
+  padding-top: 2%;
+}
+img.imgico {
+  width: 73%;
+}
+
+.elements_column{
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.content-how{
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+.content_ico{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+}
+
+.txthowTo{
+  width: 100%;
+  max-width: 250px;
+  text-align: center;
+  color: #1225aa;
+  margin-top: 7%;
+}
+
+.boxshadow{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.justifycontent{
+  display: flex;
+  justify-content: center;
+}
+.btn-orange{
+  border-radius: 7px;
+  padding: 0.25rem;
+  width: 325px;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  background-color: #ff5f00;
+  cursor: pointer;
+}
+
+.btn-orange > a {
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.btn-orange:hover{
+  transition: transform .3s;
+  transform: scale(1.2);
+}
+
+.reg-element{
+  display: flex;
+  justify-content: center;
+  margin-top: 4%;
+}
+
+.imgico:hover{
+  transition: transform .4s;
+  transform: scale(1.2);
+}
+
+@media (max-width: 750px) {
+  .content-how{
+    flex-direction: column;
+    gap: 30px;
+  }
+  .txthowTo{
+    margin-top:1%;
+  }
+  .elements_column{
+    gap: 30px;
+  }
+}
+@media (max-width: 480px) {
+
+  .title-aboutus{
+    font-size: 2em;
+    font-weight: bolder;
+  }
+}

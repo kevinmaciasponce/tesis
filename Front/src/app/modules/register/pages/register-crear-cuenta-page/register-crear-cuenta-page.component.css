@@ -1,0 +1,360 @@
+.body{
+    display: flex;
+    background-image: url('/assets/images/register/newDesign/background.webp');
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 110px;
+    font-family: 'NexaRegular';
+}
+.row_{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 10;    
+    width:100%;
+}
+
+.columna_{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-basis: 100%;
+}
+.conteiner{
+    height: 80%;
+    margin-right: 5vh;
+    margin-left: 1vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner2{
+    display: none;
+}
+
+.banner>img{
+    width: 100%;
+    height: 100%;
+}
+
+.elementos>img{
+    width: 5%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.elementos{
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.texto,.img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.texto{
+    text-align: center;
+    color: #223262;
+}
+
+.texto2{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT';
+}
+
+.ingresa{
+    height: 20px;
+}
+
+.ingresa{
+    font-weight: bolder;
+    text-decoration: none;
+}
+.texto>h5{
+    font-size: 16px;
+}
+.conteiner_form{
+    box-shadow: rgba(139, 139, 139, 0.8) 1.95px 9px 19px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 9vh;
+    width: 515px;
+}
+.img>img{
+    width: 13vh;
+    height: 13vh;
+}
+.title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.formulario{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+    width: 500px;
+    height: 550px;
+}
+.input{
+    width: 92%;
+    margin-bottom: 10px;
+}
+
+.registrarse{
+    width: 92%;
+    height: 100%;
+}
+.reg{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.reg>button{
+    width: 100%;
+    padding-right: 100%;
+}
+.btncolor{
+    background-color: #e06222;
+    color: white;
+}
+.columna{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 35px;
+}
+
+.data{
+    padding-bottom: 5px;
+    width: 100%;    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: -9%;
+    color: white;
+    font-size: 4em;
+    font-family: NEXABLACK;
+}
+
+
+h1,h5,h3{font-family: 'NexaRegular';}
+.texto2{
+    margin-top: 100px;
+}
+
+
+  @media only screen and (max-height: 780px) {
+    .steps-separator {
+        bottom: -38%;
+    }
+    
+  }
+  
+  @media only screen and (min-height: 1129px) {
+    .steps-separator {
+        bottom: -23%;
+    }
+  }
+
+@media only screen and (max-width: 1110px) {
+    .banner>img{
+        width: 90%;
+        height: 90%;
+    }
+    .form{
+        width: 500px;
+        height: 550px;
+       
+    }
+    .texto>h5{
+        font-size: 13px;
+    }
+    .conteiner_form{
+        margin-top: 10%;
+        box-shadow: rgba(139, 139, 139, 0.8) 1.95px 9px 19px;
+        padding: 7px;
+        border-radius: 10px;
+        background-color: white;
+    }
+
+    .col_form{
+        margin-right: 50px;
+        align-content: flex-start;
+    }
+}
+
+
+@media only screen and (max-width: 920px) {
+    .body{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+    }
+    .conteiner_general{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .steps-separator {
+        display: none;
+    }
+    
+    .row_{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .banner>img{
+        display: none;
+    }
+    .banner2>img{
+        width: 90%;
+        height: 22vh;
+    }
+    .banner2{
+        display: flex;
+        width: 95%;
+        height: 25%;
+    }
+    .col_clase{
+        margin-top: 50px;
+        justify-content: center;
+        width: 100%;
+    }
+    .col_form{
+        margin-right: 1px;
+    }
+    .elementos{
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .br_pc{
+        display: none;
+    }
+    .conteiner{
+        margin-right: 5px;
+        align-items: flex-start;
+    }
+    .conteiner_form{
+        margin-top: 10%;
+        box-shadow: rgba(139, 139, 139, 0.8) 1.95px 9px 19px;
+        border-radius: 10px;
+        width: 500px;
+    }
+
+    .texto{
+        flex-grow: 3;
+        text-align:left;
+        align-items: center;
+        justify-content: start;
+    }
+    .form{
+        width: 100%;
+       
+    }
+    .texto>h5{
+        text-align: justify;
+        margin-right: 7%;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .body{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+    }
+    
+    .data{
+        font-size: 2em;
+    }
+    .row_{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .elementos{
+        display: flex;
+        flex-direction: row;
+    }
+    .br_pc{
+        display: none;
+    }
+    .conteiner{
+        margin-right: 5px;
+    }
+
+    .texto{
+        flex-grow: 3;
+        text-align:left;
+        align-items: center;
+    }
+    .img{
+        margin-right: 0vh;
+    }
+    .form{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 2%;
+        width: 96%;
+        border-radius: 10px;
+        height: 500px;
+       
+    }
+    .texto2{
+        margin-top: 60px;
+    }
+    .conteiner_form{
+        box-shadow: rgba(139, 139, 139, 0.8) 1.95px 9px 19px;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: white;
+        margin-top: 11vh;
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .banner2> img{
+        width: 101%;
+        height: 147%;
+    }
+
+}
+

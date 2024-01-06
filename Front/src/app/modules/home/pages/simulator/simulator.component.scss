@@ -1,0 +1,858 @@
+#calculate-profit{
+  background-color: #e6ebed;
+  font-family: "NexaRegular", Arial, Helvetica, sans-serif;
+}
+.title-simulator {
+  color: #1225aa;
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  height: 45px;
+  padding-top: 6%;
+  font-family: "NexaBlack";
+}
+
+.simulator1{
+  background-color: #e9a723;
+  padding: 2%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.row_{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container_ {
+  padding-top: 3%;
+}
+.title-container {
+  margin-top: 3vw;
+  position: relative;
+
+}
+
+.title-background {
+  width: 80%;
+  max-width: 800px;
+}
+
+.title {
+  color: #E06222;
+}
+.display-mobile{
+  display: none;
+}
+.margin-5 {
+  margin-top: 1.5rem !important;
+}
+
+.span-container-title {
+  position: absolute;
+  min-width: 186px;
+  top: calc(1rem + 1vw);
+  left: 0;
+  font-size: 3.2vw;
+  width: 63%;
+  max-width: 1000px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.title_simulator{
+  color: #EA6126; 
+  font-size: 3em;
+  margin-top: 10%;
+  margin-top: -7%;
+  margin-bottom: 21%;
+}
+
+.simulator-separator {
+  background-image: url('/assets/images/separator/orange-top-separator.svg');
+  position: absolute;
+  width: 101%;
+  height: 22vw;
+  bottom: -24vw;
+  left: -0.95vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+.card-percent{
+  text-align: center;
+}
+
+
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider_tiempo {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  background: #d1d1d1;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+}
+
+
+.slider_tiempo::-webkit-slider_tiempo-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  background: #04aa6d;
+  cursor: pointer;
+}
+
+.slider_tiempo::-moz-range-thumb {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  background-repeat: no-repeat;
+  border: transparent;
+  background-image: url("/assets/images/iconos/reloj-de-arena.png");
+  background-size: cover;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.slider_tiempo::-moz-range-progress {
+  background: rgb(0, 168, 230);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 168, 230, 1) 0%,
+    rgba(0, 107, 168, 1) 36%,
+    rgba(32, 56, 117, 1) 100%
+  );
+  width: 100%;
+  height: 15px;
+
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+}
+
+.slider_tiempo::-ms-fill-lower {
+  background: rgb(0, 168, 230);
+  width: 100%;
+  height: 15px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+}
+
+.list {
+  display: flex;
+  color: #1225aa;
+  justify-content: space-between;
+  height: auto;
+  overflow: hidden;
+  -webkit-appearance: none;
+  width: 100%;
+  font-weight: bold;
+  padding-left: 7px;
+  margin-right: 7px;
+  // z-index: 1;
+  margin-top: -1px;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  color: #1225aa;
+  font-size: smaller;
+  text-align: center;
+  width: 4.5rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  display: inline-flex;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.number-input2 {
+  display: inline-flex;
+  border-radius: 25px;
+  height: 35px;
+}
+
+.number-input button {
+  outline: none;
+  -webkit-appearance: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 13%;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  border-top: solid #1225aa;
+  border-bottom: solid #1225aa;
+  position: relative;
+  color: #1225aa;
+  height: auto;
+}
+
+
+.number-input input[type="number"] {
+  font-family: sans-serif;
+  width: 77%;
+  padding: 0.5rem;
+  border: none;
+  border-top: solid #1225aa;
+  border-bottom: solid #1225aa;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.number-input2 button {
+  outline: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  color: white;
+  height: auto;
+}
+
+
+.number-input2 input[type="number"] {
+  font-family: sans-serif;
+  max-width: 10.5rem;
+  padding: 0.5rem;
+  border: solid #124278;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.number-input3 {
+  background-color: white;
+  display: inline-flex;
+  border-radius: 25px;
+  height: 35px;
+}
+
+.number-input3 button {
+  outline: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  width: 2.8rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  color: white;
+  height: auto;
+}
+
+.number-input3 input[type="number"] {
+  font-family: sans-serif;
+  max-width: 7rem;
+  padding: 0.5rem;
+  border: solid #124278;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input_simulador {
+  font-family: sans-serif;
+  max-width: 7rem;
+  padding: 0.5rem;
+  border: solid #124278;
+  background-color: white;
+  color: #124278;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.texto_inversion {
+  text-align: initial;
+}
+// NO BORRAR
+.slider_monto:hover {
+  opacity: 1;
+}
+
+// NO BORRAR
+.slider_monto::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  background-repeat: no-repeat;
+  border: transparent;
+  background-image: url("/assets/images/iconos/moneda.png");
+  background-size: cover;
+  cursor: pointer;
+  z-index: 19;
+}
+
+// NO BORRAR
+.slider_monto::-moz-range-progress {
+  -webkit-appearance: none;
+  background: rgb(242, 163, 72);
+  background: linear-gradient(
+    90deg,
+    rgba(242, 163, 72, 1) 0%,
+    rgba(224, 98, 34, 1) 35%,
+    rgba(227, 56, 35, 1) 100%
+  );
+  width: 100%;
+  height: 15px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+}
+
+/* ************************************* */
+
+@import "bourbon";
+
+$slider-width-number: 1280;
+$slider-width: 100%;
+$slider-height: 15px;
+$background-slider: #d1d1d1;
+$background-filled-slider: linear-gradient(
+  90deg,
+  rgba(242, 163, 72, 1) 0%,
+  rgba(224, 98, 34, 1) 35%,
+  rgba(227, 56, 35, 1) 100%
+);
+$thumb-width: 35px;
+$thumb-height: 35px;
+$thumb-radius: 0px;
+$thumb-background: transparent;
+$shadow-size: -10px;
+$fit-thumb-in-slider: -10px;
+@function makelongshadow($color, $size) {
+  $val: 5px 0 0 $size $color;
+
+  @for $i from 6 through $slider-width-number {
+    $val: #{$val}, #{$i}px 0 0 $size #{$color};
+  }
+
+  @return $val;
+}
+
+// No borrar
+.input2 {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  min-height: 45px;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.input2:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.input2::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    90deg,
+    rgba(242, 163, 72, 1) 0%,
+    rgba(224, 98, 34, 1) 35%,
+    rgba(227, 56, 35, 1) 100%
+  );
+  content: "";
+  height: 25px;//modificar alto de barra monto
+  pointer-events: none;
+}
+
+.input2::-webkit-slider-thumb {
+  height: 45px;//modificar alto de barra monto
+  width: 43px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: transparent;
+  background-repeat: no-repeat;
+  box-shadow: makelongshadow($background-slider, $shadow-size);
+  margin-top: -10px;
+  background-image: url("/assets/images/iconos/moneda.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+.input2::-moz-range-track {
+  width: 100%;
+  height: 15px;
+  background: #d1d1d1;
+  border: none;
+  border-radius: 25px;
+}
+
+/* ******************* Slider tiempo ****************** */
+.input3 {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  min-height: 45px;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.input3:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.input3::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 168, 230, 1) 0%,
+    rgba(0, 107, 168, 1) 36%,
+    rgba(32, 56, 117, 1) 100%
+  );
+  content: "";
+  height: 25px; // modifica alto de barra tiempo
+  pointer-events: none;
+}
+
+.input3::-webkit-slider-thumb {
+  height: 45px; // modifica alto de barra tiempo
+  width: 40px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: transparent;
+  background-repeat: no-repeat;
+  box-shadow: makelongshadow($background-slider, $shadow-size);
+  margin-top: -10px;
+  background-image: url("/assets/images/iconos/reloj-de-arena.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+.input3::-moz-range-track {
+  width: 100%;
+  height: 15px;
+  background: #d1d1d1;
+  border: none;
+  border-radius: 25px;
+}
+
+.currency {
+  border: medium none transparent;
+  width: 8rem;
+  border-radius: 6px;
+  height: 1.5rem;
+}
+
+.plazos-label {
+  border-radius: 0 0 30px 30px;
+  background-color: white;
+  padding: 0 3.5rem;
+  box-shadow: -1px 12px 19px 5px rgb(0 0 0 / 16%);
+}
+
+.style_letter{
+  font-size: 1.8em;
+    font-weight: 300 !important;
+}
+
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.btn-invest {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.3rem 2.5rem;
+  z-index: 10;
+  font-family: 'Gill Sans MT';
+  letter-spacing: 0.1rem;
+}
+
+
+.btn-invest:hover {
+background-color: #223262;
+cursor: pointer;
+}
+
+.card-percent-conteiner{
+  width: 100%;
+}
+.content-cards{
+  width: 95%;
+}
+.btn-border-invest {
+  background-color: transparent;
+  border: 1px solid #000000;
+  position: absolute;
+  width: 140px;
+  height: 35px;
+  top: 4px;
+  border-radius: 3px;
+  left: calc(50% - 4px);
+  transform: translate(-50%, 0);
+}
+
+
+.input-label-top ,.input-label-bot{
+  background-color: transparent;
+  border:1px solid white;
+  width: 100%;
+  font-size: 1.3em;
+  font-weight: bold;
+  height: 40px;
+}
+
+.card-conteiner{
+  display: flex;
+  flex-direction: column;
+  padding-top: 45px;
+  flex-basis: 50%;
+  padding-bottom: 45px;
+  justify-content: center;
+  align-items: center;
+}
+.left-card{
+  background-color: #1225aa;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.rigth-card{
+  background-color: #e9a723;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.card-conteiner>img{
+  width: 38%;
+  position: relative;
+  top: -26px;
+}
+
+
+.input_total{
+  color: white;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-radius: 6px;
+}
+.input_conteiner{
+  margin-top: 3rem;
+  width: 100%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.color_blue{
+  background-color: #124278;
+  font-weight: normal;
+  font-size: 1.5em;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.color_blue2{
+  background-color: #f8f9fa;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+.textahorrobancario{
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.color_orange{
+  background-color: #EA6126;
+  font-weight: normal;
+  font-size: 1.5em;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.color_text_blue{
+  color:#004889;
+  font-weight: 700;
+}
+
+.color_text_orange{
+  color:#EA6126;
+  font-weight: 700;
+}
+
+.txt_white{
+  color: white;
+  text-align: center;
+}
+.monto_invertir{
+  width: 100%;
+}
+
+.monto_invertir>input{
+  background-color: #ffffff;
+  width: 100%;
+  color: #1225aa !important;
+  font-weight: 700;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  font-size: 1.5em;
+  height: 50%;
+  border: 2px solid;
+}
+
+.row_right{
+  width: 42%;
+  max-height: 475px;
+  display: flex;
+  justify-content: center;
+}
+
+.centrar_btn{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 9%;
+  margin-bottom: 9%;
+}
+
+
+.row_conteiner{
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  margin-top: 3%;
+  padding-bottom: 3%;
+}
+
+.rigth-card{
+  padding-top: 13%;
+}
+
+@media (max-width: 1100px) {
+  .title_simulator{
+    font-size: 2em;
+    margin-bottom: 13%;
+    margin-top: 3%;
+  }
+  
+  .style_letter{
+    font-size: 1.4em;
+    text-align: center;
+  }
+  .list{
+    font-size: 10px;
+  }
+
+}
+/* DESKTOP RESPONONSIVE */
+@media (min-width: 1100px) {
+
+  .title-container {
+    min-height: 10vw;
+  }
+
+  .title-background {
+    min-height: 100%;
+    max-width: 68%;
+  }
+
+  .span-container-title {
+    top: 8vw;
+    left: 0;
+    font-size: 3.2vw;
+    width: 63%;
+    max-width: 1000px;
+    font-weight: 700;
+    text-align: end;
+  }
+  
+}
+
+@media (max-width: 950px) {
+  #lst_inversion2 option:nth-child(1){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(1)::after { 
+    content:"$500";
+    float: left;
+    position: relative;
+    top: -20px;
+    visibility: visible;
+  }
+  #lst_inversion2 option:nth-child(2){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(2)::after { 
+    content:"$20K";
+    right: -13px;
+    float: left;
+    position: relative;
+    top: -20px;
+    visibility: visible;
+  }
+  #lst_inversion2 option:nth-child(3){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(3)::after { 
+    content:"$40K";
+    right: -13px;
+    float: left;
+    position: relative;
+    top: -21px;
+    visibility: visible;
+  }
+  #lst_inversion2 option:nth-child(4){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(4)::after { 
+    content:"$60K";
+    right: -13px;
+    float: left;
+    position: relative;
+    top: -21px;
+    visibility: visible;
+  }
+  #lst_inversion2 option:nth-child(5){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(5)::after { 
+    content:"$80K";
+    right: -13px;
+    float: left;
+    position: relative;
+    top: -21px;
+    visibility: visible;
+  }
+  #lst_inversion2 option:nth-child(6){
+    visibility: hidden;
+  }
+  #lst_inversion2 option:nth-child(6)::after { 
+    content:"$100K";
+    right: -13px;
+    float: left;
+    position: relative;
+    top: -21px;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 770px) {
+  .row_right{
+    width: 100%;
+    margin-top: 2%;
+  }
+  .row_conteiner{
+    width: 100%;
+    display: flex;
+    gap: 0%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-conteiner{
+    width: 206%;
+    margin-left: 0%;
+  }
+  .block_conteiner{
+    width: 60%;
+  }
+  .rigth-card{
+    padding-top: 11%;
+  }
+}
+
+@media (max-width: 767px) {
+  
+  .card-conteiner{
+    margin-left: 0%;
+    flex-basis: 40%;
+  }
+}
+
+
+
+/* MOBILE RESPONONSIVE */
+@media (max-width: 480px) {
+  .title-simulator{
+    font-size: 2em;
+    text-align: center;
+  }
+  .monto_invertir >input{
+    font-size: 1em;
+  }
+
+  .block_conteiner{
+    width: 80%;
+  }
+  .number-input input[type="number"] {
+    width: 70%;
+    font-size: 1.1rem;
+  }
+
+  .number-input button {
+    width: 15%;
+  }
+  .margin-5{
+    margin-top: 3rem !important;
+  }
+  
+}
+
+
+
+@media (max-width: 390px){
+  .title-simulator{
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+}
+@media (max-width: 290px){
+
+}

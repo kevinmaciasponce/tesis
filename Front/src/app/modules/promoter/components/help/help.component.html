@@ -1,0 +1,43 @@
+<div class="detail-steps">
+    <div *ngIf="toggle==false" (click)="toggle=true" style="cursor:pointer; width: fit-content;" >
+      <img src="assets/images/shared/question.png" style="width: 50px;" alt="">
+    </div>
+    <div *ngIf="toggle==true" class="steps"  style="cursor:pointer"> 
+      <p (click)="toggle=false" style="    background-color: #ff5f00;
+      color: white;
+      padding: 5px;
+      border-radius: 5px;">Pasos para realizar la solicitud</p>
+      <ul class="menu-steps">
+        <li class="title-steps" (click)="toggleDatos=!toggleDatos"> 1. Registar los datos de la Solicitud </li>
+        <ng-container *ngIf="toggleDatos">
+            <div target="#page=14">
+               Debe tener a mano los siguientes documentos
+               <ul>
+                <li>Escritura</li>
+                <li>Estatutos Vigentes</li>
+                <li>Estados Financieros (Año actual y Anterior)</li>
+                <li>Nombramiento y nómina de accionistas</li>
+                <li>Identificacion Representante Legal y Accionistas</li>
+               </ul>
+            </div>
+        </ng-container>
+        <li class="title-steps" (click)="toggle2=!toggle2"> 2. Pagar la factura generada </li>
+            <ng-container *ngIf="toggle2">
+                <div target="#page=14">
+                    Montos a pagar son 
+                </div>
+                <div style=" display: flex; justify-content: center;"  (click)="openSm(content)">
+                    <img style="width: 200px;" class="hoverEfect" src="assets/images/promotor/tablaPromotores.png" alt="">
+                </div>
+            </ng-container>
+      </ul>
+    </div>
+    <div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+	<div class="modal-body" style=" display: flex; justify-content: center;" >
+        <img class="img-modal" src="assets/images/promotor/tablaPromotores.png" alt="">
+	</div>
+</ng-template>

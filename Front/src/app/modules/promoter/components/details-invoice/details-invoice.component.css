@@ -1,0 +1,56 @@
+
+
+.invoice{
+    padding: 2%;
+}
+
+::ng-deep .modal-dialog{
+    max-width: 700px;
+}
+.logo-img{
+    width: 180px;
+}
+
+.header{
+    display: flex;
+    padding: 4% 1%;
+    justify-content: space-between;
+}
+
+.elements-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.data-invoice{
+    display: flex;
+
+}
+
+.width-table{
+    width: 675px;
+}
+.table-secondary2{
+    align-self: flex-end;
+    width: 200px;
+    margin-right: 14%;
+    margin-top: 2%;
+}
+
+.table-secondary2 > tr > th {
+    padding: 2%;
+}
+
+th{
+    color: #1225aa;
+    /* color: white; */
+    border-top: 2px solid #1225aa ;
+}
+.downloadButton{
+    border: none;
+    outline: none;
+}
+
+.downloadButton :focus{
+    outline: none;
+}

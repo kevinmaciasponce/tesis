@@ -1,0 +1,63 @@
+<div class="body">
+    <div class="container_">
+        <div class="top">
+            <app-menu-manager-operative></app-menu-manager-operative>
+        </div>
+        <div class="container_body">
+            <ul class="status_cards items_end">
+                <li class="blue_card">
+                    <a class="link_elements_card columna" [routerLink]="['/managerOper/intransit' ]">
+                        <div class="fila">
+                            <img class="ico_card" src="/assets/images/investor/ico1_w.png" alt="">
+                            <div class="txt_card">Pendiente de Aprobación
+                            </div>
+                        </div>
+                        <div class="txt_sol">
+                            Número de solicitudes: &nbsp; <div class="num_sol">{{cani}}</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="orange_card">
+                    <a class="link_elements_card columna">
+                        <div class="fila">
+                            <img class="ico_card" src="/assets/images/investor/ico2_w.png" alt="">
+                            <div class="txt_card">Consulta Liquidadas
+                            </div>
+                        </div>
+                        <div class="txt_sol">
+                            Número de solicitudes: &nbsp; <div class="num_sol"> </div>
+                        </div>
+                    </a>
+                </li>
+               
+            </ul>
+            <ul class="status_cards items_start">
+                <li class="orange_card">
+                    <a class="link_elements_card columna" [routerLink]="['/managerOper/valid' ]">
+                        <div class="fila">
+                            <img class="ico_card" src="/assets/images/investor/ico4_w.png" alt="">
+                            <div class="txt_card">Vigentes
+                            </div>
+                        </div>
+                        <div class="txt_sol">
+                            Número de solicitudes: &nbsp; <div class="num_sol"> {{cvig}}</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="blue_card">
+                    <a class="link_elements_card columna" >
+                        <div class="fila">
+                            <img class="ico_card" src="/assets/images/investor/ico5_w.png" alt="">
+                            <div class="txt_card">Liquidadas
+                            </div>
+                        </div>
+                        <div class="txt_sol">
+                            Número de solicitudes: &nbsp; <div class="num_sol"> 0</div>
+                        </div>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>

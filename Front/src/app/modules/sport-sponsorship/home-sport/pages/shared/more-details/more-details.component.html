@@ -1,0 +1,227 @@
+<div style="padding-top:110px ;" class="body">
+    <!-- <div class="display-all" >
+        <div class="btn-orange" > 
+            <a >Ver más</a>
+        </div> 
+        <div class="btn-orange"  style="background:#e9a723;"> 
+            <a >Enviar notificaciones</a>
+        </div> 
+    </div> -->
+    <div class="content">
+    <div class="text-content">
+        <div class="blur-box" *ngIf="!!deportista">
+            <img src="/assets/images/landing2/movil/logomultiplo.png" alt="Logo" class="logo-multiplo">  
+            <div class="title-content" style="    width: 82%;">
+                <table style="width: 100%;">
+                    <tr class="data-row titles-content" *ngIf="!!deportista.persona">
+                        <th style="margin-right:5%;">Nombre:</th>
+                            <td style="color: white;" *ngIf="deportista.persona.tipoPersona=='NAT'">{{deportista.persona.nombres}} {{deportista.persona.apellidos}}</td>
+                            <td *ngIf="deportista.persona.tipoPersona=='JUR'" style="text-overflow: hidden; color: white;"> {{deportista.persona.razonSocial}} </td>
+                    </tr>
+
+                    <tr class="data-row titles-content" *ngIf="!!deportista.beneficiario">
+                        <th style="margin-right:2%;"> Disciplina:</th>
+                        <td style="color: white;">{{deportista.beneficiario.disciplina}}</td>
+                    </tr>
+
+                    <tr class="data-row titles-content" *ngIf="!!deportista.beneficiario">
+                        <th style="margin-right:1%;">Categoría:</th>
+                        <td style="color: white;">{{deportista.beneficiario.categoria}}</td>
+                    </tr>
+                </table>
+                <!-- <div class="data-row titles-content">
+                    <div class="data-column">
+                        <div>Nombre:</div>
+                        <div>Disciplina:</div>
+                        <div>Categoría:</div>
+                    </div>
+                </div>
+                <div class="data-row">
+                    <div class="data-column">
+                        <div *ngIf="deportista.tipoPersona=='NAT'">{{deportista.nombres}} {{deportista.apellidos}}</div>
+                        <div *ngIf="deportista.tipoPersona=='JUR'" style="text-overflow: hidden;"> 
+                            {{deportista.razonSocial}} </div>
+                        <div>{{deportista.disciplina}}</div>
+                        <div>{{deportista.cateogira}}</div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="archivements">
+                <ul *ngIf="!!deportista.beneficiario">
+                    <li style="list-style: none;" class="titles titles-content">
+                        ¿Quién es nuestro deportista?
+                    </li>
+                    <li style=" text-align:justify; ">
+                        {{deportista.beneficiario.perfil}}
+                    </li>
+                </ul>
+                <div class="international">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Logros Internacionales
+                        </li>
+                        <table style="width: 100%;" >
+                            <tr class="data-row titles-content" *ngFor="let item of deportista.titulos" >
+                                    <td style="color: white;" class="space-table" *ngIf="item.rankingInternacional!=''">- {{item.nombreCompetencia}} </td>
+                                    <td style="color: white;" *ngIf="item.rankingInternacional!=''"> ( {{item.anioTitulo}})</td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+                <div class="national">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Logros Nacionales
+                        </li>
+                        <table style="width: 100%;" >
+                            <tr class="data-row titles-content" *ngFor="let item of deportista.titulos" >
+                                    <td style="color: white;" class="space-table" *ngIf="item.rankingNacional!=''">- {{item.nombreCompetencia}} </td>
+                                    <td style="color: white;" *ngIf="item.rankingNacional!=''">  ( {{item.anioTitulo}})</td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+                <div class="descripcion">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Perfil Deportivo
+                        </li>
+                        <table style="width: 100%;" class="tablaprofile" *ngIf="!!deportista.persona">
+                            <tr class="data-row titles-content" *ngIf="deportista.persona.tipoPersona=='NAT'" >
+                                    <td style="color: white;" class="space-table-profile data-profile" >Edad: </td>
+                                    <td style="color: white;" class="space-table-profile titles-profile">  {{CalculateAge(this.deportista.persona.fechaNacimiento)}}</td>
+                            </tr>
+                            <tr class="data-row titles-content"  *ngIf="!!deportista.persona">
+                                <td style="color: white;" class="space-table-profile data-profile" >Título Actual: </td>
+                                <td style="color: white;" class="titles-profile">  {{this.deportista.beneficiario.tituloActual}}</td>
+                            </tr>
+                            <tr class="data-row titles-content" *ngIf="!!deportista.valoracion">
+                                <td style="color: white;" class="space-table-profile data-profile" > Calificación MD No : </td>
+                                <td style="color: white;" class="titles-profile">  {{this.deportista.valoracion.calificacion}}</td>
+                            </tr>
+                            <tr class="data-row titles-content" *ngIf="!!deportista.valoracion" >
+                                <td style="color: white;" class="space-table-profile data-profile" >Fecha de Calificación: </td>
+                                <td style="color: white;" class="titles-profile">  {{this.deportista.valoracion.fechaCalificacion}}</td>
+                            </tr>
+                        </table>
+                        <ul  class="ul-title" >
+                            <li class="titles titles-content">
+                                RANKING NACIONAL <br>
+                            </li> 
+                            <table style="width: 100%;" >
+                                <tr class="data-row titles-content" *ngFor="let item of deportista.titulos" >
+                                        <td style="color: white;" class="space-table"*ngIf="item.rankingNacional!=''">- {{item.rankingNacional}} </td>
+                                        <td style="color: white;" *ngIf="item.rankingNacional!=''"> ( {{item.anioTitulo}})</td>
+                                </tr>
+                            </table>
+                            
+                        </ul>
+                        <ul class="ul-title">  
+                           <li class="titles titles-content">
+                                RANKING INTERNACIONAL    <br>
+                           </li> 
+                           <table style="width: 100%;" >
+                                <tr class="data-row titles-content" *ngFor="let item of deportista.titulos" >
+                                        <td style="color: white;" class="space-table"*ngIf="item.rankingInternacional!=''">- {{item.rankingInternacional}} </td>
+                                        <td style="color: white;" *ngIf="item.rankingInternacional!=''"> ( {{item.anioTitulo}})</td>
+                                </tr>
+                            </table>
+                        </ul>
+                        <ul class="ul-title"> 
+                            
+                            <li class="titles titles-content">
+                                 Otros<br>
+                            </li>
+                            <table style="width: 100%;" >
+                                <tr class="data-row titles-content" *ngFor="let item of deportista.titulos" >
+                                        <td style="color: white;" class="space-table"*ngIf="item.otros!=''">- {{item.otros}} </td>
+                                        <td style="color: white;" *ngIf="item.otros!=''"> ( {{item.anioTitulo}})</td>
+                                </tr>
+                            </table>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="tournaments">
+                    <ul>
+                        <li style="list-style: none;" class="titles titles-content">
+                            Torneos a participar
+                        </li>
+                        <table style="width: 100%;" >
+                            <tr class="data-row titles-content" *ngFor="let torneo of deportista.torneos" >
+                                    <td style="color: white;" class="space-table"*ngIf="torneo.nombreTorneo!=''">- {{torneo.nombreTorneo}} </td>
+                                    <td *ngIf="torneo.fecha">({{retornarAnio(torneo.fecha)}}) </td>
+                                    <td style="color: white;" *ngIf="torneo.pais!='SELECCIONE UN PAIS'"> {{torneo.pais}}</td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-content">
+        <div class="blur-box data-total" *ngIf="!!deportista">
+
+            <div class="title-content title-font" *ngIf="!!deportista.auspicio">
+                <div class="data-row titles-content">
+                    <div class="data-column">
+                        <div>USD Aprobado:</div>
+                        <div>USD Recaudado:</div>
+                    </div>
+                </div>
+                <div class="data-row">
+                    <div class="data-column">
+                        <div>{{deportista.auspicio.montoSolicitado |currency  }}</div>
+                        <div>{{deportista.auspicio.montoRecaudado |currency}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progressbar" style="width: 80%;">
+                <div class="row_card_conteiner">
+                    <div class="progress" >
+                      <div class="progressbarWrapper">
+                        <span class="yellowBar" [ngClass]="porcenatjeprueba >=100?'suceessBar':'yellowBar'" [ngStyle]="{'width':porcenatjeprueba >=100?100:porcenatjeprueba+ '%'}" ></span>
+                        <div class="percent" [ngStyle]="{'color': porcenatjeprueba>=50?'#fff':'#1225aa'}"> <p *ngIf="porcenatjeprueba>=100">EXITOSO &nbsp;</p> {{porcenatjeprueba}}%</div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="video-conteiner">
+                <!-- <img src="{{deportista.rutaFoto1}}" style="aspect-ratio: 2 / 1; width: 100%;" alt=""> -->
+                <iframe class="video" [src]="video" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+                </iframe>
+            </div>
+
+            <div>
+                <table class="table" *ngIf="!!deportista.recompensas">
+                    <tr>
+                      <th scope="row" style="color: #ff5f00; display: flex;
+                      justify-content: center;">CATEGORÍAS</th>
+                      <th style="color: #ff5f00;">RECOMPENSAS</th>
+                    </tr>
+                    <tr>
+                      <th style="display: flex; align-items: center; flex-direction: column;"> ORO <img src="/assets/images/sponsorship/proyects/medalla-de-oro.png" class="ico-award" alt=""></th>
+                      <td>{{getRecompensas(deportista.recompensas,'ORO')}} </td>
+                    </tr>
+                    <tr>
+                        <th style="display: flex; align-items: center; flex-direction: column;">PLATA <img src="/assets/images/sponsorship/proyects/medalla-de-plata.png" class="ico-award" alt=""></th>
+                        <td>{{getRecompensas(deportista.recompensas,'PLATA')}} </td>
+                     </tr>
+                    <tr>
+                        <th style="display: flex; align-items: center; flex-direction: column;">BRONCE <img src="/assets/images/sponsorship/proyects/medalla-de-bronce.png" class="ico-award" alt=""></th>
+                        <td>{{getRecompensas(deportista.recompensas,'BRONCE')}} </td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="btn-conteiner display-mobile">
+        <div class="btn-orange"   [routerLink]="'/contact'"> 
+            <a >AUSPICIA ESTE DEPORTISTA</a>
+        </div> 
+    </div>
+</div>

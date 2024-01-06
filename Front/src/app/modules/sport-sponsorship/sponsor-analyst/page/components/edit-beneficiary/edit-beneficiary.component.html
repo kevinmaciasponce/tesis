@@ -1,0 +1,380 @@
+<div style="padding-top: 110px;">
+    <app-loading *ngIf="cargando"></app-loading>
+    <mat-stepper #stepper 
+            class="example-stepper" 
+            [orientation]="(stepperOrientation | async)!">
+            <mat-step  [stepControl]="datosdeportista" label="Datos personales" style="display: flex; justify-content: center;">
+            <form [formGroup]="datosdeportista"   class="formDatos">
+                <div class="row_" style=" gap:0px; color: #1225aa;">
+                    <div type="submit" class="persona_j btn-xs" >
+                        <a style="font-family: NexaBlack;">DATOS BENEFICIARIO (NATURAL - JURIDICO)
+                        </a>
+                    </div>
+                    <div class="line-title"></div>
+                </div>
+                <div class="data-content">
+                    <div class="error-style">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cédula/RUC</mat-label>
+                        <input matInput placeholder="Cédula/RUC" readonly (blur)="consultarBeneficiario()" (keypress)="keyPressNumbers($event)" (input)="setearData()" name="cedula" id="cedula" formControlName="cedula" required>
+                    </mat-form-field>
+                    <span class="" *ngIf="IsInvalid('cedula')">
+                        <div class="alert alert-danger" *ngIf="cedula?.errors?.['minlength']">Campo no cumple el mínimo
+                            de {{ cedula?.errors?.['minlength'].requiredLength }} caracteres</div>
+                        <div class="alert alert-danger" *ngIf="cedula?.errors?.['maxlength']">Campo supera máximo
+                            de {{ cedula?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                    </span>
+                    </div>
+                    <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombres" formControlName="nombre"  oninput="javascript:this.value=this.value.toUpperCase();" >
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput placeholder="Apellidos" formControlName="apellido"  oninput="javascript:this.value=this.value.toUpperCase();" >
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="tipoCliente=='JUR'">
+                    <mat-label>Razón social</mat-label>
+                    <input matInput placeholder="Razon Social" formControlName="razonSocial"  oninput="javascript:this.value=this.value.toUpperCase();" >
+                </mat-form-field>
+                <mat-form-field appearance="fill" *ngIf="tipoCliente=='JUR'">
+                    <mat-label>Año de inicio de actividad</mat-label>
+                    <input type="number" matInput placeholder="Año Actividad" formControlName="anioActividad"  oninput="javascript:this.value=this.value.toUpperCase();" >
+                </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="tipoCliente=='NAT'">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput placeholder="Fecha de nacimiento" type="date" formControlName="fechanacimiento" >
+                    </mat-form-field>
+
+                    <ng-select class="filter-look"  style="padding-bottom: 0;
+                    top: 7px;"
+                        [items]="nacionalidades" [ngModelOptions]="{standalone: true}"
+                        required
+                        [multiple]="false"
+                        bindLabel="gentilicio"
+                        groupBy="todos"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="true"
+                        bindValue="iso"
+                        placeholder="Seleccione la nacionalidad"
+                        [(ngModel)]="nacionalidad">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.gentilicio}} 
+                        </ng-template>
+                    </ng-select>
+                    <div class="error-style">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput placeholder="Título" (keypress)="keyPressNumbers($event)"  formControlName="celular" required>
+                    </mat-form-field>
+                    <span class="" *ngIf="IsInvalid('celular')">
+                        <div class="alert alert-danger" *ngIf="celular?.errors?.['minlength']">Campo no cumple el mínimo
+                        de {{ celular?.errors?.['minlength'].requiredLength }} caracteres</div>
+                        <div class="alert alert-danger" *ngIf="celular?.errors?.['maxlength']">Campo supera máximo
+                        de {{ celular?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                    </span>
+                    </div>
+
+                <ng-select class="filter-look"  style="top: 17px;"
+                    [items]="disciplinas" [ngModelOptions]="{standalone: true}"
+                    required
+                    [multiple]="false"
+                    bindLabel="nombre"
+                    groupBy="todos"
+                    [selectableGroup]="true"
+                    [selectableGroupAsModel]="true"
+                    [closeOnSelect]="true"
+                    bindValue="id"
+                    placeholder="Seleccione la disciplina"
+                    [(ngModel)]="disciplina">
+                    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                        <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                    </ng-template>
+                </ng-select>
+                <ng-select class="filter-look" style="top: 17px;"
+                    [items]="modalidades" [ngModelOptions]="{standalone: true}"
+                    required
+                    [multiple]="false"
+                    bindLabel="nombre"
+                    groupBy="todos"
+                    [selectableGroup]="true"
+                    [selectableGroupAsModel]="true"
+                    [closeOnSelect]="true"
+                    bindValue="id"
+                    placeholder="Seleccione la modalidad"
+                    [(ngModel)]="modalidad">
+                    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                        <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                    </ng-template>
+                </ng-select>
+                <ng-select class="filter-look" style="top: 17px;"
+                    [items]="categorias" [ngModelOptions]="{standalone: true}"
+                    required
+                    [multiple]="false"
+                    bindLabel="nombre"
+                    groupBy="todos"
+                    [selectableGroup]="true"
+                    [selectableGroupAsModel]="true"
+                    [closeOnSelect]="true"
+                    bindValue="id"
+                    placeholder="Seleccione la categoría"
+                    [(ngModel)]="categoria">
+                    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                        <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                    </ng-template>
+                </ng-select>
+                <mat-form-field appearance="fill" >
+                <mat-label>Correo</mat-label>
+                <input type="email" matInput placeholder="Correo" formControlName="correo"   required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="perfil-deportivo">
+                <mat-label>Perfil deportivo</mat-label>
+                <input matInput placeholder="Perfil deportivo" formControlName="perfil"  required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="perfil-deportivo">
+                <mat-label>Título Actual</mat-label>
+                <input matInput placeholder="Título Actual" formControlName="tituloAct"  required>
+            </mat-form-field>
+            </div>
+
+            <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div type="submit" class="persona_j btn-xs" >
+                    <a style="font-family: NexaBlack;">DATOS BANCARIOS
+                    </a>
+                </div>
+                <div class="line-title"></div>
+            </div>
+            <div class="data-content">
+                <ng-select class="filter-look"  style="top: 17px;"
+                    [items]="bancos" [ngModelOptions]="{standalone: true}"
+                    
+                    [multiple]="false"
+                    bindLabel="nombre"
+                    groupBy="todos"
+                    [selectableGroup]="true"
+                    [selectableGroupAsModel]="true"
+                    [closeOnSelect]="true"
+                    bindValue="idBanco"
+                    placeholder="Seleccione el banco"
+                    [(ngModel)]="banco">
+                    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                        <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.nombre}} 
+                    </ng-template>
+                </ng-select>
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Títular de cuenta</mat-label>
+                    <input matInput placeholder="Título" oninput="javascript:this.value=this.value.toUpperCase();" formControlName="titular" >
+                </mat-form-field> -->
+                <ng-select class="filter-look" style="top: 17px;"
+                    [items]="tipo_cuentas" [ngModelOptions]="{standalone: true}"
+                    [multiple]="false"
+                    bindLabel="valor"
+                    groupBy="todos"
+                    [selectableGroup]="true"
+                    [selectableGroupAsModel]="true"
+                    [closeOnSelect]="true"
+                    bindValue="valor"
+                    placeholder="Seleccione el tipo cuenta"
+                    [(ngModel)]="tipo_cuenta">
+                    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+                        <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" [ngModelOptions]="{standalone: true}"/> {{item.valor}} 
+                    </ng-template>
+                </ng-select>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nro Cuenta</mat-label>
+                    <input matInput placeholder="Nro Cuenta" (keypress)="keyPressNumbers($event)"  formControlName="cuenta" >
+                </mat-form-field>
+            </div>
+            <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div type="submit" class="persona_j btn-xs" >
+                    <a style="font-family: NexaBlack;">INGRESE FOTO
+                    </a>
+                </div>
+                <div class="line-title"></div>
+            </div>
+            <div class="row_" style="justify-content: center; margin-top: 3%;
+            margin-bottom: 5%;">
+                <div class="column">
+                <div class="container-input ">
+                    <input type="file" name="file-7" id="file-7" class="inputfile inputfile-7" (change)="onFilechange($event,1)" />
+                    <label for="file-7" placeholder="Cargar Documento" class="upload">
+                    <span class="iborrainputfile">{{nombredocfrontal}}</span>
+                        <strong class="img-load">
+                            <img class="imgdoc" src="assets/images/shared/uploadDoc.png" alt="">
+                        </strong>
+                    </label>
+                </div>
+                <div class="centrar upload" *ngIf="urlphoto" >
+                    <a [attr.href]="urlphoto"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 50%;" alt="">Ver </a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="container-input ">
+                    <input type="file" name="file-8" id="file-8" class="inputfile inputfile-7" (change)="onFilechange($event,2)" />
+                    <label for="file-8" placeholder="Cargar Documento"  class="upload">
+                    <span class="iborrainputfile">{{nombredocposterior}}</span>
+                        <strong class="img-load">
+                            <img class="imgdoc"  src="assets/images/shared/uploadDoc.png" alt="">
+                        </strong>
+                    </label>
+                </div>
+                <div class="centrar upload" *ngIf="urlphoto2" >
+                    <a [attr.href]="urlphoto2" target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 50%;" alt="">Ver </a>
+                </div>
+            </div>
+            </div>
+                <div class="button-steps">
+                <button mat-button  (click)="RegresarVentana()" style="background: #767676;" class="btn-orange">Regresar</button>
+                <button mat-button (click)="validar()" class="btn-orange">Siguiente</button>
+                </div>
+            </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" label="Agregar títulos">
+            <form #formRef="ngForm"  style="display: flex; flex-direction: column; gap: 10px; max-width: 655px;">
+            <div class="row_" style=" gap:0px; color: #1225aa;">
+                <div type="submit" class="persona_j btn-xs" >
+                    <a style="font-family: NexaBlack;">TÍTULOS OBTENIDOS
+                    </a>
+                </div>
+                <div class="line-title"></div>
+            </div>
+            <div *ngFor="let word2 of words2; let in=index" class="column">
+                <div>
+                Título N: {{in+1}}
+                </div>
+                <div class="row_3">
+                <!--<p [hidden]="words2[in].value">Field is required</p>
+                {{formRef.form.name1}}-->
+                    <mat-form-field appearance="fill">
+                    <mat-label>Nombre Competencia</mat-label>
+                    <input type="text" matInput [(ngModel)]="words2[in].nombreCompetencia" autocomplete="disabled" name="nombre{{in}}"  #name="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                    <mat-label>Año</mat-label>
+                    <input type="number" min="1970" max="2029" step="1" matInput [(ngModel)]="words2[in].anio" name="anio{{in}}" autocomplete="disabled"  #name="ngModel" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ranking nacional</mat-label>
+                        <input type="text" matInput [(ngModel)]="words2[in].nacional" name="nacional{{in}}" autocomplete="disabled" [readonly]="words2[in].internacional!=''||words2[in].otros!='' ? 'true' : 'false'"   #name="ngModel" > 
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ranking internacional</mat-label>
+                        <input type="text" matInput [(ngModel)]="words2[in].internacional" name="internacional{{in}}"  [readonly]="words2[in].nacional!=''||words2[in].otros!='' ? 'true' : 'false'"  autocomplete="disabled" #name="ngModel" >
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                    <mat-label>Otros</mat-label>
+                    <input type="text" matInput [(ngModel)]="words2[in].otros" name="otros{{in}}"   [readonly]="words2[in].internacional!=''||words2[in].nacional!='' ? 'true' : 'false'" autocomplete="disabled" #name="ngModel" >
+                    </mat-form-field>
+                    <input type="hidden" [(ngModel)]="words2[in].idTitulo" autocomplete="disabled" name="idTitulo{{in}}"  #name="ngModel" >
+                </div>
+            </div>
+            <div style="border-radius: 15px; padding: 5px 10px 5px 10px;
+                        background: #e8a721; color: white;">
+                <span>
+                Se deben agregar mínimo 3 y máximo 10 títulos
+                </span>
+            </div>
+            <div>
+                <button  class="btn-orange" 
+                style="background-color: #1225aa;"  (click)="add(formRef.form.valid)">Agregar Títulos</button>
+            </div>
+                <div  class="button-steps">
+                <button mat-button matStepperPrevious  style="background: #767676;" class="btn-orange">Regresar</button>
+                <button mat-button (click)="validarForm2()"  class="btn-orange">Siguiente</button>
+                </div>
+            </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup" label="Agregar valoración">
+                <div class="content-modal"  style="display: flex; flex-direction: column; gap: 10px; max-width: 655px;">
+
+                    <div class="row_" style=" gap:0px; color: #1225aa;">
+                        <div type="submit" class="persona_j btn-xs"  style="padding-left: 1%; padding-top: 1%;">
+                            <a style="font-family: NexaBlack;">AGREGAR VALORACIÓN DEL MDD (Ministerio del Deporte)
+                            </a>
+                        </div>
+                        <div class="line-title"></div>
+                    </div>
+                
+                    <form class="form-style" [formGroup]="thirdFormGroup">
+                        <div class="column-form">
+                            
+                            <div class="row-form">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Seleccionar Año</mat-label>
+                                    <select matNativeControl (change)="actualizarAnio()" formControlName="selectyear">
+                                        <option value="2022" selected>2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                </mat-form-field>
+                                <div>
+                                    <div>
+                                        Adjuntar el oficio de aprobación(.pdf) MDD 
+                                    </div>
+                                    <div class="container-input ">
+                                        <input type="file" name="file-9" id="file-9" class="inputfile inputfile-7" (change)="onFilechange2($event,1)" />
+                                        <label for="file-9" placeholder="Cargar Documento" class="upload">
+                                        <span class="iborrainputfile">{{nombredocfrontal3}}</span>
+                                            <strong class="img-load">
+                                                <img class="imgdoc" src="assets/images/shared/uploadDoc.png" alt="">
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="centrar upload" *ngIf="urlphoto3" >
+                                        <a [attr.href]="urlphoto3"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 50%;" alt="">Ver </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-form">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Código de valoración MDD </mat-label>
+                                    <input type="text" matInput name="cod"  formControlName="cod" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Fecha De Calificación MDD </mat-label>
+                                    <input type="date" matInput name="fechaCalificacion" formControlName="fechaCalificacion" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="row-form">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Presupuesto aprobado {{anio}} USD</mat-label>
+                                    <input type="text" matInput name="preAprobado1" formControlName="preAprobado1" value="0" currencyMask required >
+                                </mat-form-field>
+                                <section >
+                                    <mat-checkbox  [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Presupuesto Bianual</mat-checkbox>
+                                </section>
+                            </div>
+                            <div class="row-form"  >
+                                <mat-form-field appearance="fill" >
+                                    <mat-label>Vigencia del Presupuesto</mat-label>
+                                    <input type="date" matInput name="fechaVigencia" formControlName="fechaVigencia" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Valor Recibido a la fecha</mat-label>
+                                    <input type="text" matInput name="valRecibido" formControlName="valRecibido" value="0" currencyMask >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row-form"  >
+                            <div  class="button-steps">
+                                <button mat-button matStepperPrevious  style="background: #767676;" class="btn-orange">Regresar</button>
+                                <button  class="btn-orange"  mat-button (click)="guardaValoracion()">Guardar</button>
+                              </div>
+                        </div>
+                    </form>
+                    <div>
+                    </div>
+                </div>
+                </mat-step>
+            <mat-step label="Listo">
+               <div style="display: flex; flex-direction:column; justify-content: space-evenly;height: 450px;align-items: center;">              
+                    <img src="/assets/images/register/newDesign/logoblue.png" class="logo-img" />
+                    <div>
+                        <button mat-button (click)="RegresarVentana()" style="background: #5fd455;" class="btn-orange">Regresar</button>
+                    </div>
+                </div>
+            </mat-step>
+    </mat-stepper>
+</div>

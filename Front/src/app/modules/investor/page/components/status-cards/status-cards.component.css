@@ -1,0 +1,96 @@
+.status_cards{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 3;
+    justify-content: space-around;
+    margin-top: 3%;
+    Flex-wrap: wrap;
+    width: 100%;
+}
+
+.blue_card{
+    background: url('/assets/images/investor/status_card_blue.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 80px;
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orange_card{
+    background: url('/assets/images/investor/status_card_orange.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 80px;
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link_elements_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    padding: 2%;
+}
+
+.fila{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.columna{
+    display: flex;
+    flex-direction: column;
+}
+
+.ico_card{
+    margin-right: 15px;
+}
+.opt_menu{
+    display: flex;
+    flex-grow: 1;
+}
+.txt_card{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+}
+
+@media (max-width: 1700px) {
+    
+    /* statuscard component */
+    .status_cards{
+        font-size: 0.8em;
+        flex-wrap: wrap;
+    }
+    .blue_card{
+        margin: 1%;
+        flex-basis: 207px;
+    }
+    .orange_card{
+        margin: 1%;
+        flex-basis: 207px;
+    }
+}
+
+@media (max-width: 800px) {
+    .status_cards{
+        display: none;
+    }
+    
+}
+

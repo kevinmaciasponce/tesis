@@ -1,0 +1,72 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="row_">
+    <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; align-items: center;">
+        <ul class="menu_items">
+            <li class="items_conteiner">Lista de solicitudes</li>
+        </ul>
+
+        <div style="margin-bottom: 10px;">
+            <section style="border-radius: 20px !important; height: 40px; width: 250px; padding: 2%; font-size: 1.3em;"
+                class="box-flex"> {{nombreEmpresa}} </section>
+        </div>
+        <div class="scrollbar_ "
+            style="display: flex; flex-direction: column; justify-content: center; width: 100%; align-items: left;">
+            <table
+                style="margin: auto; display: flex; flex-direction: column; justify-content: center; width: 720px; align-items: left;">
+                <tr>
+                    <th>
+                        <section class="theader-flex">Código Solicitud</section>
+                    </th>
+                    <th>
+                        <section class="theader-flex">Monto Recaudado</section>
+                    </th>
+                    <th>
+                        <section class="theader-flex">Inversionistas</section>
+                    </th>
+
+                </tr>
+                <tr *ngFor="let datos of solicitudes">
+                    <td>
+                        <section class="box-flex"> {{datos.numeroSolicitud}}</section>
+                    </td>
+                    <td>
+                        <section class="box-flex"> ${{datos.montoInversion}}</section>
+                    </td>
+                    <td>
+                        <section class="box-flex"> {{datos.inversionista}}</section>
+                    </td>
+                    <td>
+                        <section (click)="goMasDetalle2(datos.numeroSolicitud)" class="ico_style"> 
+                            <img  style="width: 40px;" src="/assets/images/analyst/ico_btns/icoTabla.png" alt=""></section>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding:30px; ">
+            <tr>
+                <th>
+                    <section style="width:100px ;" class="theader ">Total:</section>
+                </th>
+                <td>
+                    <section style="width:100px ;" *ngIf="!!details" class="box-style">${{details.totalInversion}}</section>
+                </td>
+            </tr>
+        </div>
+
+        <th>
+            <section style="width: 250px;" class="theader-flex">OBSERVACIONES</section>
+        </th>
+        <td> <textarea #obs style="width: 250px; height: 70px ;" class="box-flex"></textarea></td>
+
+        <div class="contentBoton" style="padding:30px ;">
+          
+                <div><button (click)="guardar(obs.value)" type="submit" style="width: 180px;" class="btn_">
+                        <section class="titles">GUARDAR</section>
+                    </button></div>
+                <div> <button type="submit" style="width: 180px;" class="btn_" (click)="cerrar()">
+                        <section class="titlesorange">CERRAR</section>
+                    </button> </div>
+        </div>
+    </div>
+</div>

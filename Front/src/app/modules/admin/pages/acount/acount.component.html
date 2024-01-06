@@ -1,0 +1,40 @@
+<div class="body">
+    <div [ngSwitch]="elementSelect" >
+        <button *ngIf="elementSelect !=''" (click)="elementSelect=''" class="btn btn-info" style="color: white;" >
+            Regresar
+        </button>
+
+        <div *ngSwitchDefault style="display: flex; gap: 50px; margin-top: 2%; justify-content: center;">
+            <mat-card class="efectoSobre" style="width: 450px;" (click)="elementSelect='Cuenta'" >
+                <mat-card-header>
+                <mat-card-title>ADMINISTRAR CUENTA INTERNA</mat-card-title>
+                </mat-card-header>
+                <mat-card-content style="display: flex; justify-content: center;">
+                <img class="ico-width" src="assets/images/admin/ico/empleo.png" alt="">
+                <mat-divider></mat-divider>
+                </mat-card-content>
+                <mat-card-footer>
+                <mat-progress-bar mode="query"></mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+
+            <mat-card class="efectoSobre" style="width: 450px; display:none" (click)="elementSelect='Roles'">
+                <mat-card-header>
+                    <mat-card-title>ASIGNAR ROLES</mat-card-title>
+                </mat-card-header>
+                <mat-card-content style="display: flex; justify-content: center;">
+                    <img class="ico-width" src="assets/images/admin/ico/grupos.png" alt="">
+                    <mat-divider></mat-divider>
+                </mat-card-content>
+                <mat-card-footer>
+                    <mat-progress-bar mode="query"></mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+
+        <app-createaccount *ngSwitchCase="'Cuenta'"></app-createaccount>
+        <app-assingrole *ngSwitchCase="'Roles'"></app-assingrole>
+
+
+    </div>
+</div>

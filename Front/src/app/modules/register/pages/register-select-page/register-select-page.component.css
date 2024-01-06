@@ -1,0 +1,196 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'NexaRegular';
+}
+.row_{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    width: auto;
+    height: auto;
+    gap: 80px;
+    margin-top: 2%;
+
+}
+.column_{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.column>img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.crea_cuenta{
+    font-size: 3em;
+    color: #e06222;
+    margin-top: 3.8vh;
+    margin-left: 17vh;
+}
+
+.Invierte{
+    font-size: 40px;
+    color: #1225aa;
+}
+
+.asi_construyes{
+    font-size: 40px;
+    color: #1225aa;
+    font-weight: lighter;
+}
+.btnRegister{
+    border-radius: 7px; 
+    padding: 0.25rem; 
+    width: 170px;
+    width: 215px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5f00;
+}
+
+.btnRegister{
+    color: white !important;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+.btnRegister:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: transform 0.4s;
+  }
+
+.data{
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: -9%;
+    color: white;
+    font-size: 4em;
+    font-family: NEXABLACK;
+}
+.imagen{
+    width: 100%;
+    height: 100%;
+}
+
+
+.crea_div{
+    background: url('/assets/images/register/select/Recurso18.png');
+    background-repeat: no-repeat;
+    background-size: 80% 40%;
+    margin-top: 5vh;
+    padding-bottom: 5px;
+    width: 90vh;
+    height: 20vh;
+}
+.texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.my-class{
+    width: 200%;
+    height: 200%;
+} 
+@media only screen and (max-width: 950px) {
+    
+    .body{
+        height: 65vh;  
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .data{
+        font-size: 2em;
+    }
+    .row_{
+        gap: 25px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .column> img{
+        width: 6vh;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .body{
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-bottom: 7%;
+    }
+    .data{
+        padding-bottom: 0px;
+        height: 0px;
+        top: -7%;
+        position: absolute;
+        font-size: 2em;
+    }
+    .row_{
+        flex-direction: column;
+        margin-bottom: 6%;
+        align-items: center;
+        gap: 25px;
+    }
+    .crea_div{
+        
+        background-repeat: no-repeat;
+        background-size: 80% 50%;
+        margin-top: 5vh;
+        padding-bottom: 5px;
+        width: 50vh;
+        height: 10vh;
+    }
+    .Invierte{
+        font-size: 20px;
+       
+    }
+    
+    .asi_construyes{
+        font-size: 20px;
+    
+        font-weight: lighter;
+    }
+    .texto{
+        margin-left: 15px;
+        margin-right: 15px;
+        text-align: center;
+    }
+    a{
+        font-size: 10px;
+    }
+    
+}

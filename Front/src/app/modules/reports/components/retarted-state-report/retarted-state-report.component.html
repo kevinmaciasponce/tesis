@@ -1,0 +1,126 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="content">
+
+    <div class="filter-content-box" >
+        <div class="title-filter">
+            Filtros de consulta
+        </div>
+
+        <div class="filtercontent">
+            <div class="filter-year">
+                <div class="column_">
+                    <span>  Seleccione el año </span>
+                    <div class="radio_container ">
+                        <div>
+                            <label for="si_residente">2022</label>
+                            <input type="radio" [checked]="anio22" (change)="changeGender($event)"  id="si_residente" name="es_residente"  value="2022"  class="input_style">                           
+                        </div>
+                        <div>
+                            <label for="no_residente">2023</label>
+                            <input type="radio" [checked]="anio23" (change)="changeGender($event)" id="no_residente" name="es_residente" value="2023"  class="input_style">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="filter">
+                    <ng-select class="month-filter"
+                        [items]="month"
+                        [multiple]="true"
+                        bindLabel="month"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="false"
+                        bindValue="id"
+                        placeholder="Seleccione los meses"
+                        [(ngModel)]="selectmonth">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.month}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+            <div>
+                <div class="filter">
+                    <ng-select class="month-filter"
+                        [items]="empresas"
+                        [multiple]="true"
+                        bindLabel="nombreEmpresa"
+                        [selectableGroup]="true"
+                        [selectableGroupAsModel]="true"
+                        [closeOnSelect]="false"
+                        bindValue="codProyecto"
+                        placeholder="Seleccione empresa"
+                        [(ngModel)]="empresaSelected">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.nombreEmpresa}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="justify-center">
+            <button class="btn-orange" (click)="consultar()">
+                <div>
+                    Consultar
+                </div>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="tble" class="data">
+
+    
+    <div class="title-report">
+        REPORTE DE DEPÓSITOS EN MORA
+    </div>
+    <div class="investor-content">
+        <div>
+            <img src="/assets/images/landing2/movil/logo.png" class="logo-img">
+        </div>
+    </div>
+    <div class="investor tot" *ngIf="!!datos">
+        <div class="title-investor total">
+            Promedio de días de atraso: 
+        </div>
+        <div class="title-description total">{{datos.totalReporte}}</div>
+    </div>
+</div>
+    <div class="scrollbar_">
+        <table class="table-outer" id="tble2">
+            <tr *ngFor="let item of reporteFecha ; last as i; index as j"  >
+                <div class="title-reports"><tr>
+                    <div>  {{filtrarEmpresa(item.codProyecto)}}</div>
+                    <div>  Prom atrasos: {{item.totalProyecto}} </div>
+                    </tr>
+                </div>
+               
+                <table *ngFor="let mes of item.listaCuotas ; last as i; first as j2" >
+                    <th class="theader trow" style="vertical-align: middle; text-align: center;">  {{mes.mes}} <br /> Prom atrasos: {{mes.totalMes}}</th>
+                    <table>
+                        <tr *ngIf="j2">
+                            <th class=""> <section class="theader justify-center header-inner">Días atraso</section> </th>
+                            <th class=""> <section class="theader justify-center header-inner">Fecha cobro</section> </th>
+                            <th class=""> <section class="theader justify-center header-inner">Fecha Pago</section> </th>
+                        </tr>
+                        <tr *ngFor="let ite of mes.reporteFechaProyecto">
+                            <td > <section class="background"> <section class="border">{{ite.diasAtraso}}</section>  </section> </td>
+                            <td > <section class="background"> <section class="border">{{ite.fechaCobro}} </section>  </section> </td>
+                            <td > <section class="background"> <section class="border">{{ite.fechaPago}}</section>  </section> </td>
+                        </tr>
+                    </table>
+                </table>
+            </tr>
+        </table>
+    </div>
+
+    <div class="centrarbtn" >
+        <div class="centrarbtn" (click)="captureScreen()" style="cursor: pointer;">
+            <img type="button" value="Exportar PDF" src="/assets/images/analyst/ico_btns/cargaArchivos.png" ngbTooltip="Descargar PDF" class="img" />
+            <p>Exportar PDF</p>
+        </div>
+        
+    </div>
+</div>

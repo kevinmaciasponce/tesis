@@ -1,0 +1,19 @@
+<div style="background-color: transparent;"> 
+    <div class="torunaments" *ngIf="!!auspicio" >
+        <table class="table-class" >
+            <tr class="titles">
+                <th colspan="3" style="text-align: center;">TORNEOS A COMPETIR</th>
+            </tr>
+            <tr class="titles-content">
+                <th>Nombre Torneo</th>
+                <th>País</th>
+                <th>Fecha</th>
+            </tr>
+            <tr *ngFor="let torneos of auspicio;">
+                <td >{{torneos.nombreTorneo}}</td>
+                <td >{{torneos.pais!='SELECCIONE UN PAIS'?torneos.pais:''}}</td>
+                <td >{{torneos.fecha}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

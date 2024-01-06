@@ -1,0 +1,63 @@
+.body{
+    font-family: NexaRegular !important;
+}
+.example-card{
+    width: 330px;
+    margin: 0% 2% 2% 2%;
+    font-family: NexaRegular !important;
+}
+.main-content{
+    padding-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btnReg{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: NexaRegular;
+    padding: 0 0 3%;
+
+}
+.description{
+    overflow-y: scroll;
+    height: 120px;
+}
+::-webkit-scrollbar {
+    appearance: none;
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #3a3c3d;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.9);
+  }
+.btn-registrar {
+    font-size: 1em;
+    border-radius: 15px;
+    background: #1225aa;
+    color: white;
+    width: 250px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Title-reg{
+    font-size: 2em;
+    color: #1225aa;
+    padding: 2%;
+}
+
+@media (max-width: 480px) {
+    .Title-reg{
+        font-size: 1.3em;
+    }
+  }

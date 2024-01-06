@@ -1,0 +1,28 @@
+<div class="body">
+    <div class="data">
+       CREA TU CUENTA
+    </div>
+    <div class="texto">
+        <h1 class="Invierte">¡Invierte hoy!</h1><br>
+        <h3 class="asi_construyes">Así contruyes un mejor futuro para tí y tu país</h3>
+    </div>
+    <div class="row_">
+        <div class="column">
+            <img class="img" src="/assets/images/register/newDesign/user.png" alt="">
+            <div class="text-center">
+                <div class="" [routerLink]="'/register/crear-cuenta/natural'" (click)="set_data('ruta','natural')" >  
+                    <section class="btnRegister">Persona Natural</section>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <img class="img" src="/assets/images/register/newDesign/bank.png" alt="">
+            <div class="text-center">
+                <div class="" [routerLink]="'/register/crear-cuenta/juridica'" (click)="set_data('ruta','juridica')"> 
+                    <section class="btnRegister">Persona Juridica</section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div style="display: flex; flex-direction: column; justify-content: center; width: 100%; font-size: 1em; ">
+    <div class="scrollbar_">
+        <div class="row_ " >
+            <div style="padding-right: 5px;">
+                <table *ngIf="!!amortizacion">
+                    <tr>
+                        <th class="theader container-theader">Cliente: </th>
+                        <section class="box-style-flex container-theader"> {{amortizacion.cliente}}</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">País:</th>
+                        <section class="box-style-flex container-theader"> {{amortizacion.pais}}</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Proyecto:</th>
+                        <section class="box-style-flex container-theader"> {{amortizacion.codigoProyecto}}</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Inversión:</th>
+                        <section class="box-style-flex container-theader">${{amortizacion.amortizacion.montoInversion}}</section>
+                    </tr>
+                </table>
+            </div>
+        
+            <div>
+                <table *ngIf="!!amortizacion">
+                    <tr>
+                        <th class="theader container-theader ">Fecha Generación: </th>
+                        <section class="box-style container-theader"> {{amortizacion.amortizacion.fechaGeneracion}} </section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Plazo: </th>
+                        <section class="box-style container-theader"> {{amortizacion.amortizacion.plazo}} Dias</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Rendimiento neto:</th>
+                        <section class="box-style container-theader">{{amortizacion.amortizacion.rendimientoNeto}}%</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Rendimiento inversión $</th>
+                        <section class="box-style container-theader">${{amortizacion.amortizacion.rendimientoTotal}}</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader">Total a recibir</th>
+                        <section class="box-style container-theader">${{amortizacion.amortizacion.totalRecibir}}</section>
+                    </tr>
+                    <tr>
+                        <th class="theader container-theader ">Fecha efectiva: </th>
+                        <section class="box-style container-theader"> {{amortizacion.amortizacion.fechaEfectiva}} </section>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="scrollbar_ ">
+        <table *ngIf="!!amortizacion">
+            <thead>
+                <th class="theader ">Fecha de cobro</th>
+                <th class="theader ">Detalles de cobro </th>
+                <th class="theader ">Rendimiento mensual </th>
+                <th class="theader ">Saldo de capital</th>
+                <th class="theader ">Cobros de capital </th>
+                <th class="theader ">Total a recibir</th>
+                <th *ngIf="(obtenerurlactual()=='invality'||obtenerurlactual()=='valid')&& cuenta!=2 " class="theader ">Estado Pago</th>
+                <th *ngIf="(obtenerurlactual()=='invality'||obtenerurlactual()=='valid')&& cuenta!=2   " class="theader ">Comprobante</th>
+                
+            </thead>
+            <tr *ngFor="let ito of values; last as isLast" >
+                <td>
+                    <section *ngIf="!isLast" class="box-style" style="text-align: right; padding-right: 40%;">{{ito.fechaCobro}}</section>
+                    <section *ngIf="isLast" class="theader" style="text-align: right; padding-right: 40%;">{{ito.detalleCobro}}</section>
+                </td>
+                <td>
+                    <section *ngIf="!isLast" class="box-style"> {{ito.detalleCobro}}</section>
+                    <section *ngIf="isLast" class="theader"> {{ito.fechaCobro}}</section>
+                </td>
+                <td>
+                    <section *ngIf="!isLast" class="box-style" style="text-align: right;">${{ito.rendimientoMensual}}</section>
+                    <section *ngIf="isLast" class="theader" style="text-align: right;">${{ito.rendimientoMensual}}</section>
+                </td>
+                <td>
+                    <section *ngIf="!isLast" class="box-style" style="text-align: right; ">${{ito.saldoCapital}}</section>
+                    <section *ngIf="isLast" class="theader" style="text-align: right; ">${{ito.saldoCapital}}</section>
+                </td>
+                <td>
+                    <section *ngIf="!isLast" class="box-style" style="text-align: right;">${{ito.cobrosCapital}}</section>
+                    <section *ngIf="isLast" class="theader" style="text-align: right;">${{ito.cobrosCapital}}</section>
+                </td>
+                <td>
+                    <section *ngIf="!isLast" class="box-style" style="text-align: right; ">${{ito.totalRecibir}}</section>
+                    <section *ngIf="isLast" class="theader" style="text-align: right; ">${{ito.totalRecibir}}</section>
+                </td>
+                <td *ngIf="(obtenerurlactual()=='invality'||obtenerurlactual()=='valid')&& cuenta.idTipoTabla!=2 ">
+                    <div *ngIf="!isLast" class="box-style" style="text-align: right; padding-right: 40%;">{{ito.estadoPago}}</div>
+                    <div *ngIf="isLast" class="theader" style="text-align: right; padding-right: 40%;"></div>
+                </td>
+                
+                <td *ngIf="(obtenerurlactual()=='invality'||obtenerurlactual()=='valid')&& cuenta.idTipoTabla!=2 ">
+                    <div *ngIf="!isLast" class="box-style" style="text-align: right; padding-right: 40%;">
+                        <a *ngIf="ito.ruta!=null" href="{{ito.ruta}}"  target="_blank"><img src="/assets/images/investor/ico_cedula.png" style="width: 15%;" alt="">Ver comprobante </a>
+                    </div>
+                    <div *ngIf="isLast" class="theader" style="text-align: right; padding-right: 40%;"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

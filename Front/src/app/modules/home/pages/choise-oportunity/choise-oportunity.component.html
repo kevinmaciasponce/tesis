@@ -1,0 +1,157 @@
+<!-- <app-loading ></app-loading> -->
+
+
+<section>
+
+  <div style="background: #1225aa;">
+
+    <div class="title-oportunity">
+      <section>¿Cómo invertir?</section>
+    </div>
+
+    <div class="btns-title">
+      <div class="btn-orange" [routerLink]="'/register/choice'">
+        <a>REGÍSTRATE</a>
+      </div>
+      <div class="btn-yellow height-title" [routerLink]="'/register/iniciar_sesion'">
+        <a>OPORTUNIDAD PARA INVERTIR</a>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="d-flex justify-content-center flex-wrap max-width" *ngIf="!!projects">
+
+        <div class="card_conteiner " [ngClass]=" project.estado=='AVANCE' ? 'right' : 'left'"
+          *ngFor="let project of projects.slice(0, 6);">
+          <div class="img_contenier">
+
+            <img [src]="filtrarRutas(project.proyectoRutas)" class="imagen-proyect" alt="" loading="lazy">
+          </div>
+
+          <div class="text_conteiner">
+
+            <div class="title-content" style="flex-basis: 25%;">
+              <div class="row_card_conteiner">
+                <div class="column_card title-proyect" style="align-items: center; text-align: center;">
+                  <span>{{project.empresa.nombre}}</span>
+                </div>
+              </div>
+
+              <div class="row_card_conteiner">
+                <div class="progress">
+                  <div class="progressbarWrapper">
+                    <span class="yellowBar"
+                      [ngClass]="convert((project.avanceInversion*100)/project.montoSolicitado) >=100?'suceessBar':'yellowBar'"
+                      [ngStyle]="{'width':convert((project.avanceInversion*100)/project.montoSolicitado)>=100? 100 :convert((project.avanceInversion*100)/project.montoSolicitado)+ '%'}"></span>
+                    <div class="percent"
+                      [ngStyle]="{'color': convert((project.avanceInversion*100)/project.montoSolicitado)>=50?'#fff':'#1225aa'}">
+                      <p *ngIf="convert((project.avanceInversion*100)/project.montoSolicitado)>=100">EXITOSO &nbsp;</p>
+                      {{(project.avanceInversion*100)/project.montoSolicitado | number:'2.2-2'}}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description_conteiner">
+              <div class="row_card_conteiner">
+                <div class="column_card marginbuttom">
+                  <span class="titulo_card">SECTOR</span>
+                  <span class="text_card">{{project.empresa.nombreActividad}}</span>
+                </div>
+              </div>
+
+              <div class="row_card">
+                <div class="column_card">
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">MONTO</span>
+                      <span class="text_card" style="font-size: 1.2em;">{{'$'+project.montoSolicitado}}</span>
+                    </div>
+
+                  </div>
+
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">PAÍS</span>
+                      <span class="text_card">{{project.empresa.pais}}</span>
+                    </div>
+                  </div>
+
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">DESTINO</span>
+                      <span class="text_card" style="text-align: justify;">{{project.destinoFinanciamiento}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column_card mrgend">
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">TASA</span>
+                      <span class="text_card" style="font-size: 1.2em;">{{project.tasaEfectivaAnual+'%'}}</span>
+                    </div>
+                  </div>
+
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">PLAZO</span>
+                      <span class="text_card">{{project.plazo}} meses</span>
+                    </div>
+                  </div>
+
+                  <div class="row_card mrgtop">
+                    <div class="column_card marginbuttom">
+                      <span class="titulo_card">FRECUENCIA</span>
+                      <span class="text_card">{{project.pagoInteres}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="btn_conteiner" style="flex-basis: 50%;">
+              <div class="row_">
+                <div class="column_">
+                  <div *ngIf="project.estado=='AVANCE'" class="btn-container">
+                    <div class="btn-orange">
+                      <a (click)="goto_register()">INVERTIR</a>
+                    </div>
+                  </div>
+
+                  <div *ngIf="(project.avanceInversion*100)/project.montoSolicitado>=100" class="btn-container">
+
+                  </div>
+
+                  <div class="btn-container">
+                    <div class="btn-yellow"
+                      *ngIf="project.empresa.nombre!='MEGATOURS'&& project.empresa.nombre!='GYPCONSTRU' ">
+                      <a (click)="handleViewMore(project)">EXPLORAR MÁS</a>
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <div class="btn-yellow"
+                      *ngIf="(project.empresa.nombre=='MEGATOURS'&& project.empresa.nombre=='GYPCONSTRU')||project.estado!='AVANCE'">
+                      <a (click)="goto_notify()">RECIBIR NOTIFICACIONES</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-container" style="    padding-bottom: 10%;">
+        <div class="btn-orange">
+          <a>Ver más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

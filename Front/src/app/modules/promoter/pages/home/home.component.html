@@ -1,0 +1,90 @@
+<app-help style="top: 25%;
+display: inline-flex;
+left: 2%;
+height: 0;
+position: fixed;
+z-index: 9;" cdkDragLockAxis="y" cdkDrag  cdkDragBoundary=".example-boundary"></app-help>
+
+<div style="padding-top: 110px; display: flex; flex-wrap: wrap; min-height: 500px; align-items: center; justify-content: center; gap: 5%;">
+    <mat-card  matTooltip="Ingresa tus datos y completa tu solicitud" matTooltipPosition="above" class="example-card" style="min-width: 222px; display: flex; flex-direction: column; gap: 20px;">
+      <mat-card-subtitle style="cursor: pointer; text-align: center;">1. Solicita financiamiento</mat-card-subtitle>
+      <mat-card-title-group style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <mat-card-title style="cursor: pointer;" >Registrar solicitud</mat-card-title>
+        <img mat-card-sm-image src="/assets/images/promotor/ingresarProyecto.png" >
+      </mat-card-title-group>
+      <mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
+        <button mat-button class="btn btn-primary" [routerLink]="['/promoter/register']">Agregar</button>
+      </mat-card-content>
+    </mat-card>
+
+    <img src="assets/images/shared/right-arrow.png" class="display-img" style="width: 50px;" alt="">
+
+    <mat-card class="example-card" style="min-width: 222px; display: flex; flex-direction: column; gap: 20px;">
+      <mat-card-subtitle style="cursor: pointer; text-align: center;">2. Ver facturas</mat-card-subtitle>
+      <mat-card-title-group style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <mat-card-title>Ver facturas</mat-card-title>
+        <img mat-card-sm-image src="/assets/images/promotor/factura.png" >
+      </mat-card-title-group>
+      <mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
+        <button mat-button class="btn btn-primary" (click)="ingresarFacturas('ver')">Agregar</button>
+      </mat-card-content>
+    </mat-card>
+
+    <img src="assets/images/shared/right-arrow.png" class="display-img" style="width: 50px;" alt="">
+
+    <mat-card class="example-card" style="min-width: 222px; display: flex; flex-direction: column; gap: 20px;">
+      <mat-card-subtitle style="cursor: pointer; text-align: center;">3. Pagar facturas</mat-card-subtitle>
+      <mat-card-title-group style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <mat-card-title>Pagar facturas</mat-card-title>
+        <img mat-card-sm-image src="/assets/images/promotor/factura.png" >
+      </mat-card-title-group>
+      <mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
+        <button mat-button class="btn btn-primary" (click)="ingresarFacturas('registrar')">Agregar</button>
+      </mat-card-content>
+    </mat-card>
+</div>
+
+<div style="display: flex;
+justify-content: center; flex-direction: column; margin: 4% 0; " *ngIf="!!proyectos">
+
+<div style="align-self: center; margin-bottom: 4%;     background-color: #1225aa;
+color: white;
+padding: 1% 8%;
+border-radius: 5px;
+font-size: 1.5em;" >Solicitudes en Proceso</div>
+  
+<div style="display: flex;
+justify-content: center;">
+<mat-card *ngFor="let item of proyectos" style="border: 1px solid #a3a2a2;
+padding: 0;
+margin-bottom: 3%;
+border-radius: 20px;min-width: 222px; display: flex; flex-direction: column; gap: 20px;">
+<mat-card-title-group style=" background-color: #1225aa;color: white;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+  <mat-card-title style="padding: 2%;">Empresa: {{item.nombreEmpresa}}</mat-card-title>
+  <mat-card-subtitle style="padding: 2%;color: white;">Destino Financiamiento: {{item.destinoFinanciamiento}}</mat-card-subtitle>
+  
+</mat-card-title-group>
+<mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
+  <div style="display: flex; justify-content: center; gap: 15px;padding: 0 16px;">
+    <div style="display: flex; flex-direction: column;">
+      <div>Cod Proyecto: {{item.idProyecto}}</div>
+      <div>Plazo: {{item.plazo}} Meses</div>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div>Monto Solicitado: {{item.montoSolicitado|currency}}</div>
+      <div>Tasa: {{item.tasaEfectivaAnual}}%</div>
+    </div>
+  </div>
+</mat-card-content>
+<mat-card-actions style="display: flex; justify-content: center;">
+  <button mat-button (click)="editarDatos(item.idProyecto)" class="btn btn-primary">Editar</button>
+</mat-card-actions>
+<mat-card-footer style="padding: 0 0 16px;">
+  <mat-card-subtitle style="display: flex; justify-content: center;">Estado: {{item.estado}}</mat-card-subtitle>
+</mat-card-footer>
+</mat-card>
+</div>
+  
+</div>

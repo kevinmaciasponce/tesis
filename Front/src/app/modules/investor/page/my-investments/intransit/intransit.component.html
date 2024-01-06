@@ -1,0 +1,150 @@
+<div class="body  ">
+    <div class="container_">
+        
+        <div class="container_body">
+            <div class="background_card scrollbar_form">
+                <div class="">
+                    <div class="bg ">
+                        <div class="box">
+                            <form [formGroup]="registrationForm" (submit)="consultar()">
+                                <ul class="menu_items">
+                                    <li class="items_conteiner"> Inversiones En Tránsito</li>
+                                </ul>
+                                <div class="line-title">         </div>
+                                <div class="row_">
+                                    <div class="" style="width: 100%;
+                                    display: flex;
+                                    justify-content: center;">
+                                        <table >
+                                            <div (click)="isOpenConsulta=toggleState(isOpenConsulta)" style="text-align: left; width: 100%; margin-bottom: 5px;cursor: pointer;">
+                                                <section class="titles" style="font-size: 1.5em;">Filtros de consulta  <span style="font-size: 10px;">▼</span></section>
+                                            </div>
+                                            <div *ngIf="isOpenConsulta;else close">
+                                            </div>
+                                            <ng-template #close>
+                                                <tr>
+                                                    <th><section   class="theader ">Número de solicitud:</section></th>
+                                                    <input class="box-style" type="text" id="numsol" name="numsol" formControlName="numsol">
+                                                </tr>
+                                                <tr>
+                                                    <th><section   class="theader ">Nombre de Empresa:</section></th>
+                                                    <select  class="box-style" id="codProyecto" name="codProyecto" formControlName="codProyecto" [ngClass]="{}">
+
+                                                        <option  value=null>TODOS</option>
+                                                        <option  *ngFor="let item of empresas"
+                                                            [value]="item.codProyecto">
+                                                            {{item.nombreEmpresa}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section   class="theader ">Calificación de Riesgo:</section></th>
+                                                    <select  class="box-style" id="riesgos" name="riesgos" formControlName="riesgos" [ngClass]="{}">
+
+                                                        <option  value=null> TODOS</option>
+                                                        <option  *ngFor="let item of calificaciones"
+                                                            [value]="item.idTipoCalificacion">{{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section   class="theader ">Sector:</section></th>
+                                                    <select  class="box-style" id="sectors" name="sectors" formControlName="sectors">
+                                                        <option value=null>TODOS</option>
+                                                        <option *ngFor="let item of sectores" [value]="item.idActividad">
+                                                            {{item.nombre}}
+                                                        </option>
+                                                        
+                                                    </select>
+                                                </tr>
+                                                <tr>
+                                                    <th><section   class="theader ">Estado:</section></th>
+                                                    <td> <input value="EN TRÁNSITO"
+                                                    class="box-style" readonly></td>
+                                                </tr>
+                                            </ng-template>
+                                        </table>
+                                    </div>
+                                    <div class="img_gif">
+                                        <a [routerLink]="['/investor/home']" >
+                                            <img src="/assets/images/investor/sigueinvirtiendot.gif" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 5px; text-align: center; width: 100%;justify-content: center;
+                                display: flex; ">
+                                    <div type="submit" style="width: 180px;" class="btn-orange" (click)="consultar()">
+                                        <a class="">Consultar</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div style="display: flex; flex-direction: row; width: 100%;">
+                                <div style="justify-content: flex-start; width: 70%; ">
+                                    <div style=" width: 115%;">
+                                        <section class="titles titles-content" style="margin-top: 15px; font-size: 1.7em;">Detalles de la Consulta
+                                        </section>
+                                    </div>
+
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; width: 100%;">
+                                    <img (click)="exportToExcel()" class="ico_menu justify-content: flex-end;" src="/assets/images/investor/icoword.png" alt="">
+                                </div>
+                            </div>
+
+
+
+                            <div class="scrollbar_">
+                                <table id="season-tble" style=" border-collapse: separate;
+                                border-spacing: 1px 1px;">
+                                    <thead>
+                                        <th><section class="theader-flex">Número de Solicitud</section></th>
+                                        <th><section class="theader-flex" >Código de proyecto</section></th>
+                                        <th><section class="theader-flex" >Nombre de la Empresa</section></th>
+                                        <th><section class="theader-flex" >Inversión realizada</section></th>
+                                        <th><section class="theader-flex" >Plazo Meses</section></th>
+                                        <th><section class="theader-flex" >Estado <img class="ico_menu" *ngIf="!!detallestatus" src="/assets/images/shared/status.png" alt="" matTooltipPosition="above" matTooltip={{detallestatus.detalle}}></section> </th>
+                                        
+                                    </thead>
+                                    <tr *ngFor="let datos of solicitudes">
+                                        <td class="background"> <section class="border"> <a> {{datos.numeroSolicitud}}</a></section></td>
+                                        <td class="background"> <section class="border"> {{datos.codProyecto}}</section>
+                                        </td>
+                                        <td class="background"> <section class="border">{{datos.nombreEmpresa}}</section>
+                                        </td>
+                                        <td class="background"> <section class="border" style="display: flex; text-align: end; justify-content: flex-end;">${{datos.montoPago }}</section>
+                                        </td>
+                                        <td class="background"> <section class="border" style="display: flex ;flex-direction:row;">
+                                                <section style="width: 100%;">
+                                                    {{datos.plazo}}
+                                                </section>
+                                               <section style="justify-content: flex-end ;">
+                                                <img  (click)="goMasdetalle(datos.numeroSolicitud,datos.codProyecto)" class="ico_width ico_style2"
+                                                matTooltipPosition="above" matTooltip="Ver Tabla de Amortización"
+                                                src="/assets/images/analyst/ico_btns/icoTabla.png" alt="">
+                                               </section>
+                                                </section>
+                                        </td>
+                                        <td class="background"> <section class="border">{{datos.estado}}</section>
+                                        </td>
+                                     
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+    </div>
+</div>
+
+<!-- <div>
+    <input type="button" value="Convert" (click)="captureScreen()"/>
+  </div> -->

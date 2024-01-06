@@ -1,0 +1,216 @@
+.row_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    align-content: space-around;
+    width: 100%;
+    height: max-content;
+    padding-top: 110px;
+    font-family: 'NexaRegular';
+}
+.secimg{
+    width: 45%;
+    height:100%; 
+    text-align: left;
+    
+}
+.secform{
+    width: 50%;
+    height:100%; 
+    text-align: left;
+}
+
+.background_card {
+    width: 100%;
+    height: max-content;
+}
+.bg {
+    box-shadow: rgb(0 0 0 / 48%) 0px 12px 14px;
+    height: 100%;
+    border-radius: 10px;
+    width: 100%;
+    padding: 9px;
+}
+
+.btn-orange{
+    border-radius: 7px;
+    padding: 0.25rem;
+    width: 325px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+  }
+  
+  .btn-orange > a{
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  .btn-orange:hover {
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+
+.box {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 5%;
+    height: 100%;
+    font-family: 'NexaRegular';
+}
+section{
+    color: #1225aa;
+}
+.rows{
+    display: flex;
+}
+.txt_blue{
+    color: #1225aa;
+    
+}
+.ico-form{
+    flex-basis: 3%;
+}
+.line-title{
+    height: 3px;
+    border-radius: 1px;
+    width: 100%;
+    background-image: linear-gradient(to right, #e8a721, #e66122);
+}
+.text-title{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 97%;
+}
+.box-style {
+    border-radius: 10px !important;
+    text-align: left;
+    background-color: transparent;
+    border: solid 2px #1225aa;
+    padding: 1%;
+    font-size: 1em;
+    color: black;
+    width: 200px;
+    height: 40px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+.alert-danger{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    font-size: 0.7em;
+    height: 55px;
+}
+.row_2{
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+
+.column_{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.policies-group{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2%;
+    gap: 15px;
+    text-align: justify;
+}
+.titles {
+    color: white;
+    background-color: #004889;
+    border-color: #004889;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-size: 1.5em;
+    width: max-content;
+    height: 50px;
+}
+.titlesorange {
+    color: white;
+    border-color: #e06222;
+    padding: 3%;
+    border-radius: 5px;
+    font-size: 1.5em;
+    white-space: nowrap;
+}
+
+
+.scrollbar_ {
+    overflow-y:scroll;
+    height: max-content;
+    max-width: 700px;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #0b65b1;
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+  .leyend{
+    padding: 2% 8%;
+    background-color: #1225aa;
+    color: white;
+    font-size: 1em;
+    text-align: justify;
+  }
+ 
+@media (max-width: 1600px) {
+
+    
+    .secform{
+        width: 60%;
+        text-align: left;
+    }
+  
+}
+
+@media (max-width: 1000px) {
+    .background_card {
+        width: 100%;  
+    }
+    .secform{
+        width: 70%;
+        text-align: left;
+    }
+}
+@media (max-width: 800px) {
+    .secimg{
+        width: 0;
+        height: 0;
+    }
+   
+    .secform{
+        width: 90%;
+        text-align: left;
+    }
+    .box{
+        padding: 2%;
+    }
+}
+@media (max-width: 450px) {
+.titles {
+    width: 100%;
+    height: 50px;
+}
+.leyend{
+    font-size:0.8em;
+}
+}

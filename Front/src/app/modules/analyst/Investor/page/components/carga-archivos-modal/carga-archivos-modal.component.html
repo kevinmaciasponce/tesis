@@ -1,0 +1,93 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="background_card">
+    <div class="bg">
+        <div class="box">
+            <div class="row_">
+                <form [formGroup]="registrationForm" #ngForm="ngForm" (ngSubmit)="cargarArchivos()" >
+                    <table >
+                        <tr >
+                            <th><section class="titles" style="font-size: 1.5em; width: 100%;">{{nombreEmpresa}}</section></th>
+                        </tr>
+                        <tr >
+                            <th><section   class="theader "> ANEXO - DATOS INVERSIONISTA </section></th>
+                            <input type="file" name="fileAnexo" id="fileAnexo"  class="inputfile inputfile-7" formControlName="fileAnexo"
+                            (change)="this.onFilechange($event,0)" />
+                            <label for="fileAnexo" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[0]}}</span>
+                            <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                            </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">CONTRATO DE PRENDA RI - INDIVIDUAL</section></th>
+                            <input type="file" name="fileContrato" id="fileContrato"  formControlName="fileContrato" class="inputfile inputfile-7" (change)="this.onFilechange($event,1)" />
+                            <label for="fileContrato" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[1]}}</span>
+                                <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                    <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                                </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">Multiplos - Modelo de contrato de Financiamiento Colaborativo[6393]</section></th>
+                            <input type="file" name="fileModelo" id="fileModelo" class="inputfile inputfile-7" formControlName="fileModelo" (change)="this.onFilechange($event,2)" />
+                            <label for="fileModelo" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[2]}}</span>
+                                <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                    <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                                </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">PAGARÉ A LA ORDEN - INDIVIDUAL </section></th>
+                            <input type="file" name="filePagare" id="filePagare" class="inputfile inputfile-7" formControlName="filePagare" (change)="this.onFilechange($event,3)" />
+                            <label for="filePagare" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[3]}}</span>
+                                <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                    <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                                </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">Tabla de amortización </section></th>
+                            <input type="file" name="fileTabla" id="fileTabla" formControlName="fileTabla" class="inputfile inputfile-7" (change)="this.onFilechange($event,4)" />
+                            <label for="fileTabla" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[4]}}</span>
+                                <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                    <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                                </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">Multiplos - Acuerdo de Uso de Promotor Usuario-Plataforma </section></th>
+                            <input type="file" name="fileAcuerdo" id="fileAcuerdo" formControlName="fileAcuerdo" class="inputfile inputfile-7" (change)="this.onFilechange($event,5)" />
+                            <label for="fileAcuerdo" placeholder="Cargar Documento">
+                            <span class="iborrainputfile">{{nombredoc[5]}}</span>
+                                <strong style=" margin-left: -26%; margin-top: -3%;" >
+                                    <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                                </strong>
+                            </label>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th> <section class="" style="width: 100%; height: 100%;font-size: 0.7em;
+                                font-weight: normal;"> Se deben ingresar archivos en formato PDF </section></th>
+                        </tr>
+                        <tr>
+                            <th><section  class="theader ">Observación </section></th>
+                            <textarea style="text-align: justify;" id="observacion" formControlName="observacion"
+                            name="observacion" rows="4" cols="50" [(ngModel)]="observacion"
+                            class="box-flex" ></textarea>
+                        </tr>
+                    </table>
+                    <div class="btn_load">
+                        <button type="submit" class="btn_" >
+                            <section class="titlesorange">Cargar archivos</section>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

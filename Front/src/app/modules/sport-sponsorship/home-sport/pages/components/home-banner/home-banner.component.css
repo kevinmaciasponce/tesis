@@ -1,0 +1,454 @@
+.carousel{
+    padding-top: 110px;
+    height: 745px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content-carousel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .elements-below{
+    position: relative;
+    top: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  .title-oportunity {
+    color: #1225aa;;
+    display: flex;
+    justify-content: center;
+    font-size: 3em;
+    height: 45px;
+    margin-bottom: 4%;
+    font-family: "NexaBlack";
+  }
+  .title-oportunity>section{
+    background: rgba(0, 0, 0, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(6px);
+    padding: 2%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 20px;
+    font-size: 2em;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    top: 30%;
+    left: 50vh;
+    right: 50vh;
+    background: rgba(0, 0, 0, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .background-img{
+    background-image: url('/assets/images/sponsorship/proyects/bannersoc.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    background-color: #214ce82e;
+    font-family: "NexaRegular", Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+  }
+
+  .background-img2{
+    background-image: url('/assets/images/sponsorship/proyects/bannerrun.webp');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: luminosity;
+    background-color: #214ce82e;
+    background-repeat: no-repeat;
+    font-family: "NexaRegular", Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .ico_steps{
+    width: 28%;
+  }
+  .ico_steps2{
+    width: 20%;
+  }
+  .ico_steps3{
+    width: 27%;
+  }
+  .ico_align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .title-container {
+    position: relative;
+  
+  }
+  
+  .space{
+    height: 130px;
+  }
+  
+  .title-style{
+    color: white; 
+    font-size:4em;
+    line-height:60px;
+    font-family: "NexaBlack";
+  }
+  .title-style2{
+    color: white; 
+    font-size:4em;
+    line-height:60px;
+    font-family: "NexaBlack";
+  }
+  .title-background {
+    width: 80%;
+    max-width: 800px;
+  }
+  
+  .style_icotxt{
+    color: white; 
+    display: flex; 
+    flex-direction: column;  
+    font-size: 2em;  
+    margin-top: 8%;
+    line-height: 100%;
+    text-align: center;
+  }
+  
+  .title {
+    color: #E06222;
+  }
+  .display-mobile{
+    display: none;
+  }
+  
+  .span-container-title {
+    position: absolute;
+    min-width: 186px;
+    top: calc(1rem + 1vw);
+    left: 0;
+    font-size: 3.2vw;
+    width: 63%;
+    max-width: 1000px;
+    text-align: end;
+  }
+  
+  .img-carrousel {
+    width: 90%;
+  }
+  
+  
+  .carousel-indicators [data-bs-target] {
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 100%;
+    width: 0;
+    height: 0;
+    display: none;
+    align-items: center;
+  }
+  
+  .row_{
+    display: flex;
+  }
+  .row_2{
+    display: flex;
+    flex-basis: 80%;
+  }
+  .txt_pasos{
+    flex-basis: 64%;
+    font-weight: 900;
+    font-family: "NexaBlack";
+  }
+  
+  .ico_text{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 37%;
+    line-height: 30px;
+  }
+  .elements-conteniners{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 3%;
+    align-items: center;
+  }
+  .btn-orange{
+    border-radius: 7px;
+    padding: 0.25rem;
+    width: 325px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+  }
+  
+  .verticalLine {
+    border-left: 3px solid rgb(255, 95, 0);;
+    height: 150px;
+  }
+  
+  .btn-orange > a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  
+  .btn-orange:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  
+  .text-conteiner{
+    font-size: 2em;
+    color: #1225aa;
+    line-height: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+    max-width: 800px;
+  }
+  
+  .texto-monto{
+    display: flex; 
+    justify-content: center; 
+  }
+  
+  .mobile-content{
+    display: none;
+  }
+  .pc-content{
+    display: inline;
+  }
+  .row_style{
+    display: flex;
+  }
+  .ganancias{
+    font-size:1.4em;
+  }
+  @media (max-width: 1880px) {
+  .img-banner{
+    left: 25vh;
+    right: 25vh;
+    }
+}
+
+  @media (max-width: 1300px) {
+    .ico_text{
+      font-size: 0.6em;
+      line-height: 20px;
+    }
+    .img-banner{
+        left: 25vh;
+        right: 25vh;
+    }
+  }
+  @media (max-width: 950px) {
+    .txt_pasos{
+      font-size: 3em;
+    }
+    .verticalLine{
+      height: 100px;
+    }
+
+    .img-banner{
+        left: 8vh;
+        right: 8vh;
+    }
+    
+  }
+  
+  @media (max-width: 800px) {
+    .row_style{
+      display: flex;
+      flex-direction: column;
+    }
+    .verticalLine{
+      height: 100px;
+    }
+  
+    .ganancias{
+      font-size:1em;
+    }
+    .title-style{
+      font-size:2em;
+      line-height:40px;
+    }
+    .title-style2{
+      font-size:3em;
+      line-height:40px;
+    }
+    .ico_text{
+      font-size: 0.6em;
+    }
+  }
+  @media (max-width: 750px) {
+    .ico_text{
+      font-size: 0.5em;
+      line-height: 20px;
+    }
+  }
+  
+  @media (max-width: 750px) {
+    .ico_text{
+      font-size: 0.5em;
+    }
+    
+    .space{
+      height: 260px;
+    }
+  
+    .elements-below{
+      flex-direction: column;    
+    }
+    .title-oportunity > section{
+        font-size: 0.7em;
+    }
+  }
+  @media (max-width: 580px) {
+    
+    .img-banner{
+        left: 3vh;
+        right: 3vh;
+        font-size: 1.4em;
+    }
+  }
+  /* MOBILE RESPONONSIVE */
+  @media (max-width: 480px) {
+  
+    .span-container-title {
+      font-size: 19px;
+      top: calc(0.6rem + 0.3vw);
+    }
+  
+    .img-carrousel {
+      width: 70%;
+    }
+  
+    .ico_text{
+      font-size: 0.5em;
+    }
+  
+    .carousel-indicators {
+      bottom: -30px;
+    }
+  
+    .mobile-content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: start;
+    }
+    .pc-content{
+      display: none;
+    }
+    .carousel-indicators [data-bs-target] {
+      padding: 0.2rem;
+    }
+  
+    .background-1>img{
+      display: none;
+    }
+    
+    .title-background{
+      width: 90%;
+    }
+  
+    .row_{
+      flex-direction: column;
+    }
+    .row_2{
+      margin-top: 9%;
+    }
+    .content-carousel{
+      flex-direction: column;
+    }
+    .style_icotxt{
+      margin-top: 2%; 
+      line-height: 20px;
+    }
+    .ico_steps2{
+      margin-bottom: 7%;
+    }
+  
+    .elements-below{
+      flex-direction: column;
+      top: 409px;
+    }
+  
+    .btn-orange{
+      width: 240px;
+    }
+    .btn-orange>a{
+      font-size: 1em;
+    }
+  
+    .text-conteiner{
+      font-size: 1.3em;
+      max-width: 220px;
+    }
+  
+    .space{
+      height: 160px;
+    }
+    .title-style{
+      font-size: 2em;
+      line-height: 105%;
+    }
+  
+    .style_icotxt{
+      line-height: 20px;
+    }
+    .title-oportunity> section {
+        margin-top: 8%;
+        font-size: 0.5em;
+    }
+  }
+  
+  
+  @media (max-width: 340px) {
+    .ico_text{
+      font-size: 0.3em;
+      line-height: 10px;
+    }
+    .title-style{
+      font-size: 1.5em;
+      line-height: 100%;
+    }
+    .title-style2{
+      font-size: 2em;
+    }
+    
+    .style_icotxt{
+      line-height: 10px;
+    }
+    .verticalLine{
+      height: 50px;
+    }
+  }
+   

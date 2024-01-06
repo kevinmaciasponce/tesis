@@ -1,0 +1,255 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div class="container_">
+    <div class="">
+        <div class="">
+            <div *ngIf="tipocliente=='invierte'" class="banner_">
+            </div> 
+            <div *ngIf="tipocliente!='invierte'"class="banner_financiamiento">
+            </div>
+            <div class="formulario">
+                <form [formGroup]="registrationForm1" class="" novalidate (ngSubmit)="onSubmit()" #ngForm="ngForm">
+                    <div class="conteiner_form">
+                    <div class="overflow-hidden form-body">
+                        <div class="px-4  sm:p-6 border-form">
+                            <div>
+                                <div class="txt_blue" ><h1 class="">Formulario de registro</h1></div>
+                                <div class="rows">
+                                  <div class="ico-form">
+                                    <img src="/assets/images/landing2/movil/icoUser.png " alt="">
+                                  </div>
+                                  <div class="text-title">
+                                    <div class="line-title">         </div>
+                                    <h3 class="txt_blue txt_bold">PERSONA JURÍDICA</h3> 
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            <div class="">
+                                <div class="form-group row">
+                                    <div class="col-12 col-lg-6">
+                                        <label class="label-form" for="razonSocial">Razón Social</label>
+                                        <input type="text" name="razonSocial" id="razonSocial" formControlName="razonSocial"
+                                            class="input-label form-control" placeholder="Razón Social" oninput="javascript:this.value=this.value.toUpperCase();" >
+                                            <span class="" *ngIf="IsInvalid('razonSocial')">
+                                                <div class="alert alert-danger">{{'Este campo requiere entre 5 y 100 carácteres'}}</div> 
+                                            </span>
+                                    </div>
+                                    <div class="mt-4  mt-lg-0 col-12 col-lg-6">
+                                        <label class="label-form" for="ruc">RUC de la empresa</label>
+                                        <input type="text" name="ruc" id="ruc" formControlName="ruc" placeholder="RUC de la empresa"
+                                            (keypress)="keyPressNumbers($event)"
+                                            class="form-control input-label">
+                                            <span *ngIf="IsInvalid('ruc')">
+                                                <div class="alert alert-danger" *ngIf="ruc?.errors?.['required']">
+                                                Este campo es requerido
+                                                </div>
+                                                <div class="alert alert-danger" *ngIf="ruc?.errors?.['minlength']">Campo no cumple el mínimo
+                                                de {{ ruc?.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                <div class="alert alert-danger" *ngIf="ruc?.errors?.['maxlength']">Campo supera máximo
+                                                de {{ ruc?.errors?.['maxlength'].requiredLength }} caracteres</div>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mt-4">
+
+                                    <div class="col-12 col-lg-6">
+                                        <label class="label-form" for="nacionalidad">Nacionalidad</label>
+                                        <ng-select id="nacionalidad" name="nacionalidad" formControlName="nacionalidad" 
+                                        class="form-control input-label" placeholder="- Nacionalidad - " >
+                                            <ng-option *ngFor="let item of nacionalidades" [value]="item.iso" >{{item.gentilicio}} </ng-option>
+                                         </ng-select>
+                                        <span *ngIf="IsInvalid('nacionalidad')">
+                                            <div class="alert alert-danger">{{'Este campo es requerido'}} </div>
+                                        </span>
+                                    </div>
+
+                                    <div class="mt-4  mt-lg-0 col-12 col-lg-6">
+                                        <label class="label-form" for="telefono">Teléfono del contacto</label>
+                                        <input type="text   " name="telefono" id="telefono" placeholder="Teléfono del contacto"
+                                            maxlength="10"
+                                            (keypress)="keyPressNumbers($event)" formControlName="telefono"
+                                            class="form-control input-label">
+                                            <span *ngIf="IsInvalid('telefono')">
+                                                <div class="alert alert-danger"> {{'Este campo requiere 10 digitos'}}</div>
+                                            </span>
+                                    </div>
+                                </div>
+                                                                    
+                                <div class="form-group row mt-4">
+                                    
+                                    <div class="col-12 col-lg-6">
+                                        <label class="label-form" for="nombreContacto">Nombre de la persona de contacto</label>
+                                        <input type="text" name="nombreContacto" id="nombreContacto" formControlName="nombreContacto" placeholder="Nombre de la persona de contacto"
+                                            (keypress)="keyPressAlpha($event)"
+                                            class="form-control input-label"  oninput="javascript:this.value=this.value.toUpperCase();">
+                                            <span class="" *ngIf="IsInvalid('nombreContacto')">
+                                                <div class="alert alert-danger">{{'Este campo requiere entre 5 y 100 carácteres'}}</div>
+                                                </span>
+                                    </div>
+                                    <div class="mt-4 mt-lg-0 col-12 col-lg-6">
+                                        <label class="label-form" for="cargoContacto">Cargo de la persona de contacto</label>
+                                        <input type="text" name="cargoContacto" id="cargoContacto" formControlName="cargoContacto" placeholder="Cargo de la persona de contacto"
+                                            (keypress)="keyPressAlpha($event)"
+                                            class="form-control input-label"  oninput="javascript:this.value=this.value.toUpperCase();">
+                                            <span class="" *ngIf="IsInvalid('cargoContacto')">
+                                                <div class="alert alert-danger"> {{'Este campo es requerido'}} </div>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="form-group row mt-4">
+                                    <div class="col-12">
+                                        <label class="label-form" for="correoElectronico">Correo electrónico de contacto</label>
+                                        <input type="email" name="correoElectronico" id="correoElectronico" placeholder="Correo electrónico de contacto"
+                                            formControlName="correoElectronico"
+                                            class="form-control input-label">
+                                            <span class="" *ngIf="IsInvalid('correoElectronico')">
+                                                <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mt-4">
+                                    <div class="col-12 col-lg-6">
+                                        <label class="label-form" for="contrasenia">Contraseña</label>
+                                    <div class="inline">
+                                        <input [attr.type]="tipo" name="contrasenia" id="contrasenia" autocomplete="new-password"
+                                        aria-describedby="passwordHelpInline" formControlName="contrasenia" placeholder="Contraseña"
+                                        class="form-control input-label">
+                                        <button id="show_password" class="btn color-blue" type="button" (click)= "mostrarPassword()"> <span [class]="pass_show"></span> </button>
+                                    </div>
+                                        <p class="info">Debe tener entre 6 y 12 caracteres, al menos 1 letra mayúscula, al menos 1 número y un símbolo (*, +, $, ¡).</p>
+                                        <span *ngIf="IsInvalid('contrasenia')">
+                                            <div class="alert alert-danger" *ngIf="contrasenia?.errors?.['required']">
+                                                Este campo es requerido
+                                                </div>
+                                                <div class="alert alert-danger" *ngIf="contrasenia?.errors?.['pattern']">
+                                                La contraseña no cumple con el formato indicado
+                                                </div>
+                                                <div class="alert alert-danger" *ngIf="contrasenia?.errors?.['minlength']">Campo no cumple el mínimo
+                                                de {{ contrasenia?.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                <div class="alert alert-danger" *ngIf="contrasenia?.errors?.['maxlength']">Campo supera máximo
+                                                de {{ contrasenia?.errors?.['maxlength'].requiredLength }} caracteres</div>    
+                                        </span>
+                                    </div>
+                                    <div class="mt-4 mt-lg-0 col-12 col-lg-6">
+                                        <label class="label-form" for="confirmarContrasenia">Repetir Contraseña</label>
+                                        <div class="inline">
+                                            <input [attr.type]="tipo" name="confirmarContrasenia" id="confirmarContrasenia" placeholder="Repetir Contraseña"
+                                                aria-describedby="passwordHelpInline" formControlName="confirmarContrasenia"
+                                                class="form-control input-label">
+                                                <button id="show_password2" class="btn color-blue" type="button" (click)= "mostrarPassword()"> <span [class]="pass_show"></span> </button>
+                                        </div>
+                                            <span *ngIf="IsInvalid('confirmarContrasenia')">
+                                                <div class="alert alert-danger" *ngIf="confirmarContrasenia?.errors?.['required']">Este campo es requerido</div>
+                                                <div class="alert alert-danger" *ngIf="confirmarContrasenia?.errors?.['matching']">Las contraseñas deben coincidir</div>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mt-4">
+                                    <div class="col-lg-4">
+                                        <label for="comoContactaste"
+                                        class="label-form">¿Cómo nos contactaste?</label>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <select id="comoContactaste" name="comoContactaste" (change)="toogleValue($event)"
+                                            formControlName="comoContactaste"
+                                            class="form-select input-label">
+                                            <option [ngValue]="null"> - Seleccione - </option>
+                                                <option *ngFor="let item of comoNosContacto" [ngValue]="item.codParametro">
+                                                    {{item.valor}}</option>
+                                        </select>
+                                        <span class="my-error-message" *ngIf="IsInvalid('comoContactaste')">
+                                            <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+
+                                <div *ngIf="isAnalista" class="form-group row mt-4">
+                                    <div class="col-lg-4" style="display: flex;align-items: center;">
+                                        <label for="comoContactaste" style="font-size: 17px;
+                                        color: rgb(0, 82, 165);
+                                        margin-top: 7px;
+                                        margin-bottom: 7px;"
+                                        class="form-label txt_blue">Ejecutivo</label>
+                                    </div>
+                                    <div class="col-lg-8">
+                                      <label for="analista" style="font-size: 17px;
+                                      color: rgb(0, 82, 165);
+                                      margin-top: 7px;
+                                      margin-bottom: 7px;"
+                                          class="block text-sm font-medium text-gray-700"></label>
+                                      <select id="analista" name="analista" formControlName="analista"
+                                          class="form-select input-label">
+                                          <option [ngValue]="null"> - Seleccione - </option>
+                                          <option *ngFor="let item of analistas" [ngValue]="item.usuario">
+                                            {{item.iniciales}}
+                                          
+                                      </select>
+                                      <span class="my-error-message" *ngIf="IsInvalid('analista')">
+                                        <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                                      </span>
+                                    </div>
+                                  </div>
+                        </div>
+
+                        
+
+                        
+                    </div>  
+                    
+                </div>
+            </div>
+                <div class="policies-group">
+                    <div class="">
+                        <input id="acuerdo" name="acuerdo" type="checkbox"
+                            formControlName="acuerdo"
+                            class="">
+                    </div>
+
+                    <div class="">
+                        <label for="acuerdo" class="">
+                            Estoy de acuerdo y acepto los <a href="/assets/files/MULTIPLO_TERMINOS_Y_CONDICIONES.pdf" target="_blank">Términos y Condiciones</a>, <a href="/assets/files/MULTIPLO_ACUERDO_DE_USO_BENEFICIARIO.pdf" target="_blank">Acuerdo de Uso de la Plataforma Múltiplo</a>  y la <a href="/assets/files/POLITICAPRIVACIDADDATOS.pdf" target="_blank">Política de Privacidad de Datos</a> que detalla el tratamiento de la información de datos personales.
+                        </label>
+                        <span class="my-error-message" *ngIf="IsInvalid('acuerdo')">
+                            <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="policies-group">
+                    <div class="">
+                        <input id="registrarse" name="registrarse" type="checkbox"
+                            formControlName="registrarse"
+                            class="">
+                    </div>
+
+                    <div class="">
+                        <label class="font-medium text-sm text-gray-700">
+                            Estoy de acuerdo en recibir e-mails y/o sms, newsletter con contenido relevante sobre nuestra
+                                organización.
+                        </label>
+                        <span class="my-error-message" *ngIf="IsInvalid('registrarse')">
+                            <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                        </span>
+                        </div>
+                </div>
+                
+                <div class="px-4 py-3  text-center sm:px-6">
+                    <button type="submit"
+                        class="btn btn-primary marginbtn">
+                        <i nz-icon nzType="loading" nzTheme="outline" class="mr-3 my-auto" *ngIf="guardando"></i>
+                        {{guardando ? 'Guardando...' : 'Aceptar'}}
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

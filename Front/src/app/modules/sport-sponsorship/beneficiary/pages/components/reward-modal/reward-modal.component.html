@@ -1,0 +1,19 @@
+<div style="background-color: transparent;"> 
+    <div class="torunaments" *ngIf="!!auspicio" >
+        <table class="table-class" >
+            <tr class="titles">
+                <th colspan="3" style="text-align: center;">RECOMPENSAS</th>
+            </tr>
+            <tr class="titles-content">
+                <th>{{auspicio[0].categoria}}</th>
+                <th>{{auspicio[1].categoria}}</th>
+                <th>{{auspicio[2].categoria}}</th>
+            </tr>
+            <tr >
+                <td >{{auspicio[0].detalle}}</td>
+                <td >{{auspicio[1].detalle}}</td>
+                <td >{{auspicio[2].detalle}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

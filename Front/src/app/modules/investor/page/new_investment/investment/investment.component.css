@@ -1,0 +1,425 @@
+.top{
+    display: flex;
+    flex-direction: column;
+    margin-top:3% ;
+}
+.container_{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+input{
+    padding-bottom: 4%;
+    padding-top: 4%;
+    padding-left: 5% !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+select{
+    width: 100%;
+    padding-bottom: 4%;
+    padding-top: 4%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.body{
+    padding-top: 110px;
+}
+form{
+    width: 100%;
+}
+
+.btns {
+    margin-bottom: 6%;
+    justify-content: center;
+    gap: 25px;
+}
+.container_body{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.line-title{
+    height: 3px;
+    border-radius: 1px;
+    width: 100%;
+    background-image: linear-gradient(to right, #e8a721, #e66122);
+}
+.row_{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.row_3{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: space-around;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.row_2{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: space-around;
+    width: 100%;
+    margin-top: 2%;
+}
+.top_title{
+    justify-content: flex-start ;
+    align-items: flex-start;
+    margin-top: 8%;
+    margin-bottom: 2%;
+}
+
+.justificado_{
+   text-align: justify;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+}
+.comprobante-pago{
+    margin-left: 2%;
+}
+.bg{ 
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 12px 14px;
+    padding: 1%;
+    margin-left: 1%;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.table-responsive{
+    width: 100%;
+}
+.bancos{
+    
+    background-color: #ffffff;
+}
+
+.mrg-l{
+    margin-left: 2%;
+}
+
+.deposito_input{
+    background-color: #ffffff !important;
+}
+
+.ckbox_class{
+    display: flex;
+    flex-direction: column;
+    width: 54%;
+    margin-left: 24%;
+}
+.background_card_{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid transparent;
+    border-radius: 15px 15px 15px 15px;
+    width: 100%;
+    height: 100%;
+    font-family:  NexaRegular;
+    padding-left: 3%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    background: #e8a721bd;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid #e8a721;
+    color: #1225aa;
+}
+
+.margen_formulario{
+    padding-top: 8%;
+    background: rgba(18, 37, 170, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(18, 37, 170, 0.3);
+}
+.btn-orange, .btn-blue{
+    border-radius: 7px;
+    border: 0;
+    padding: 0.25rem;
+    width: 225px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background-color: #ff5f00;
+    cursor: pointer;
+  }
+  
+  .btn-orange > a , .btn-blue > a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  .btn{
+    color: #1225aa;
+    font-family: 'NexaBlack';
+  }
+  .btn-orange:hover ,  .btn-blue:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+  }
+  .btn-blue{
+    background-color: #1225aa;
+    }
+
+    
+
+.row_2{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+table{
+    font-family:  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.1em;
+    font-weight: lighter;
+    border-collapse: collapse;
+    border-radius: 25px;
+}
+
+.theader{
+    background-color: #1225aa;
+    border-bottom: white 1px solid;
+    color: white;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+    font-size: 0.8em;
+    align-items: center;
+    display: flex;
+}
+tr{
+    margin-bottom: 1%;
+}   
+
+.ts{
+    width: 200px;
+}
+
+.container-input {
+    text-align: start;
+    border-radius: 6px;
+    width: 50%;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+    font-size: 9px;
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+.inputfile-7 + label {
+    color: #a0a0a0;
+}
+
+.inputfile-7 + label {
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 0;
+}
+
+.inputfile-7 + label span,
+.inputfile-7 + label strong {
+    padding: 0.7rem;
+}
+.errrorinfo{
+    background: rgba(18, 37, 170, 0.15);
+}
+.inputfile-7 + label span {
+    width: 160px;
+    min-height: 1em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background: white;
+    vertical-align: top;
+    border: 1px solid #1d6ea2;
+    border-radius: 10px;
+}
+
+.inputfile-7 + label strong {
+    height: 100%;
+    color: #fff;
+    display: inline-block;
+}
+
+.inputfile-7:focus + label strong,
+.inputfile-7.has-focus + label strong,
+.inputfile-7 + label:hover strong {
+
+    border-radius: 100px;
+}
+
+.titulofont{
+    font-size: 1em;
+    line-height: normal;
+}
+.row3{
+    display: flex;
+}
+
+/* 14a8e0 */
+.trow{
+    border-radius: 10px !important;
+    width: 215px;
+    background-color: transparent;  
+    box-shadow: inset 0 0 0 1px #ffffff;
+    padding-left: 2%;
+    border: 0;
+    height: 30px;
+    align-items: center;
+    margin-right: 6%;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    color: #1225aa;
+    overflow: hidden;
+    font-family: 'NEXAREGULAR';
+}
+
+@media (min-width: 1350px) {
+    .title{
+        margin-left: 7%;
+    }
+}
+@media (max-width: 1350px) {
+    .row_{
+    flex-wrap: wrap;
+    }
+    .row_2{
+        justify-content: flex-start;
+    }
+    .ts{
+        width: 100%;
+        flex-basis: 50%;
+        font-weight: normal;
+    }
+    .trow{
+        flex-basis: 50%;
+    }
+    .margen_formulario{
+        padding-left: 2%;
+    }
+    .bg{
+        margin: 3%
+    }
+    .comprobante-pago{
+        margin-left: 0%;
+    }
+    .ckbox_class{
+        width: 89%;
+        margin-left: 6%;
+    }
+}
+
+@media (max-width: 800px) {
+    .container_{
+        flex-direction: column;
+    }
+    .top{
+        display: block;
+        width: 100%;
+    }
+    .justificado_{
+        margin-left: 2%;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .trow{
+        width: 145px;
+        font-size: 0.6em;
+    }
+    .inputfile-7 + label span{
+        width: 100px
+    }
+    .theader{
+        font-size: 0.6em;
+    }
+    .btn{
+        font-size: 0.6rem;
+    }
+    .row_3{
+        margin-bottom: 5%;
+    }
+    .trow-input{
+        font-size: 0.7em !important;
+        height: 12px !important;
+    }
+    .pj-n3{
+        padding-left: 63px;
+        padding-right: 63px;
+    }
+    .deposito_input{
+        color: #000000 !important;
+        font-weight: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-right: 2%;
+    }
+    .btns {
+        gap: 5px;
+        padding-top: 2%;
+    }
+}

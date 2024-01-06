@@ -1,0 +1,34 @@
+<form [formGroup]="registrationForm" >
+    <div class="row_">
+        <div>
+            <table>
+                <div style="text-align: left; width: 100%; margin-bottom: 5px;">
+                    <section class="titles" style="font-size: 1.5em;">Respaldo de conciliación</section>
+                </div>
+                <tr>
+                    <th class="theader ">Total conciliado:</th>
+                    <input class="input_style input_content" type="text" id="numsol" name="numsol" formControlName="numsol" [value]="conciliacion.totalConciliado" readonly>
+                </tr>
+                <tr>
+                    <th class="theader ">Carga del estado de cta excel:</th>
+                    <input type="file" name="file-7" id="file-7" class="inputfile inputfile-7" (change)="this.onFilechange($event)" />
+                    <label for="file-7" placeholder="Cargar Documento">
+                    <span class="iborrainputfile">{{nombredoc}}</span>
+                        <strong style=" margin-left: -26%; margin-top: -3%;" >
+                            <img src="/assets/images/investor/download.png" alt="">
+                        </strong>
+                    </label>
+                </tr>
+                <tr>
+                    <th class="theader ">Observación:</th>
+                    <input type="text" class="input_style input_content" id="observacion" name="observacion" formControlName="observacion" [(ngModel)]="observacion">
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="margin-top: 5px; text-align: center; width: 100%; ">
+        <button type="submit" style="width: 180px;" class="btn_">
+            <section class="titlesorange" >Aceptar</section>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,139 @@
+<!-- <app-loading ></app-loading> -->
+<section id="choise-oportunity">
+
+  <div>
+  <div class="btns-title pos-sticky" *ngIf="user==null">
+    <div class="btn-blue btn-blue2 height-title" style=" border: 4px solid #ffd787;"  [routerLink]="'/contact'"> 
+      <a >CREA TU CUENTA</a>
+    </div>
+  </div>
+  <div class="btns-title">
+    <div class="title-sponsor" > 
+      <a >AUSPICIOS VIGENTES</a>
+    </div>
+  </div>
+  <div class="">
+    <div class="d-flex justify-content-center flex-wrap max-width"  >
+      <div class="card" *ngFor="let item of deportist">
+      <div class="card_conteiner right" *ngIf="!!item">
+        <!-- *ngIf="!!item && (item.identificacion =='0930071261' || item.identificacion =='0950414573'  || item.identificacion =='0993322954001' || item.identificacion == '0920788767'|| item.identificacion == '1207826486' ) " -->
+        <div class="img_contenier"> 
+          <img src="{{item.beneficiario.ruta1}}" lass="imagen-proyect" alt="" loading="lazy" style="width: 100%;
+          height: 100%;">
+        </div>
+        <div class="ico-shared " (click)="copyToClipboard(item.auspicio.numeroAuspicio)">
+          <img src="/assets/images/shared/share.png" matTooltip="Copiar enlace" matTooltipPosition="above"  width="25px" alt="">
+        </div>
+        <div class="text_conteiner">
+          <div class="title-content" style="flex-basis: 25%;">
+            <div class="row_card_conteiner">
+              <div class="column_card title-proyect" style="align-items: center; text-align: center;">
+              <span *ngIf="item.persona.tipoPersona=='NAT'"> 
+                {{item.persona.nombres}} <br>  {{item.persona.apellidos}} </span>
+                <span style="cursor:default;" matTooltip="{{item.persona.razonSocial}}"
+                matTooltipPosition="above" *ngIf="item.persona.tipoPersona=='JUR'"> 
+                  {{item.persona.razonSocial }} </span>
+            </div>
+          </div>
+
+          <div class="row_card_conteiner">
+            <div class="progress" >
+              <div class="progressbarWrapper">
+                <span class="yellowBar" [ngClass]="porcenatjeprueba >=100?'suceessBar':'yellowBar'" [ngStyle]="{'width':porcenatjeprueba >=100?100:porcenatjeprueba+ '%'}" ></span>
+                <div class="percent" [ngStyle]="{'color': porcenatjeprueba>=50?'#fff':'#1225aa'}"> <p *ngIf="porcenatjeprueba>=100">EXITOSO &nbsp;</p> {{porcenatjeprueba}}%</div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        <div class="description_conteiner">
+          <div class="row_card_conteiner">
+             <div class="column_card marginbuttom" style="align-items: center;">
+              <div style="display: flex; justify-content:center; flex-direction:column; font-size: 1.5em;">
+                <span class="titulo_card" style="display: flex; justify-content: center;">Disciplina</span>
+                <span class="text_card"> {{item.beneficiario.disciplina}}/ {{item.beneficiario.categoria}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row_card">
+            <div class="column_card">
+              <div class="row_card mrgtop">
+                <div class="column_card marginbuttom" >
+                  <span class="titulo_card">Titlulos
+                  </span>
+                  <ul class="text_card" style="font-size: 1em; margin: 0;
+                 padding: 0 0 0 15px;" *ngIf="!!item.torneos">
+                    <li *ngIf="!!item.torneos[0] && !!item.torneos[0].rankingInternacional ">{{item.torneos[0].rankingInternacional | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[0] && !!item.torneos[0].rankingNacional">{{item.torneos[0].rankingNacional  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[0] && !!item.torneos[0].otros ">{{item.torneos[0].otros  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[1] && !!item.torneos[1].rankingInternacional ">{{item.torneos[1].rankingInternacional  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[1] && !!item.torneos[1].rankingNacional">{{item.torneos[1].rankingNacional  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[1] && !!item.torneos[1].otros ">{{item.torneos[1].otros  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[2] && !!item.torneos[2].rankingInternacional ">{{item.torneos[2].rankingInternacional  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[2] && !!item.torneos[2].rankingNacional">{{item.torneos[2].rankingNacional  | slice:0:35}}</li>
+                    <li *ngIf="!!item.torneos[2] && !!item.torneos[2].otros ">{{item.torneos[2].otros  | slice:0:35}}</li>
+                  </ul>
+                  <span class="text_card" style="font-size: 1.2em;"></span>
+                </div>
+                
+              </div>
+
+             
+            </div>
+
+            <div class="column_card mrgend"  *ngIf="!!item.persona.nacionalidad">
+              <div class="row_card mrgtop">
+                <div class="column_card marginbuttom">
+                  <span class="titulo_card">PAÍS</span>
+                  <span  class="text_card">{{getPais(item.persona.nacionalidad)}}</span>
+                </div>
+              </div>
+              
+              <div class="row_card mrgtop">
+                <div class="column_card marginbuttom">
+                  <span class="titulo_card">Monto solicitado </span>
+                  <span class="text_card hover-elements" style="font-size: 1.3em;">{{item.auspicio.montoSolicitado| currency}}</span>
+                  
+                </div>
+              </div>
+              <div class="row_card mrgtop">
+                <div class="column_card marginbuttom">
+                  <span class="titulo_card">Monto recaudado </span>
+                  <span class="text_card hover-elements" style="font-size: 1.3em;">{{item.auspicio.montoRecaudado| currency}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="btn_conteiner" style="flex-basis: 50%;">
+          <div class="row_">
+              <div class="column_">
+                <div>
+                  <div class="btn-orange" [routerLink]="'/contact'" > 
+                    <a >EMPIEZA TU PATROCINIO</a>
+                </div>
+                </div>
+                    <div class="btn-container">
+                      <div class="btn-blue" (click)="masDetalles(item.auspicio.numeroAuspicio)" > 
+                        <a >MÁS DETALLES</a>
+                    </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="btn-container" id="simulator">
+      <div class="btn-orange height-title" > 
+        <a >VER MÁS</a>
+      </div>
+    </div>  
+  </div>
+  
+</div>
+</div>
+</section>

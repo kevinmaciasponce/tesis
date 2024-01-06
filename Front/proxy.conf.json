@@ -1,0 +1,9 @@
+{
+    "/sistema/api/v1/*":{
+        "target":"https://api.contifico.com/",
+        "secure":false,
+        "logLevel":"debug",
+        "protocol": "https:",
+        "changeOrigin": true
+    }
+}

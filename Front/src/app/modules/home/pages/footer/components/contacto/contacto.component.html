@@ -1,0 +1,116 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div >
+  <div class="row_" id="formcontacto" >
+    <div class="leyend">
+      Si tienes dudas con algún servicio que ofrece MULTIPLO S.A.S. B.I.C. o quieres realizar un
+      Patrocinio por algunos de nuestros deportistas , te invitamos a que llenes el siguiente 
+      formulario y nos contactaremos contigo.
+    </div>
+    <div class="secform" style="padding: 2%;">
+      <div class="background_card">
+        <div class="bg">
+          <div class="box">
+            <form  [formGroup]="registrationForm" class="">
+              <div>
+                <div class="txt_blue "><h1 class="">Formulario de contacto</h1></div>
+                <div class="rows">
+                  <div class="ico-form">
+                    <img src="/assets/images/landing2/movil/icoUser.png " alt="">
+                  </div>
+                  <div class="text-title">
+                    <div class="line-title"></div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row_2">
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Nombres</section>
+                  <input placeholder="Ingrese sus nombres" class="box-style" type="text" style="width: 100%;"  formControlName="nombres" oninput="javascript:this.value=this.value.toUpperCase();">
+                  <span class="" *ngIf="IsInvalid('nombres')">
+                    <div class="alert alert-danger">{{'Este campo requiere entre 3 y 50 carácteres'}}</div>
+                  </span>
+                </div>
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Cédula o Ruc</section>
+                  <input pattern="[0-9]{10,13}" placeholder="Ingrese su cédula o RUC" class="box-style" type="text" style="width: 100%; " formControlName="cedula" (keypress)="keyPressNumbers($event)">
+                  <span class="" *ngIf="IsInvalid('cedula')">
+                    <div class="alert alert-danger">{{'Este campo es numerico y debe contener solo 10 o 13 caracteres '}}</div>
+                  </span>
+                </div>
+              </div>
+
+              <div class="row_2">
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Email</section>
+                  <input placeholder="Ingrese su Email" class="box-style" type="text" style="width: 100%; " formControlName="email">
+                  <span class="" *ngIf="IsInvalid('email')">
+                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                 </span>
+                </div>
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Teléfono</section>
+                  <input pattern="[0-9]{10,13}" placeholder="Ingrese su teléfono" class="box-style" type="text" style="width: 100%; " formControlName="telefono" (keypress)="keyPressNumbers($event)">
+                  <span class="" *ngIf="IsInvalid('telefono')">
+                    <div class="alert alert-danger">{{'Este campo es numerico y debe contener solo 10 o 13 caracteres '}}</div>
+                  </span>
+                </div>
+              </div>
+
+              <div class="row_2">
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Ciudad</section>
+                  <input placeholder="Ingrese la ciudad" class="box-style" type="text"onkeydown="return /[a-z, ]/i.test(event.key)" style="width: 100%; " formControlName="ciudad"  oninput="javascript:this.value=this.value.toUpperCase();">
+                  <span class="" *ngIf="IsInvalid('ciudad')">
+                    <div class="alert alert-danger">{{'Este campo es alfabético y requiere entre 3 y 20 carácteres'}}</div>
+                  </span>
+                </div>
+                <div class="column_">
+                  <section style="font-size: 1em; padding: 1%; ">Motivo de contacto</section>
+                  <select  class="box-style" type="text" style="width: 100%; font-size: 1em; " name="" id="" formControlName="motivo">
+                    <option [ngValue]="null"> - Seleccione - </option>
+                    <option value="contacteme">Contáctenos</option>
+                    <option value="sugencias">Sugerencias</option>
+                    <option value="reclamos">Reclamos</option>
+                    <option value="quiero Auspiciar">Quiero Auspiciar</option>
+                  </select>
+                  <span class="" *ngIf="IsInvalid('motivo')">
+                    <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                 </span>
+                </div>
+              </div>
+              <section style="font-size: 1em; padding: 1%; ">Mensaje</section>
+              <textarea  placeholder="Ingrese su mensaje" style="width: 100%; height: 70px ;" formControlName="mensaje" oninput="javascript:this.value=this.value.toUpperCase();"
+                class="box-style"></textarea>
+                <span class="" *ngIf="IsInvalid('mensaje')">
+                  <div class="alert alert-danger">{{'Este campo requieres entre 4 a 200 caracteres'}}</div>
+               </span>
+
+               <div class="policies-group">
+                <div class=" ">
+                    <input id="registrarse" name="registrarse" type="checkbox" required
+                        formControlName="registrarse"
+                        class="">
+                </div>
+  
+                <div class="">
+                    <label class="font-medium text-sm text-gray-700">
+                      Estoy de acuerdo en recibir e-mails y/o sms, newsletter con contenido relevante sobre nuestra
+                      organización.
+                    </label>
+                    <span class="my-error-message" *ngIf="IsInvalid('registrarse')">
+                      <div class="alert alert-danger">{{'Este campo es requerido'}}</div>
+                    </span>
+                  </div>
+            </div>
+  
+                <div type="submit" style="width: 180px;" class="btn-orange" (click)="enviar()" >
+                  <a class="titlesorange">Enviar</a>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

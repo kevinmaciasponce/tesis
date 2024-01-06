@@ -1,0 +1,36 @@
+<div style="padding-top: 110px;" class="body">
+
+    <div class="title">
+        <div class="Title-reg">
+            REGISTRAR BENEFICIARIO
+        </div>
+    </div>
+
+    <div class="main-content"  *ngIf="!!beneficiarys">
+        <mat-card class="example-card" *ngFor="let project of beneficiarys">
+            <img  mat-card-image  src={{project.beneficiario.ruta1}} alt="Angular Logo">
+            <mat-card-header>
+                <mat-card-title *ngIf="project.persona.identificacion.length==10">{{project.persona.nombres}} {{project.persona.apellidos}}</mat-card-title>
+                <mat-card-title *ngIf="project.persona.identificacion.length==13">{{project.persona.razonSocial}}</mat-card-title>
+                <mat-card-subtitle>
+                 {{project.beneficiario.disciplina}}/{{project.beneficiario.categoria}}
+                </mat-card-subtitle>
+              </mat-card-header>
+            <mat-card-content>
+              <p class="description" style="text-align: justify;">
+                {{project.beneficiario.perfil}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions style="display: flex; justify-content:center;">
+                <button mat-raised-button color="primary"  (click)="verBeneficiario(project.persona.identificacion)">VER</button>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card class="example-card btnReg" >
+            <mat-card-actions style="display: flex; justify-content:center;">
+              <button mat-raised-button color="primary" (click)="gotoRoute()">AÑADIR BENEFICIARIO</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+
+</div>
+<app-sport-sponsor ></app-sport-sponsor>

@@ -1,0 +1,46 @@
+.detail-steps{
+    position: fixed;
+    top: 35%;
+    left: 1%;
+    width: fit-content;
+    z-index: 9;
+}
+.steps{
+    cursor: pointer;
+    padding: 3%;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    width: 250px;
+    background-color: white;
+}
+.hoverEfect:hover{
+    transition: transform .3s;
+    transform: scale(1.2);
+}
+.title-steps{
+    cursor: help;
+    background-color: #1225aa;
+    padding: 0 3%;
+    color: white;
+    border-radius: 5px;
+}
+.menu-steps{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.img-modal{
+    width: fit-content;
+}
+
+.background-modal .modal-content{
+    background-color: transparent;
+    border: 0;
+}
+@media (max-width: 993px) {
+    .img-modal{
+        width: 100%;
+    }
+}

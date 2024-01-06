@@ -1,0 +1,126 @@
+<div class="body">
+    <div class="container_">
+        <!-- <div class="top">
+            <app-menu-conteiner></app-menu-conteiner>
+        </div> -->
+        <div class="container_body">
+            <ul class="menu_items">
+                <li class="items_conteiner"><img class="ico_menu" src="/assets/images/investor/icoconf.png" alt="">Inversiones Liquidadas </li>
+            </ul>
+            <div class="background_card">
+                <div class="bg">
+                    <div class="box">
+                        <form [formGroup]="registrationForm" (submit)="consultar()">
+                            <div class="row_">
+                                <div>
+                                    <table>
+                                        <div (click)="isOpenConsulta=toggleState(isOpenConsulta)" style="text-align: left; width: 100%; margin-bottom: 5px; cursor: pointer;">
+                                            <section class="titles" style="font-size: 1.5em; display: flex;">Filtros de consulta <span style="font-size: 10px;">&nbsp; ▼</span></section>
+                                        </div>
+                                        <div *ngIf="isOpenConsulta;else close">
+                                        </div>
+                                        <ng-template #close>
+                                        <tr>
+                                            <th class="theader ">Nombre de Empresa:</th>
+                                            <select class="box-style" id="codProyecto" name="codProyecto" (blur)="consultar()" formControlName="codProyecto" [ngClass]="{}">
+                                                <option class="input_content" value=null>TODOS</option>
+                                                <option class="input_content" *ngFor="let item of empresas"
+                                                    [value]="item.codProyecto">
+                                                    {{item.nombreEmpresa}}
+                                                </option>
+                                            </select>
+                                        </tr>
+                                        <!-- <tr>
+                                            <th class="theader ">Calificación de Riesgo:</th>
+                                            <select class="box-style" id="riesgos" name="riesgos" formControlName="riesgos" [ngClass]="{}">
+
+                                                <option class="input_content" value=null> TODOS</option>
+                                                <option class="input_content" *ngFor="let item of calificaciones"
+                                                    [value]="item.idTipoCalificacion">{{item.nombre}}
+                                                </option>
+                                            </select>
+                                        </tr>
+                                        <tr>
+                                            <th class="theader ">Sector:</th>
+                                            <select class="box-style" id="sectors" name="sectors" formControlName="sectors">
+                                                <option value=null>TODOS</option>
+                                                <option *ngFor="let item of sectores" [value]="item.idActividad">
+                                                    {{item.nombre}}
+                                                </option>
+                                            </select>
+                                        </tr> -->
+                                        <tr>
+                                            <th class="theader ">Estado:</th>
+                                            <input value="LIQUIDADAS"
+                                            class="box-style" readonly>
+                                        </tr>
+                                    </ng-template>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="margin-top: 5px; text-align: center; width: 100%; ">
+                                <button type="submit" style="width: 180px;" class="btn_">
+                                    <section class="titlesorange">Consultar</section>
+                                </button>
+                            </div>
+                        </form>
+                        <div style="display: flex; flex-direction: row; width: 100%;">
+                            <div style="justify-content: flex-start; width: 70%; ">
+                                <div style="width: 300px;">
+                                    <section class="titles" style="margin-top: 15px; font-size: 1.7em;">Detalles de la Consulta
+                                    </section>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; width: 40%;">
+                                <img (click)="exportToExcel()" class="ico_menu justify-content: flex-end;" src="/assets/images/investor/icoword.png" alt="">
+                            </div>
+                        </div>
+                        <div class="scrollbar_">
+                            <table id="season-tble">
+                                <tr>
+                                    <th><section class="theader-flex">Numero de Solicitud</section> </th>
+                                    <th><section class="theader-flex">Código de proyecto</section> </th>
+                                    <th><section class="theader-flex">Nombre de la Empresa</section></th>
+                                    <th><section class="theader-flex">Monto solicitado</section></th>
+                                    <th><section class="theader-flex">Plazo Meses</section></th>
+                                    <th><section class="theader-flex">Inversión</section></th>
+                                    <th><section class="theader-flex">Estado <img *ngIf="!!detallestatus" class="ico_menu" src="/assets/images/shared/status.png" alt="" matTooltipPosition="above" matTooltip={{detallestatus.detalle}}></section></th>                 
+                                </tr>
+                                <tr *ngFor="let datos of liquidated ; let i = index">
+                                   
+                                    <td class="rowborder "  (click)="goDetallesUser(datos.identificacion, datos.numeroSolicitud)">
+                                        <section class="input_content" style="cursor: pointer;text-decoration: underline;" matTooltipPosition="above" matTooltip="Ver datos del inversionista "> {{datos.numeroSolicitud}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content"> {{datos.codProyecto}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.nombreEmpresa}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content" >{{datos.montoProyecto | currency:'':'symbol'}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.plazo}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.inversion | currency:'':'symbol'}}</section>
+                                    </td>
+                                    <td class="rowborder ">
+                                        <section class="input_content">{{datos.estado}}</section>
+                                    </td>
+                                    <td class="rownoborder input_content" style="width: 180px;">
+                                        <button type="submit" class="btn_"  (click)="goDetallesUser(datos.identificacion, datos.numeroSolicitud)">
+                                            <section class="titlesorange">Más detalles</section>
+                                        </button>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

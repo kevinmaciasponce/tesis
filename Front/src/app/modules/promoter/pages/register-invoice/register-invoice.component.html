@@ -1,0 +1,75 @@
+<div style="padding-top: 110px;">
+  <ng-container >
+    <button mat-button mat-stroked-button [routerLink]="['/promoter/home']"
+          style="background-color: #767676;color: white;">Regresar</button>
+    </ng-container>
+  <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort style="width: 100%;" >
+              
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                Nrº
+                </th>
+                <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                Nombre
+                </th>
+                <td mat-cell *matCellDef="let element">  {{this.returnRazonSocial()}}</td>
+                </ng-container>
+
+              
+                <ng-container matColumnDef="estado">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header >
+                  Estado
+                  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descripcion">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header >
+                  Descripción
+                  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.totalFactura| currency}} </td>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="ver" >
+                    
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header >
+                    Ver Factura
+                    </th>
+                    <td mat-cell *matCellDef="let element" >
+                      <div style="width: 25px;  margin-left: 10%;" matTooltip="Detalles de factura" matTooltipPosition="above">
+                        <img src="assets/images/iconos/verFactura.png" (click)="VerDocumento(element.id)" class="hoverEfect" style="width: 100%; cursor: pointer;" alt="">
+                        </div>
+                    </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="registrar" >
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header >
+                      Registrar Pago
+                      </th>
+                      <td mat-cell *matCellDef="let element" >
+                        <div style="width: 25px; margin-left: 10%;">
+                          <img src="assets/images/iconos/factura.png" (click)="RegistrarDocumento(element.id)" class="hoverEfect" style="width: 100%; cursor: pointer;" alt="">
+                        </div>
+                      </td>
+                      </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No existen facturas registradas</td>
+                </tr>
+
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons #paginatorMod
+                 aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+    
+</div>

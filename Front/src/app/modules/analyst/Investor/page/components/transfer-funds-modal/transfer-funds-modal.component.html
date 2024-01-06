@@ -1,0 +1,55 @@
+<app-loading *ngIf="cargando"></app-loading>
+<div>
+    <div style="display: flex; flex-direction: column; justify-content: center; width: 100%; align-items: center;">
+        <ul class="menu_items">
+            <li class="items_conteiner">Transferir Fondos</li>
+        </ul>
+        <div  style="display: flex; flex-direction: column;">
+            <div style="display: flex;">
+             <section style="border-radius: 20px !important; height: 40px; width: 250px; padding: 2%; font-size: 1.3em; align-items: center;
+                 display: flex;" class="box-flex" > {{nombreEmpresa}} </section> 
+                 <section style="border-radius: 20px !important; height: 40px; width: 250px; padding: 2%; font-size: 1.3em; align-items: center;
+                 display: flex;" class="box-flex" >Monto Recaudado: ${{montoRecaudado}} </section> 
+             </div>
+         </div>
+        
+        <div class="scrollbar_">
+            <form [formGroup]="registrationForm" #ngForm="ngForm" (ngSubmit)="submit()" >
+                <table > 
+                    <tr>
+                        <th><section   class="theader "> Datos de pago </section></th>
+                        <input type="file" name="fileAnexo" id="fileAnexo"  class="inputfile inputfile-7" formControlName="fileAnexo"
+                        (change)="this.onFilechange($event)" />
+                        <label for="fileAnexo" placeholder="Cargar Documento">
+                        <span class="iborrainputfile">{{nombredoc}}</span>
+                        <strong style=" margin-left: -19%; margin-top: -3%;" >
+                            <img src="/assets/images/investor/download.png" alt="" class="logo_img">
+                        </strong>
+                        </label>
+                        <span style="font-size: 12px;">Se deben ingresar archivos en formato jpg/png</span>
+                    </tr>                
+                    <tr>
+                        <th><section  class="theader ">Observación </section></th>
+                        <textarea style="text-align: justify;  margin-bottom: 2%;" id="observacion" formControlName="observacion"
+                        name="observacion" rows="4" cols="50" [(ngModel)]="observacion"
+                        class="box-flex" ></textarea>
+                        <span class="" *ngIf="IsInvalid('observacion')">
+                            <div class="alert alert-danger">{{'Este campo requiere mínimo 5 carácteres'}}</div> 
+                        </span>
+                    </tr>
+                    <!-- <tr>
+                        <th><section  class="theader ">Monto ingresado </section></th>
+                        <input  style="text-align: justify;" currencyMask  name="monto" formControlName="monto"
+                        (keypress)="keyPressNumbers($event)"  [(ngModel)]="monto" 
+                        class="input_style">
+                    </tr> -->
+                </table>
+                <div class="centrar_row">
+                    <button type="submit" class="btn_" style="width: 200px;" >
+                        <section class="titles">Aprobar solicitudes</section>
+                    </button>
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
